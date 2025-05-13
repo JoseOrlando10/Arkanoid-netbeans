@@ -17,7 +17,7 @@ public class playGame extends javax.swing.JFrame {
     /**
      * Creates new form playGame
      */
-    //public playGame(JFrame parent) {
+    public playGame(JFrame parent) {
         initComponents();
         this.parent = parent;
     }

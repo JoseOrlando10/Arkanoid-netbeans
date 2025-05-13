@@ -48,7 +48,7 @@ public class ArkanoidGame extends JComponent
         ball = new Ball(Color.yellow, 20, 20, 5);
         bricks = new ArrayList<>();
         bricks.add(new Brick(Color.GREEN, 10, 10, 30, 10));
-        //bricks.add(new Brick(Color.MAGENTA, 50, 10, 30, 10));
+        bricks.add(new Brick(Color.MAGENTA, 50, 10, 30, 10));
         bricks.add(new Brick(Color.BLUE, 90, 10, 30, 10));
         bricks.add(new Brick(Color.ORANGE, 130, 10, 30, 10));
         bricks.add(new Brick(Color.PINK, 170, 10, 30, 10));
