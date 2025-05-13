@@ -113,6 +113,7 @@ public class Arkanoide extends javax.swing.JFrame {
     private void jogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jogarActionPerformed
         setVisible(false);
         new playGame(this).setVisible(true);
+        setLocationRelativeTo(null);
     }//GEN-LAST:event_jogarActionPerformed
 
     /**
@@ -145,6 +146,7 @@ public class Arkanoide extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
                 new Arkanoide().setVisible(true);
             }
         });

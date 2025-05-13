@@ -19,6 +19,7 @@ public class playGame extends javax.swing.JFrame {
      */
     public playGame(JFrame parent) {
         initComponents();
+        setLocationRelativeTo(null);// coloca no centro do ecra
         this.parent = parent;
     }
 
