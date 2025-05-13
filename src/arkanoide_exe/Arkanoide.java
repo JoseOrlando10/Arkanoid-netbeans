@@ -113,7 +113,7 @@ public class Arkanoide extends javax.swing.JFrame {
     private void jogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jogarActionPerformed
         setVisible(false);
         new playGame(this).setVisible(true);
-        setLocationRelativeTo(null);
+        
     }//GEN-LAST:event_jogarActionPerformed
 
     /**
