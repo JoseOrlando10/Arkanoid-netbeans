@@ -54,7 +54,7 @@ public class ArkanoidGame extends JComponent
         bricks.add(new Brick(Color.PINK, 170, 10, 30, 10));
         bricks.add(new Brick(Color.YELLOW, 210, 10, 30, 10));
         bricks.add(new Brick(Color.MAGENTA, 250, 10, 30, 10));
-        //bricks.add(new Brick(Color.GREEN, 290, 10, 30, 10));
+        bricks.add(new Brick(Color.GREEN, 290, 10, 30, 10));
 
         // Define o paddle mais embaixo
         pad = new Paddle(Color.RED, 200, 350, 50, 10);
