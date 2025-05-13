@@ -18,6 +18,7 @@ public class Créditos extends javax.swing.JDialog {
     public Créditos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);// coloca no centro do ecra
     }
 
     /**
