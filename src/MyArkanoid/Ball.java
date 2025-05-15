@@ -70,4 +70,15 @@ public class Ball extends GameObject {
         this.vy = -vy; // Inverte a direção vertical
     }
 
+    public void setPosition(int x, int y) {
+    this.x = x;
+    this.y = y;
+}
+
+    
+    public void launch(int direction)
+    {
+        vx=2*direction;
+        vy=-2;
+    }
 }
