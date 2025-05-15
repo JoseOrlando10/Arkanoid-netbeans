@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import java.awt.Graphics2D;
 import java.awt.AlphaComposite;
+import MyArkanoid.ImageBrick;
 
 /**
  * Created on 06/05/2025, 17:48:47
@@ -52,17 +53,17 @@ public class ArkanoidGame extends JComponent
     public void start() {
         ball = new Ball(Color.yellow, 20, 20, 5);
         bricks = new ArrayList<>();
-        bricks.add(new Brick(Color.GREEN, 10, 10, 30, 10));
-        bricks.add(new Brick(Color.MAGENTA, 50, 10, 30, 10));
-        bricks.add(new Brick(Color.BLUE, 90, 10, 30, 10));
-        bricks.add(new Brick(Color.ORANGE, 130, 10, 30, 10));
-        bricks.add(new Brick(Color.PINK, 170, 10, 30, 10));
-        bricks.add(new Brick(Color.YELLOW, 210, 10, 30, 10));
-        bricks.add(new Brick(Color.MAGENTA, 250, 10, 30, 10));
-        bricks.add(new Brick(Color.GREEN, 290, 10, 30, 10));
+        bricks.add(new ImageBrick("/resources/pedras.png", 10, 10, 30, 10));
+        bricks.add(new ImageBrick("/resources/pedras.png",50, 10, 30, 10));
+        bricks.add(new ImageBrick("/resources/pedras.png",90, 10, 30, 10));
+        bricks.add(new ImageBrick("/resources/pedras.png",130, 10, 30, 10));
+        bricks.add(new ImageBrick("/resources/pedras.png", 170, 10, 30, 10));
+        bricks.add(new ImageBrick("/resources/pedras.png", 210, 10, 30, 10));
+        bricks.add(new ImageBrick("/resources/pedras.png", 250, 10, 30, 10));
+        bricks.add(new ImageBrick("/resources/pedras.png", 290, 10, 30, 10));
 
         // Define o paddle mais embaixo
-        pad = new Paddle(Color.RED, 200, 350, 50, 10);
+        pad = new Paddle(Color.RED, 200, 430, 50, 10);
     }
 
     public void gameOver() {
@@ -101,11 +102,11 @@ public class ArkanoidGame extends JComponent
 
     // 🟢 Passo 3: Tempo com opacidade total
     g2d.setColor(Color.BLACK);
-    g2d.drawString("Tempo: " + timeElapsed, getWidth() - 315, 369);
+    g2d.drawString("Tempo: " + timeElapsed, getWidth() - 550, 460);
     
     //Pontuação
-    gr.setColor(Color.red);//Posição do Score aparece depois da ,
-    gr.drawString("Pontuação: "+score, 10, getHeight() - 30);
+    gr.setColor(Color.BLACK);//Posição do Score aparece depois da ,
+    gr.drawString("Pontuação: "+score, getWidth() - 480, 460);
 
     g2d.dispose();
 }
