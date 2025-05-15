@@ -21,6 +21,7 @@ public class playGame extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);// coloca no centro do ecra
         this.parent = parent;
+        
     }
 
     /**
@@ -33,7 +34,10 @@ public class playGame extends javax.swing.JFrame {
     private void initComponents() {
 
         arkanoidGame1 = new MyArkanoid.ArkanoidGame();
+        jLabel1 = new javax.swing.JLabel();
 
+        setMaximumSize(new java.awt.Dimension(702, 573));
+        setMinimumSize(new java.awt.Dimension(702, 573));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -43,26 +47,20 @@ public class playGame extends javax.swing.JFrame {
                 formWindowClosing(evt);
             }
         });
+        getContentPane().setLayout(null);
 
-        arkanoidGame1.setBackground(new java.awt.Color(255, 255, 153));
-        arkanoidGame1.setBorder(new javax.swing.border.MatteBorder(null));
+        arkanoidGame1.setBackground(new java.awt.Color(0, 0, 0));
+        arkanoidGame1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        arkanoidGame1.setForeground(new java.awt.Color(255, 51, 51));
+        arkanoidGame1.setMaximumSize(new java.awt.Dimension(600, 450));
+        arkanoidGame1.setMinimumSize(new java.awt.Dimension(600, 450));
+        arkanoidGame1.setLayout(new javax.swing.OverlayLayout(arkanoidGame1));
+        getContentPane().add(arkanoidGame1);
+        arkanoidGame1.setBounds(70, 50, 560, 470);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(arkanoidGame1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(arkanoidGame1, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/nivel1.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 700, 570);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -79,5 +77,6 @@ public class playGame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private MyArkanoid.ArkanoidGame arkanoidGame1;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

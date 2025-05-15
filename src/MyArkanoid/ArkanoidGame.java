@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import java.awt.Graphics2D;
+import java.awt.AlphaComposite;
 
 /**
  * Created on 06/05/2025, 17:48:47
@@ -70,20 +72,37 @@ public class ArkanoidGame extends JComponent
         System.out.println("Game Over!");
     }
 
-    public void paintComponent(Graphics gr) {
-        gr.setColor(Color.lightGray);
-        gr.fillRect(0, 0, getWidth() - 1, getHeight() - 1);
-        ball.paint(gr);
+    protected void paintComponent(Graphics gr) {
+    super.paintComponent(gr);
 
-        for (Brick brick : bricks) {
-            brick.paint(gr);
+    Graphics2D g2d = (Graphics2D) gr.create();
+
+    // 🟡 Passo 1: Pintar fundo com transparência
+    float alpha = 0.8f; // Ajusta a opacidade do fundo aqui (0.0f = totalmente transparente, 1.0f = opaco)
+    g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
+    g2d.setColor(Color.LIGHT_GRAY);
+    g2d.fillRect(0, 0, getWidth(), getHeight());
+
+    // 🔵 Passo 2: Restaurar opacidade total para objetos do jogo
+    g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
+    
+    // Desenhar objetos com opacidade total
+    ball.paint(g2d);
+
+    for (Brick brick : bricks) {
+        if (brick.isVisible) {
+            brick.paint(g2d);
         }
-        pad.paint(gr);
-
-        // Desenha o contador de tempo no canto superior direito
-        gr.setColor(Color.BLACK);
-        gr.drawString("Tempo: " + timeElapsed, getWidth() - 315, 369);
     }
+
+    pad.paint(g2d);
+
+    // 🟢 Passo 3: Tempo com opacidade total
+    g2d.setColor(Color.BLACK);
+    g2d.drawString("Tempo: " + timeElapsed, getWidth() - 315, 369);
+
+    g2d.dispose();
+}
 
     
 
@@ -119,7 +138,7 @@ public void actionPerformed(ActionEvent e) {
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        pad.moveTo(e.getX());
+        pad.moveTo(e.getX(), getWidth());
     }
     
 }
