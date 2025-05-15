@@ -36,7 +36,9 @@ public class Arkanoide extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(702, 609));
         setResizable(false);
+        getContentPane().setLayout(null);
 
         creditos.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
         creditos.setText("Creditos");
@@ -45,6 +47,8 @@ public class Arkanoide extends javax.swing.JFrame {
                 creditosActionPerformed(evt);
             }
         });
+        getContentPane().add(creditos);
+        creditos.setBounds(40, 500, 100, 39);
 
         sair.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
         sair.setText("Sair");
@@ -53,6 +57,8 @@ public class Arkanoide extends javax.swing.JFrame {
                 sairActionPerformed(evt);
             }
         });
+        getContentPane().add(sair);
+        sair.setBounds(560, 510, 100, 40);
 
         jogar.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
         jogar.setText("Jogar");
@@ -65,39 +71,12 @@ public class Arkanoide extends javax.swing.JFrame {
                 jogarActionPerformed(evt);
             }
         });
+        getContentPane().add(jogar);
+        jogar.setBounds(40, 440, 100, 40);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/arkanoidlogo2.png"))); // NOI18N
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(145, 145, 145)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(creditos, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jogar, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sair, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(240, 240, 240)
-                        .addComponent(jLabel1)))
-                .addContainerGap(182, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                .addComponent(jogar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(creditos, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(sair, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/smashtheageslogo.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 696, 570);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
