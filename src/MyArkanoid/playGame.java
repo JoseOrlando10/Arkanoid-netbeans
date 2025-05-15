@@ -34,6 +34,7 @@ public class playGame extends javax.swing.JFrame {
 
         arkanoidGame1 = new MyArkanoid.ArkanoidGame();
 
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
