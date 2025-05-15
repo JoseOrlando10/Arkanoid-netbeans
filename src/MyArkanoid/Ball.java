@@ -75,7 +75,13 @@ public class Ball  extends GameObject{
         
     }
     
-    
+    public void reverseX() {
+    this.vx = -vx; // Inverte a direção horizontal
+}
+
+public void reverseY() {
+    this.vy = -vy; // Inverte a direção vertical
+}
 
 
 

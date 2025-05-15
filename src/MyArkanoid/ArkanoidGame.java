@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 /**
@@ -84,30 +85,41 @@ public class ArkanoidGame extends JComponent
         gr.drawString("Tempo: " + timeElapsed, getWidth() - 315, 369);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        ball.move(this.getBounds());
+    
 
-        if (ball.getY() + ball.getHeight() > this.getHeight()) {
-            gameOver();
-            return;
-        }
+    
+@Override
+public void actionPerformed(ActionEvent e) {
+    try {
+        ball.move(this.getBounds());
 
         for (Brick brick : bricks) {
             if (brick.intersects(ball) && brick.isVisible) {
                 brick.isVisible = false;
+
+                // Ajusta a direção corretamente
+                ball.reverseX(); // Inverte direção horizontal
+                ball.reverseY(); // Inverte direção vertical
+
+                break; // Evita múltiplas colisões simultâneas
             }
         }
-        pad.collide(ball);
 
+        pad.collide(ball);
         repaint();
+    } catch (Exception ex) {
+        ex.printStackTrace();
+        gameTimer.stop();
     }
+}
 
     @Override
-    public void mouseDragged(MouseEvent e) {}
+    public void mouseDragged(MouseEvent e) {
+    }
 
     @Override
     public void mouseMoved(MouseEvent e) {
         pad.moveTo(e.getX());
     }
+    
 }
