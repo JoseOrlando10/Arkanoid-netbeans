@@ -107,8 +107,8 @@ public void actionPerformed(ActionEvent e) {
 
         pad.collide(ball);
         repaint();
-    } catch (Exception ex) {
-        ex.printStackTrace();
+    } catch (ExceptionJogo ex) {
+        ex.show();
         gameTimer.stop();
     }
 }

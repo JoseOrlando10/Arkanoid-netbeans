@@ -12,7 +12,7 @@
 //::                                                                         ::
 //::                                                               (c)2025   ::
 //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-//////////////////////////////////////////////////////////////////////////////
+ //////////////////////////////////////////////////////////////////////////////
 
 package MyArkanoid;
 
@@ -24,65 +24,66 @@ import javax.imageio.ImageIO;
 import java.io.IOException;
 
 /**
- * Created on 06/05/2025, 17:50:01 
+ * Created on 06/05/2025, 17:50:01
+ *
  * @author manso - computer
  */
-public class Ball  extends GameObject{
-   
+public class Ball extends GameObject {
+
     int vx = 2;
     int vy = 2;
 
     public Ball(Color myColor, int x, int y, int radius) {
-    super(myColor, x, y, radius, radius);
-    try {
-        eyeImage = ImageIO.read(getClass().getResource("/resources/eye.png"));
-    } catch (IOException | IllegalArgumentException e) {
-        System.err.println("Erro ao carregar imagem do olho: " + e.getMessage());
+        super(myColor, x, y, radius, radius);
+        try {
+            eyeImage = ImageIO.read(getClass().getResource("/resources/eye.png"));
+        } catch (IOException | IllegalArgumentException e) {
+            System.err.println("Erro ao carregar imagem do olho: " + e.getMessage());
+        }
     }
-}
-    
-    
-    
-   public void paint(Graphics gr) {
-    if (eyeImage != null) {
-        gr.drawImage(eyeImage, x, y, 15, 15, null);
-    } else {
-        // Desenho de fallback caso a imagem falhe
-        gr.setColor(myColor);
-        gr.fillOval(x, y, width, height);
-        gr.setColor(Color.BLACK);
-        gr.drawOval(x, y, width, height);
+
+    public void paint(Graphics gr) {
+        if (eyeImage != null) {
+            gr.drawImage(eyeImage, x, y, 15, 15, null);
+        } else {
+            // Desenho de fallback caso a imagem falhe
+            gr.setColor(myColor);
+            gr.fillOval(x, y, width, height);
+            gr.setColor(Color.BLACK);
+            gr.drawOval(x, y, width, height);
+        }
     }
-}
-    
-    public void move(){
+
+    public void move() {
         translate(vx, vy);
     }
     private Image eyeImage;
-    
-    public void move( Rectangle bounds){
+
+    public void move(Rectangle bounds) throws ExceptionJogo {
         //mover
         move();
-        //resaltar
-        if( this.x < 0 || this.x + this.width > bounds.width){
+        if (y + height >= bounds.height) {
+            throw new ExceptionJogo("Perdeu o jogo");
+        }
+
+        ////bateu no fundo
+        if (this.x < 0 || this.x + this.width > bounds.width) {
             this.vx *= -1;
             move();
         }
-        if( this.y < 0 || this.y + this.height > bounds.height){
+        if (this.y < 0 || this.y + this.height > bounds.height) {
             this.vy *= -1;
             move();
         }
-        
+
     }
-    
+
     public void reverseX() {
-    this.vx = -vx; // Inverte a direção horizontal
-}
+        this.vx = -vx; // Inverte a direção horizontal
+    }
 
-public void reverseY() {
-    this.vy = -vy; // Inverte a direção vertical
-}
-
-
+    public void reverseY() {
+        this.vy = -vy; // Inverte a direção vertical
+    }
 
 }
