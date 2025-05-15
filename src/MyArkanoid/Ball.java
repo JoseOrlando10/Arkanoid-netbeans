@@ -20,7 +20,7 @@ public class Ball extends GameObject {
     public Ball(Color myColor, int x, int y, int radius) {
         super(myColor, x, y, radius, radius);
         try {
-            eyeImage = ImageIO.read(getClass().getResource("/resources/eye.png"));
+            eyeImage = ImageIO.read(getClass().getResource("/resources/machado.png"));
         } catch (IOException | IllegalArgumentException e) {
             System.err.println("Erro ao carregar imagem do olho: " + e.getMessage());
         }
