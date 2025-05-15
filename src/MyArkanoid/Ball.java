@@ -63,7 +63,7 @@ public class Ball extends GameObject {
         //mover
         move();
         if (y + height >= bounds.height) {
-            throw new ExceptionJogo("Perdeu o jogo");
+            throw new ExceptionJogo("Perdeu o jogo! \n\n\n\t Pontuação Final: "+ ArkanoidGame.getScore());
         }
 
         ////bateu no fundo

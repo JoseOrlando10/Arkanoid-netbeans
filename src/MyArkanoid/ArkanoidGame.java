@@ -28,7 +28,9 @@ public class ArkanoidGame extends JComponent
     Timer gameTimer; // Timer principal do jogo (para mover a bola e checar colisões)
     Timer timeTimer; // Timer separado para contar o tempo
     int timeElapsed; // Variável para armazenar o tempo (em segundos)
-
+    
+    private static int score = 0; // Inicializa a pontuação 
+    
     public ArkanoidGame() {
         start();
         timeElapsed = 0; // Inicia o contador de tempo
@@ -100,6 +102,10 @@ public class ArkanoidGame extends JComponent
     // 🟢 Passo 3: Tempo com opacidade total
     g2d.setColor(Color.BLACK);
     g2d.drawString("Tempo: " + timeElapsed, getWidth() - 315, 369);
+    
+    //Pontuação
+    gr.setColor(Color.red);//Posição do Score aparece depois da ,
+    gr.drawString("Pontuação: "+score, 10, getHeight() - 30);
 
     g2d.dispose();
 }
@@ -115,7 +121,8 @@ public void actionPerformed(ActionEvent e) {
         for (Brick brick : bricks) {
             if (brick.intersects(ball) && brick.isVisible) {
                 brick.isVisible = false;
-
+                score++;//Incrementa Pontuação
+                
                 // Ajusta a direção corretamente
                 ball.reverseX(); // Inverte direção horizontal
                 ball.reverseY(); // Inverte direção vertical
@@ -140,5 +147,8 @@ public void actionPerformed(ActionEvent e) {
     public void mouseMoved(MouseEvent e) {
         pad.moveTo(e.getX(), getWidth());
     }
-    
+    public static int getScore() {
+        return score;
+}
+
 }

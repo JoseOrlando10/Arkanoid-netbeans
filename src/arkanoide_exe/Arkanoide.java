@@ -6,6 +6,7 @@ package arkanoide_exe;
 
 import MyArkanoid.Créditos;
 import MyArkanoid.playGame;
+import java.awt.Image;
 
 /**
  *
@@ -17,6 +18,7 @@ public class Arkanoide extends javax.swing.JFrame {
      * Creates new form Arkanoide
      */
     public Arkanoide() {
+        
         initComponents();
         setLocationRelativeTo(null);
     }
