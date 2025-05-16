@@ -229,6 +229,16 @@ public void keyPressed(KeyEvent e) {
     } else if (key == KeyEvent.VK_RIGHT) {
         pad.moveRight(getWidth()); // Limite direito do jogo
     }
+    else if (key == KeyEvent.VK_SPACE) {
+        if (!ballReadyToMove) {
+            Random random = new Random();
+            int direction = random.nextBoolean() ? 1 : -1; // Aleatório: esquerda (-1) ou direita (1)
+            ball.launch(direction); // Lança a bola
+            ballReadyToMove = true;
+            gameTimer.start(); // Agora o jogo começa
+        }
+    }
+
     repaint();
 }
 
