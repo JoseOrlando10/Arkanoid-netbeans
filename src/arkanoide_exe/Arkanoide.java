@@ -5,6 +5,7 @@
 package arkanoide_exe;
 
 import MyArkanoid.Créditos;
+import MyArkanoid.Niveis;
 import MyArkanoid.playGame;
 import java.awt.Image;
 
@@ -33,6 +34,7 @@ public class Arkanoide extends javax.swing.JFrame {
     private void initComponents() {
 
         creditos = new javax.swing.JButton();
+        niveis = new javax.swing.JButton();
         sair = new javax.swing.JButton();
         jogar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -51,6 +53,16 @@ public class Arkanoide extends javax.swing.JFrame {
         });
         getContentPane().add(creditos);
         creditos.setBounds(40, 500, 100, 39);
+
+        niveis.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
+        niveis.setText("Niveis");
+        niveis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                niveisActionPerformed(evt);
+            }
+        });
+        getContentPane().add(niveis);
+        niveis.setBounds(560, 440, 100, 40);
 
         sair.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
         sair.setText("Sair");
@@ -97,9 +109,13 @@ public class Arkanoide extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jogarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void niveisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_niveisActionPerformed
+    //dispose();
+    setVisible(false);
+    new Niveis().setVisible(true);
+    }//GEN-LAST:event_niveisActionPerformed
+
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -137,6 +153,7 @@ public class Arkanoide extends javax.swing.JFrame {
     private javax.swing.JButton creditos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton jogar;
+    private javax.swing.JButton niveis;
     private javax.swing.JButton sair;
     // End of variables declaration//GEN-END:variables
 }

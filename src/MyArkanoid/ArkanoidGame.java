@@ -19,14 +19,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Random;
 
-/**
- * Created on 06/05/2025, 17:48:47
- *
- * @author manso
- */
 
 
-//trest
+
+
 public class ArkanoidGame extends JComponent
         implements ActionListener, MouseMotionListener, MouseListener, KeyListener {
 
@@ -69,7 +65,7 @@ public class ArkanoidGame extends JComponent
         ball = new Ball(Color.yellow, pad.x + pad.width / 2 - 10, pad.y - 20, 5);
         
        
-
+        ///Bricks, criação Aleatoria
         bricks = new ArrayList<>();
         Random random = new Random();
         int numBricks = 30; // Número de bricks aleatórios
@@ -98,7 +94,7 @@ public class ArkanoidGame extends JComponent
 
             bricks.add(new ImageBrick("/resources/pedras.png", x, y, width, height));
         }
-
+        //fim dos bricks
     }
 
     public void gameOver() {
@@ -205,9 +201,8 @@ public class ArkanoidGame extends JComponent
         ball.launch(direction); // Lança a bola
         ballReadyToMove = true;
         gameTimer.start(); // Agora o jogo começa
+        }
     }
-}
-
     
     public void mousePressed(MouseEvent e) {}
     public void mouseReleased(MouseEvent e) {}
@@ -241,6 +236,13 @@ public void keyPressed(KeyEvent e) {
         ballReadyToMove = true;
         gameTimer.start(); // Agora o jogo começa
     }
+    
+    if(key==KeyEvent.VK_ESCAPE)
+    {
+        MenuPausa MenuPausa = new MenuPausa();
+        gameTimer.stop();
+        MenuPausa.setVisible(true);
+    }
     repaint();
     
 
@@ -257,4 +259,13 @@ public void keyTyped(KeyEvent e) {
     // não precisas de usar
 }
 
+
+
+public void continuarJogo() {
+    gameTimer.start(); // Reinicia o jogo
+    //MenuPausa.setVisible(false);
+}
+public void restart() {
+    
+}
 }
