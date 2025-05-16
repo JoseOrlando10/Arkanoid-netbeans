@@ -223,23 +223,28 @@ public class ArkanoidGame extends JComponent
 
 public void keyPressed(KeyEvent e) {
     int key = e.getKeyCode();
-
+    //seta esquerda
     if (key == KeyEvent.VK_LEFT) {
         pad.moveLeft();
     } else if (key == KeyEvent.VK_RIGHT) {
         pad.moveRight(getWidth()); // Limite direito do jogo
     }
-    else if (key == KeyEvent.VK_SPACE) {
-        if (!ballReadyToMove) {
-            Random random = new Random();
-            int direction = random.nextBoolean() ? 1 : -1; // Aleatório: esquerda (-1) ou direita (1)
-            ball.launch(direction); // Lança a bola
-            ballReadyToMove = true;
-            gameTimer.start(); // Agora o jogo começa
-        }
+    // A bola acompanha o Paddle até ser lançad
+    if (!ballReadyToMove) {
+        ball.setPosition(pad.x + pad.width / 2 - 10, pad.y - 20);
     }
-
+    //Lançar a bola ao pressionar Espaço
+    if (key == KeyEvent.VK_SPACE && !ballReadyToMove) {
+        Random random = new Random();
+        int direction = random.nextBoolean() ? 1 : -1;
+        ball.launch(direction); 
+        ballReadyToMove = true;
+        gameTimer.start(); // Agora o jogo começa
+    }
     repaint();
+    
+
+    
 }
 
 
