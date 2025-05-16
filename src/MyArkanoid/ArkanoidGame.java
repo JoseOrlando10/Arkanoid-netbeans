@@ -15,6 +15,8 @@ import java.awt.Graphics2D;
 import java.awt.AlphaComposite;
 import MyArkanoid.ImageBrick;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Random;
 
 /**
@@ -26,7 +28,7 @@ import java.util.Random;
 
 //trest
 public class ArkanoidGame extends JComponent
-        implements ActionListener, MouseMotionListener, MouseListener {
+        implements ActionListener, MouseMotionListener, MouseListener, KeyListener {
 
     Ball ball;
     ArrayList<Brick> bricks;
@@ -39,9 +41,12 @@ public class ArkanoidGame extends JComponent
     
     private static int score = 0; // Inicializa a pontuação 
 
-    public ArkanoidGame() {
+    public ArkanoidGame () {
         start();
         addMouseListener(this);
+        addKeyListener(this);//Adiciona esta linha para captar teclas
+        setFocusable(true);//recebe dados do teclado
+        
         timeElapsed = 0; // Inicia o contador de tempo
         gameTimer = new Timer(10, this); // A cada 10 milissegundos
         gameTimer.start();
@@ -55,7 +60,7 @@ public class ArkanoidGame extends JComponent
         });
         timeTimer.start(); // Inicia o contador de tempo
 
-        addMouseMotionListener(this);
+        //addMouseMotionListener(this);// deixa de funcionar o rato
     }
 
     public void start() {
@@ -215,4 +220,26 @@ public class ArkanoidGame extends JComponent
     public void mouseExited(MouseEvent e) {
        
     }
+
+public void keyPressed(KeyEvent e) {
+    int key = e.getKeyCode();
+
+    if (key == KeyEvent.VK_LEFT) {
+        pad.moveLeft();
+    } else if (key == KeyEvent.VK_RIGHT) {
+        pad.moveRight(getWidth()); // Limite direito do jogo
+    }
+    repaint();
+}
+
+
+public void keyReleased(KeyEvent e) {
+    // opcional, se quiseres parar o paddle depois
+}
+
+
+public void keyTyped(KeyEvent e) {
+    // não precisas de usar
+}
+
 }
