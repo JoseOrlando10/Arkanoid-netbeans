@@ -52,7 +52,7 @@ public class Arkanoide extends javax.swing.JFrame {
             }
         });
         getContentPane().add(creditos);
-        creditos.setBounds(40, 500, 100, 39);
+        creditos.setBounds(40, 510, 100, 39);
 
         niveis.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
         niveis.setText("Niveis");
@@ -62,7 +62,7 @@ public class Arkanoide extends javax.swing.JFrame {
             }
         });
         getContentPane().add(niveis);
-        niveis.setBounds(560, 440, 100, 40);
+        niveis.setBounds(290, 510, 100, 40);
 
         sair.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
         sair.setText("Sair");
@@ -86,7 +86,7 @@ public class Arkanoide extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jogar);
-        jogar.setBounds(40, 440, 100, 40);
+        jogar.setBounds(290, 460, 100, 40);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/smashtheageslogo.png"))); // NOI18N
         getContentPane().add(jLabel1);
