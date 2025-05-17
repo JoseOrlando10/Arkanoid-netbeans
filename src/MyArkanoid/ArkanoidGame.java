@@ -237,12 +237,11 @@ public void keyPressed(KeyEvent e) {
         gameTimer.start(); // Agora o jogo começa
     }
     
-    if(key==KeyEvent.VK_ESCAPE)
-    {
-        MenuPausa MenuPausa = new MenuPausa();
-        gameTimer.stop();
-        MenuPausa.setVisible(true);
-    }
+    if (key == KeyEvent.VK_ESCAPE) {
+    gameTimer.stop();
+    MenuPausa menu = new MenuPausa(this);
+    menu.setVisible(true);
+}
     repaint();
     
 

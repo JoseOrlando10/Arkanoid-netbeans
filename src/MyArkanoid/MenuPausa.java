@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package MyArkanoid;
 
 /**
@@ -9,7 +5,7 @@ package MyArkanoid;
  * @author jooma
  */
 public class MenuPausa extends javax.swing.JFrame {
-
+private ArkanoidGame jogo;
     static void setVisible() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -17,11 +13,11 @@ public class MenuPausa extends javax.swing.JFrame {
     /**
      * Creates new form MenuPausa
      */
-    public MenuPausa() {
-        initComponents();
-        
-        setLocationRelativeTo(null);// coloca no centro do ecra
-    }
+    public MenuPausa(ArkanoidGame jogo) {
+    initComponents();
+    setLocationRelativeTo(null);
+    this.jogo = jogo; // Guardamos a instância atual do jogo
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -111,48 +107,16 @@ public class MenuPausa extends javax.swing.JFrame {
     }//GEN-LAST:event_esc_sairActionPerformed
 
     private void esc_contiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esc_contiActionPerformed
-        
+         if (jogo != null) {
+        jogo.continuarJogo(); // Recomeça o jogo
+    }
+    this.dispose(); // Fecha a janela do menu
         // TODO add your handling code here:
     }//GEN-LAST:event_esc_contiActionPerformed
 
     private void esc_restartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esc_restartActionPerformed
         new ArkanoidGame().restart();// TODO add your handling code here:
     }//GEN-LAST:event_esc_restartActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuPausa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuPausa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuPausa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuPausa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuPausa().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton esc_conti;
