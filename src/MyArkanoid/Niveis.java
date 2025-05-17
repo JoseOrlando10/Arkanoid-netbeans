@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package MyArkanoid;
 
 /**
@@ -15,7 +11,8 @@ public class Niveis extends javax.swing.JFrame {
      */
     public Niveis() {
         initComponents();
-        
+        jLabel2.setOpaque(true);
+        jLabel2.setBackground(new java.awt.Color(211, 211, 211, 200)); // light gray com transparência alpha=100
         setLocationRelativeTo(null);//coloca ao centro
     }
 
@@ -28,17 +25,36 @@ public class Niveis extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        nivel_2 = new javax.swing.JButton();
         nivel_1 = new javax.swing.JButton();
         voltar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(400, 300));
+        setMinimumSize(new java.awt.Dimension(500, 426));
+        getContentPane().setLayout(null);
 
-        nivel_1.setText("Nivel 1");
+        nivel_2.setText("Nivel 1");
+        nivel_2.setBorder(null);
+        nivel_2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nivel_2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nivel_2);
+        nivel_2.setBounds(50, 70, 62, 16);
+
+        nivel_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/nivel1nosniveis.png"))); // NOI18N
+        nivel_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         nivel_1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nivel_1ActionPerformed(evt);
             }
         });
+        getContentPane().add(nivel_1);
+        nivel_1.setBounds(30, 20, 100, 102);
 
         voltar.setText("Voltar");
         voltar.addActionListener(new java.awt.event.ActionListener() {
@@ -46,30 +62,19 @@ public class Niveis extends javax.swing.JFrame {
                 voltarActionPerformed(evt);
             }
         });
+        getContentPane().add(voltar);
+        voltar.setBounds(190, 350, 72, 23);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(nivel_1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(157, 157, 157)
-                        .addComponent(voltar)))
-                .addContainerGap(171, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(nivel_1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
-                .addComponent(voltar)
-                .addGap(21, 21, 21))
-        );
+        jLabel2.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.black, java.awt.Color.black, java.awt.Color.black, java.awt.Color.black));
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(20, 10, 450, 370);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/smashtheagesnosniveis.png"))); // NOI18N
+        jLabel1.setMaximumSize(new java.awt.Dimension(300, 300));
+        jLabel1.setMinimumSize(new java.awt.Dimension(300, 300));
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 490, 390);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -83,6 +88,11 @@ public class Niveis extends javax.swing.JFrame {
         setVisible(false);
         new arkanoide_exe.Arkanoide().setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_voltarActionPerformed
+
+    private void nivel_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nivel_2ActionPerformed
+       setVisible(false);
+            new playGame(this).setVisible(true);
+    }//GEN-LAST:event_nivel_2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -120,7 +130,10 @@ public class Niveis extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton nivel_1;
+    private javax.swing.JButton nivel_2;
     private javax.swing.JButton voltar;
     // End of variables declaration//GEN-END:variables
 }
