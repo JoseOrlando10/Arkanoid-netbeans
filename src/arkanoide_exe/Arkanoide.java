@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package arkanoide_exe;
 
 import MyArkanoid.Créditos;
@@ -9,10 +5,6 @@ import MyArkanoid.Niveis;
 import MyArkanoid.playGame;
 import java.awt.Image;
 
-/**
- *
- * @author jooma
- */
 public class Arkanoide extends javax.swing.JFrame {
 
     /**

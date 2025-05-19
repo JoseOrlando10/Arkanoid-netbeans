@@ -14,7 +14,7 @@ public class ImageBrick extends Brick {
         try {
             image = ImageIO.read(getClass().getResource("/resources/pedras.png"));
         } catch (IOException | IllegalArgumentException e) {
-            System.err.println("Erro a carregar imagem: " + imagePath);
+            System.err.println("Erro ao carregar imagem: " + imagePath);
         }
     }
 

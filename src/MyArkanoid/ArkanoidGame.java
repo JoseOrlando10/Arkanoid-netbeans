@@ -97,18 +97,11 @@ public class ArkanoidGame extends JComponent
         //fim dos bricks
     }
 
-    public void gameOver() {
-        // Para o timer do jogo quando o jogo termina
-        gameTimer.stop();
-        // Para o timer de tempo
-        timeTimer.stop();
-        // Exibe a mensagem de Game Over
-        System.out.println("Game Over!");
-    }
+    
 
     protected void paintComponent(Graphics gr) {
         super.paintComponent(gr);
-
+        
         Graphics2D g2d = (Graphics2D) gr.create();
 
         // 🟡 Passo 1: Pintar fundo com transparência
@@ -142,7 +135,6 @@ public class ArkanoidGame extends JComponent
         g2d.dispose();
     }
 
-    @Override
     public void actionPerformed(ActionEvent e) {
     if (!ballReadyToMove) {
         repaint(); // A bola ainda não se move
@@ -175,11 +167,9 @@ public class ArkanoidGame extends JComponent
 
 
 
-    @Override
     public void mouseDragged(MouseEvent e) {
     }
 
-    @Override
     public void mouseMoved(MouseEvent e) {
     pad.moveTo(e.getX(), getWidth());
 
