@@ -34,6 +34,7 @@ public class Niveis extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(400, 300));
         setMinimumSize(new java.awt.Dimension(500, 426));
+        setResizable(false);
         getContentPane().setLayout(null);
 
         nivel_2.setText("Nivel 1");

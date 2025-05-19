@@ -33,7 +33,7 @@ public class Arkanoide extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        creditos = new javax.swing.JButton();
+        btCreditos = new javax.swing.JButton();
         niveis = new javax.swing.JButton();
         sair = new javax.swing.JButton();
         jogar = new javax.swing.JButton();
@@ -44,15 +44,15 @@ public class Arkanoide extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        creditos.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
-        creditos.setText("Creditos");
-        creditos.addActionListener(new java.awt.event.ActionListener() {
+        btCreditos.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
+        btCreditos.setText("Creditos");
+        btCreditos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                creditosActionPerformed(evt);
+                btCreditosActionPerformed(evt);
             }
         });
-        getContentPane().add(creditos);
-        creditos.setBounds(40, 510, 100, 39);
+        getContentPane().add(btCreditos);
+        btCreditos.setBounds(40, 510, 100, 39);
 
         niveis.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
         niveis.setText("Niveis");
@@ -95,9 +95,9 @@ public class Arkanoide extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void creditosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditosActionPerformed
+    private void btCreditosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreditosActionPerformed
         new Créditos(this, true).setVisible(true);// TODO add your handling code here:
-    }//GEN-LAST:event_creditosActionPerformed
+    }//GEN-LAST:event_btCreditosActionPerformed
 
     private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
         dispose();// TODO add your handling code here:
@@ -150,7 +150,7 @@ public class Arkanoide extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton creditos;
+    private javax.swing.JButton btCreditos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton jogar;
     private javax.swing.JButton niveis;
