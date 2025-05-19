@@ -7,11 +7,6 @@ import java.awt.Image;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
-/**
- * Created on 06/05/2025, 17:50:01
- *
- * @author manso - computer
- */
 public class Ball extends GameObject {
 
     int vx = 2;
