@@ -115,7 +115,7 @@ private ArkanoidGame jogo;
     }//GEN-LAST:event_esc_contiActionPerformed
 
     private void esc_restartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esc_restartActionPerformed
-        new ArkanoidGame().restart();// TODO add your handling code here:
+        //new ArkanoidGame().restart();// TODO add your handling code here:
     }//GEN-LAST:event_esc_restartActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

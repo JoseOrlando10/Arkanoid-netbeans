@@ -58,4 +58,5 @@ public class Paddle extends GameObject {
             b.move();
         }
     }
+    
 }

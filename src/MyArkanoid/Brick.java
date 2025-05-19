@@ -28,6 +28,11 @@ public class Brick extends GameObject{
         gr.drawRect(x, y, width, height);
         
     }
+    public void reset() 
+    {
+        this.isVisible = true;
+    }
+
 
 
 

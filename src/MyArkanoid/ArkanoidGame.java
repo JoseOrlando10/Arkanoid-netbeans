@@ -264,7 +264,6 @@ public void continuarJogo() {
     gameTimer.start(); // Reinicia o jogo
     //MenuPausa.setVisible(false);
 }
-public void restart() {
-    
-}
+
+
 }
