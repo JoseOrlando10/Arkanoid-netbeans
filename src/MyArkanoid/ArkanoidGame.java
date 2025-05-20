@@ -29,7 +29,7 @@ import java.util.Random;
 
 
 public class ArkanoidGame extends JComponent
-        implements ActionListener, MouseMotionListener, MouseListener, KeyListener {
+        implements ActionListener, MouseMotionListener, KeyListener {
 
     Ball ball;
     ArrayList<Brick> bricks;
@@ -44,7 +44,6 @@ public class ArkanoidGame extends JComponent
 
     public ArkanoidGame () {
         start();
-        addMouseListener(this);
         addKeyListener(this);//Adiciona esta linha para captar teclas
         setFocusable(true);//recebe dados do teclado
         
@@ -189,24 +188,17 @@ public class ArkanoidGame extends JComponent
         return score;
     }
 
-    public void mouseClicked(MouseEvent e) {
-    if (!ballReadyToMove) {
-        Random random = new Random();
-        int direction = random.nextBoolean() ? 1 : -1; // Aleatório: esquerda (-1) ou direita (1)
-        ball.launch(direction); // Lança a bola
-        ballReadyToMove = true;
-        gameTimer.start(); // Agora o jogo começa
-        }
-    }
+    
+    
     
     public void mousePressed(MouseEvent e) {}
     public void mouseReleased(MouseEvent e) {}
 
-    @Override
+    
     public void mouseEntered(MouseEvent e) {
     }
 
-    @Override
+    
     public void mouseExited(MouseEvent e) {
        
     }
