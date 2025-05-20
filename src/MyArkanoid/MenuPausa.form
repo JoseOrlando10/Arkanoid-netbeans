@@ -26,10 +26,10 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="144" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="esc_restart" max="32767" attributes="0"/>
-                  <Component id="esc_conti" pref="113" max="32767" attributes="0"/>
-                  <Component id="esc_niveis" min="-2" pref="110" max="-2" attributes="0"/>
-                  <Component id="esc_sair" min="-2" pref="110" max="-2" attributes="0"/>
+                  <Component id="btRestart" max="32767" attributes="0"/>
+                  <Component id="btConti" pref="113" max="32767" attributes="0"/>
+                  <Component id="btNiveis" min="-2" pref="110" max="-2" attributes="0"/>
+                  <Component id="btSair" min="-2" pref="110" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="143" max="32767" attributes="0"/>
           </Group>
@@ -39,28 +39,28 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="esc_conti" min="-2" pref="52" max="-2" attributes="0"/>
+              <Component id="btConti" min="-2" pref="52" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-              <Component id="esc_restart" min="-2" pref="46" max="-2" attributes="0"/>
+              <Component id="btRestart" min="-2" pref="46" max="-2" attributes="0"/>
               <EmptySpace pref="29" max="32767" attributes="0"/>
-              <Component id="esc_niveis" min="-2" pref="52" max="-2" attributes="0"/>
+              <Component id="btNiveis" min="-2" pref="52" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-              <Component id="esc_sair" min="-2" pref="52" max="-2" attributes="0"/>
+              <Component id="btSair" min="-2" pref="52" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="esc_conti">
+    <Component class="javax.swing.JButton" name="btConti">
       <Properties>
         <Property name="text" type="java.lang.String" value="Continuar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="esc_contiActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btContiActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="esc_sair">
+    <Component class="javax.swing.JButton" name="btSair">
       <Properties>
         <Property name="text" type="java.lang.String" value="Sair"/>
       </Properties>
@@ -68,10 +68,10 @@
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="esc_sair"/>
       </AccessibilityProperties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="esc_sairActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btSairActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="esc_niveis">
+    <Component class="javax.swing.JButton" name="btNiveis">
       <Properties>
         <Property name="text" type="java.lang.String" value="Niveis"/>
       </Properties>
@@ -79,15 +79,15 @@
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="esc_niveis"/>
       </AccessibilityProperties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="esc_niveisActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btNiveisActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="esc_restart">
+    <Component class="javax.swing.JButton" name="btRestart">
       <Properties>
         <Property name="text" type="java.lang.String" value="ReStart"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="esc_restartActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btRestartActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

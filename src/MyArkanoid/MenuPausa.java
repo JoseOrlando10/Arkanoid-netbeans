@@ -26,38 +26,38 @@ private ArkanoidGame jogo;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        esc_conti = new javax.swing.JButton();
-        esc_sair = new javax.swing.JButton();
-        esc_niveis = new javax.swing.JButton();
-        esc_restart = new javax.swing.JButton();
+        btConti = new javax.swing.JButton();
+        btSair = new javax.swing.JButton();
+        btNiveis = new javax.swing.JButton();
+        btRestart = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        esc_conti.setText("Continuar");
-        esc_conti.addActionListener(new java.awt.event.ActionListener() {
+        btConti.setText("Continuar");
+        btConti.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                esc_contiActionPerformed(evt);
+                btContiActionPerformed(evt);
             }
         });
 
-        esc_sair.setText("Sair");
-        esc_sair.addActionListener(new java.awt.event.ActionListener() {
+        btSair.setText("Sair");
+        btSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                esc_sairActionPerformed(evt);
+                btSairActionPerformed(evt);
             }
         });
 
-        esc_niveis.setText("Niveis");
-        esc_niveis.addActionListener(new java.awt.event.ActionListener() {
+        btNiveis.setText("Niveis");
+        btNiveis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                esc_niveisActionPerformed(evt);
+                btNiveisActionPerformed(evt);
             }
         });
 
-        esc_restart.setText("ReStart");
-        esc_restart.addActionListener(new java.awt.event.ActionListener() {
+        btRestart.setText("ReStart");
+        btRestart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                esc_restartActionPerformed(evt);
+                btRestartActionPerformed(evt);
             }
         });
 
@@ -68,60 +68,60 @@ private ArkanoidGame jogo;
             .addGroup(layout.createSequentialGroup()
                 .addGap(144, 144, 144)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(esc_restart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(esc_conti, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                    .addComponent(esc_niveis, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(esc_sair, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btRestart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btConti, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                    .addComponent(btNiveis, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btSair, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(143, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(esc_conti, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btConti, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addComponent(esc_restart, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btRestart, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(esc_niveis, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btNiveis, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addComponent(esc_sair, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btSair, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        esc_sair.getAccessibleContext().setAccessibleName("esc_sair");
-        esc_niveis.getAccessibleContext().setAccessibleName("esc_niveis");
+        btSair.getAccessibleContext().setAccessibleName("esc_sair");
+        btNiveis.getAccessibleContext().setAccessibleName("esc_niveis");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void esc_niveisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esc_niveisActionPerformed
+    private void btNiveisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNiveisActionPerformed
         setVisible(false);
         new Niveis().setVisible(true);
         //this.jogo.dispose();
         this.dispose();// TODO add your handling code here:
         
-    }//GEN-LAST:event_esc_niveisActionPerformed
+    }//GEN-LAST:event_btNiveisActionPerformed
 
-    private void esc_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esc_sairActionPerformed
+    private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
         dispose();// TODO add your handling code here:
-    }//GEN-LAST:event_esc_sairActionPerformed
+    }//GEN-LAST:event_btSairActionPerformed
 
-    private void esc_contiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esc_contiActionPerformed
+    private void btContiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btContiActionPerformed
          if (jogo != null) {
         jogo.continuarJogo(); // Recomeça o jogo
     }
     this.dispose(); // Fecha a janela do menu
         // TODO add your handling code here:
-    }//GEN-LAST:event_esc_contiActionPerformed
+    }//GEN-LAST:event_btContiActionPerformed
 
-    private void esc_restartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esc_restartActionPerformed
+    private void btRestartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRestartActionPerformed
         //new ArkanoidGame().restart();// TODO add your handling code here:
-    }//GEN-LAST:event_esc_restartActionPerformed
+    }//GEN-LAST:event_btRestartActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton esc_conti;
-    private javax.swing.JButton esc_niveis;
-    private javax.swing.JButton esc_restart;
-    private javax.swing.JButton esc_sair;
+    private javax.swing.JButton btConti;
+    private javax.swing.JButton btNiveis;
+    private javax.swing.JButton btRestart;
+    private javax.swing.JButton btSair;
     // End of variables declaration//GEN-END:variables
 }
