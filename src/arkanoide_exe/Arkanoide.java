@@ -29,10 +29,10 @@ public class Arkanoide extends javax.swing.JFrame {
     private void initComponents() {
 
         btCreditos = new javax.swing.JButton();
-        niveis = new javax.swing.JButton();
-        sair = new javax.swing.JButton();
-        jogar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        btniveis = new javax.swing.JButton();
+        btsair = new javax.swing.JButton();
+        btjogar = new javax.swing.JButton();
+        imagemfundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(702, 609));
@@ -49,43 +49,43 @@ public class Arkanoide extends javax.swing.JFrame {
         getContentPane().add(btCreditos);
         btCreditos.setBounds(40, 510, 100, 39);
 
-        niveis.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
-        niveis.setText("Niveis");
-        niveis.addActionListener(new java.awt.event.ActionListener() {
+        btniveis.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
+        btniveis.setText("Niveis");
+        btniveis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                niveisActionPerformed(evt);
+                btniveisActionPerformed(evt);
             }
         });
-        getContentPane().add(niveis);
-        niveis.setBounds(290, 510, 100, 40);
+        getContentPane().add(btniveis);
+        btniveis.setBounds(290, 510, 100, 40);
 
-        sair.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
-        sair.setText("Sair");
-        sair.addActionListener(new java.awt.event.ActionListener() {
+        btsair.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
+        btsair.setText("Sair");
+        btsair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sairActionPerformed(evt);
+                btsairActionPerformed(evt);
             }
         });
-        getContentPane().add(sair);
-        sair.setBounds(560, 510, 100, 40);
+        getContentPane().add(btsair);
+        btsair.setBounds(560, 510, 100, 40);
 
-        jogar.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
-        jogar.setText("Jogar");
-        jogar.setMaximumSize(new java.awt.Dimension(85, 27));
-        jogar.setMinimumSize(new java.awt.Dimension(85, 27));
-        jogar.setPreferredSize(new java.awt.Dimension(85, 27));
-        jogar.setRequestFocusEnabled(false);
-        jogar.addActionListener(new java.awt.event.ActionListener() {
+        btjogar.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
+        btjogar.setText("Jogar");
+        btjogar.setMaximumSize(new java.awt.Dimension(85, 27));
+        btjogar.setMinimumSize(new java.awt.Dimension(85, 27));
+        btjogar.setPreferredSize(new java.awt.Dimension(85, 27));
+        btjogar.setRequestFocusEnabled(false);
+        btjogar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jogarActionPerformed(evt);
+                btjogarActionPerformed(evt);
             }
         });
-        getContentPane().add(jogar);
-        jogar.setBounds(290, 460, 100, 40);
+        getContentPane().add(btjogar);
+        btjogar.setBounds(290, 460, 100, 40);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/smashtheageslogo.png"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 696, 570);
+        imagemfundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/smashtheageslogo.png"))); // NOI18N
+        getContentPane().add(imagemfundo);
+        imagemfundo.setBounds(0, 0, 696, 570);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -94,21 +94,21 @@ public class Arkanoide extends javax.swing.JFrame {
         new Créditos(this, true).setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_btCreditosActionPerformed
 
-    private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
+    private void btsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btsairActionPerformed
         dispose();// TODO add your handling code here:
-    }//GEN-LAST:event_sairActionPerformed
+    }//GEN-LAST:event_btsairActionPerformed
 
-    private void jogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jogarActionPerformed
+    private void btjogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btjogarActionPerformed
         setVisible(false);
         new playGame(this).setVisible(true);
         
-    }//GEN-LAST:event_jogarActionPerformed
+    }//GEN-LAST:event_btjogarActionPerformed
 
-    private void niveisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_niveisActionPerformed
+    private void btniveisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btniveisActionPerformed
     //dispose();
     setVisible(false);
     new Niveis().setVisible(true);
-    }//GEN-LAST:event_niveisActionPerformed
+    }//GEN-LAST:event_btniveisActionPerformed
 
     
     public static void main(String args[]) {
@@ -146,9 +146,9 @@ public class Arkanoide extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCreditos;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JButton jogar;
-    private javax.swing.JButton niveis;
-    private javax.swing.JButton sair;
+    private javax.swing.JButton btjogar;
+    private javax.swing.JButton btniveis;
+    private javax.swing.JButton btsair;
+    private javax.swing.JLabel imagemfundo;
     // End of variables declaration//GEN-END:variables
 }
