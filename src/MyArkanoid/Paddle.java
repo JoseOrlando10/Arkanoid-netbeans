@@ -6,6 +6,13 @@ import java.awt.Image;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
+/**
+ *
+ * @author Pedro Coelho - 25026
+ * @author Jose Martins - 24269
+ * 
+ */
+
 public class Paddle extends GameObject {
 
     private Image image;
@@ -20,7 +27,7 @@ public class Paddle extends GameObject {
             System.err.println("Erro ao carregar imagem do paddle: " + ex.getMessage());
         }
     }
-// adeus
+    
     public void paint(Graphics gr) {
         if (image != null) {
             gr.drawImage(image, x, y, width, height, null);

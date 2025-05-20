@@ -20,7 +20,12 @@ import java.awt.event.KeyListener;
 import java.util.Random;
 
 
-
+/**
+ *
+ * @author Pedro Coelho - 25026
+ * @author Jose Martins - 24269
+ * 
+ */
 
 
 public class ArkanoidGame extends JComponent

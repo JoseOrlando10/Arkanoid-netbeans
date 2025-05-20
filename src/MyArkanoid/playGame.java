@@ -2,6 +2,13 @@ package MyArkanoid;
 
 import javax.swing.JFrame;
 
+/**
+ *
+ * @author Pedro Coelho - 25026
+ * @author Jose Martins - 24269
+ * 
+ */
+
 public class playGame extends javax.swing.JFrame {
     
     private JFrame parent;

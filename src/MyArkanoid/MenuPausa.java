@@ -2,7 +2,9 @@ package MyArkanoid;
 
 /**
  *
- * @author jooma
+ * @author Pedro Coelho - 25026
+ * @author Jose Martins - 24269
+ * 
  */
 public class MenuPausa extends javax.swing.JFrame {
 private ArkanoidGame jogo;
@@ -98,7 +100,9 @@ private ArkanoidGame jogo;
 
     private void esc_niveisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esc_niveisActionPerformed
         setVisible(false);
-        new Niveis().setVisible(true);// TODO add your handling code here:
+        new Niveis().setVisible(true);
+        //this.jogo.dispose();
+        this.dispose();// TODO add your handling code here:
         
     }//GEN-LAST:event_esc_niveisActionPerformed
 

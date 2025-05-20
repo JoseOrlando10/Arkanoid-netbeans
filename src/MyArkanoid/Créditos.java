@@ -8,7 +8,9 @@ import gui.apps.*;
 
 /**
  *
- * @author IPT
+ * @author Pedro Coelho - 25026
+ * @author Jose Martins - 24269
+ * 
  */
 public class Créditos extends javax.swing.JDialog {
 

@@ -5,6 +5,13 @@ import MyArkanoid.Niveis;
 import MyArkanoid.playGame;
 import java.awt.Image;
 
+/**
+ *
+ * @author Pedro Coelho - 25026
+ * @author Jose Martins - 24269
+ * 
+ */
+
 public class Arkanoide extends javax.swing.JFrame {
 
     /**

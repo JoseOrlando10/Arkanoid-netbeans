@@ -5,8 +5,10 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 /**
- * Created on 06/05/2025, 18:07:05 
- * @author manso - computer
+ *
+ * @author Pedro Coelho - 25026
+ * @author Jose Martins - 24269
+ * 
  */
 public class Brick extends GameObject{
 

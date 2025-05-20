@@ -6,6 +6,13 @@ import java.awt.Rectangle;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
+/**
+ *
+ * @author Pedro Coelho - 25026
+ * @author Jose Martins - 24269
+ * 
+ */
+
 public class ImageBrick extends Brick {
     private Image image;
 

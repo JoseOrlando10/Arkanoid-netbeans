@@ -1,5 +1,12 @@
 package MyArkanoid;
 
+/**
+ *
+ * @author Pedro Coelho - 25026
+ * @author Jose Martins - 24269
+ * 
+ */
+
 public class Niveis extends javax.swing.JFrame {
 
     /**

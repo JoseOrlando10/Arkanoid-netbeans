@@ -1,5 +1,10 @@
 package MyArkanoid;
-
+/**
+ *
+ * @author Pedro Coelho - 25026
+ * @author Jose Martins - 24269
+ * 
+ */
 import javax.swing.JOptionPane;
 
 public class ExceptionJogo extends Exception{
