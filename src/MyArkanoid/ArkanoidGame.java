@@ -109,13 +109,13 @@ public class ArkanoidGame extends JComponent
         
         Graphics2D g2d = (Graphics2D) gr.create();
 
-        // 🟡 Passo 1: Pintar fundo com transparência
+        // Pintar fundo com transparência
         float alpha = 0.8f; // Ajusta a opacidade do fundo aqui (0.0f = totalmente transparente, 1.0f = opaco)
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
         g2d.setColor(Color.LIGHT_GRAY);
         g2d.fillRect(0, 0, getWidth(), getHeight());
 
-        // 🔵 Passo 2: Restaurar opacidade total para objetos do jogo
+        // Restaurar opacidade total para objetos do jogo
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
 
         // Desenhar objetos com opacidade total
@@ -129,7 +129,7 @@ public class ArkanoidGame extends JComponent
 
         pad.paint(g2d);
 
-        // 🟢 Passo 3: Tempo com opacidade total
+        // Tempo com opacidade total
         g2d.setColor(Color.BLACK);
         g2d.drawString("Tempo: " + timeElapsed, getWidth() - 550, 460);
 

@@ -9,10 +9,6 @@ package MyArkanoid;
 import java.awt.Color;
 import java.awt.Rectangle;
 
-/**
- * Created on 06/05/2025, 18:17:26 
- * @author manso - computer
- */
 public class GameObject extends Rectangle{
     protected Color myColor;
 
@@ -30,6 +26,5 @@ public class GameObject extends Rectangle{
     public void setMyColor(Color myColor) {
         this.myColor = myColor;
     }
-    //:::::::::::::::::::::::::::  Copyright(c) M@nso  2025  :::::::::::::::::::
-    ///////////////////////////////////////////////////////////////////////////
+   
 }
