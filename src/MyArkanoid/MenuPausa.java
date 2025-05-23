@@ -4,10 +4,12 @@ package MyArkanoid;
  *
  * @author Pedro Coelho - 25026
  * @author Jose Martins - 24269
- * 
+ *
  */
 public class MenuPausa extends javax.swing.JFrame {
-private ArkanoidGame jogo;
+
+    private ArkanoidGame jogo;
+
     static void setVisible() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -16,12 +18,11 @@ private ArkanoidGame jogo;
      * Creates new form MenuPausa
      */
     public MenuPausa(ArkanoidGame jogo) {
-    initComponents();
-    setLocationRelativeTo(null);
-    this.jogo = jogo; // Guardamos a instância atual do jogo
-}
+        initComponents();
+        setLocationRelativeTo(null);
+        this.jogo = jogo; // Guardamos a instância atual do jogo
+    }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -97,25 +98,32 @@ private ArkanoidGame jogo;
     private void btNiveisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNiveisActionPerformed
         setVisible(false);
         new Niveis().setVisible(true);
-        //this.jogo.dispose();
+
         this.dispose();// TODO add your handling code here:
-        
+
     }//GEN-LAST:event_btNiveisActionPerformed
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
-        dispose();// TODO add your handling code here:
+        System.exit(0);// TODO add your handling code here:
     }//GEN-LAST:event_btSairActionPerformed
 
     private void btContiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btContiActionPerformed
-         if (jogo != null) {
-        jogo.continuarJogo(); // Recomeça o jogo
-    }
-    this.dispose(); // Fecha a janela do menu
+        if (jogo != null) {
+            jogo.continuarJogo(); // Recomeça o jogo
+        }
+        this.dispose(); // Fecha a janela do menu
         // TODO add your handling code here:
     }//GEN-LAST:event_btContiActionPerformed
 
     private void btRestartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRestartActionPerformed
-        //new ArkanoidGame().restart();// TODO add your handling code here:
+        if (jogo != null) {
+            jogo.resetJogo(); // Usa o método resetJogo() da classe ArkanoidGame
+        }
+
+        this.dispose(); // Fecha o menu de pausa
+
+        new ArkanoidGame().setVisible(true);
+
     }//GEN-LAST:event_btRestartActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

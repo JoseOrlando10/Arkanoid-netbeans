@@ -41,7 +41,6 @@ public class Arkanoide extends javax.swing.JFrame {
 
         btCreditos.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
         btCreditos.setText("Créditos");
-        btCreditos.setActionCommand("Créditos");
         btCreditos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btCreditosActionPerformed(evt);
