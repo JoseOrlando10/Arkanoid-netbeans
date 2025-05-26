@@ -15,15 +15,15 @@ public class Ball extends GameObject {
     public Ball(Color myColor, int x, int y, int radius) {
         super(myColor, x, y, radius, radius);
         try {
-            eyeImage = ImageIO.read(getClass().getResource("/resources/machado.png"));
+            bolaImage = ImageIO.read(getClass().getResource("/resources/machado.png"));
         } catch (IOException | IllegalArgumentException e) {
-            System.err.println("Erro ao carregar imagem do olho: " + e.getMessage());
+            System.err.println("Erro ao carregar imagem da bola: " + e.getMessage());
         }
     }
 
     public void paint(Graphics gr) {
-        if (eyeImage != null) {
-            gr.drawImage(eyeImage, x, y, 15, 15, null);
+        if (bolaImage != null) {
+            gr.drawImage(bolaImage, x, y, 50, 50, null);
         } else {
             // Desenho de fallback caso a imagem falhe
             gr.setColor(myColor);
@@ -36,7 +36,7 @@ public class Ball extends GameObject {
     public void move() {
         translate(vx, vy);
     }
-    private Image eyeImage;
+    private Image bolaImage;
 
     public void move(Rectangle bounds) throws ExceptionJogo {
         //mover

@@ -1,6 +1,5 @@
 package MyArkanoid;
 
-import gui.apps.*;
 
 /**
  *

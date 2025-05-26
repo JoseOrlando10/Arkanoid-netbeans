@@ -16,7 +16,7 @@ import javax.imageio.ImageIO;
 public class Paddle extends GameObject {
 
     private Image image;
-    private final int speed = 17; // Velocidade de movimento com as setas
+    private final int speed = 18; // Velocidade de movimento com as setas
 
     public Paddle(Color myColor, int x, int y, int width, int height) {
         super(myColor, x, y, width, height);
@@ -30,7 +30,7 @@ public class Paddle extends GameObject {
     
     public void paint(Graphics gr) {
         if (image != null) {
-            gr.drawImage(image, x, y, width, height, null);
+            gr.drawImage(image, x, y, 80, 20, null);
         } else {
             // Fallback caso a imagem não carregue
             gr.setColor(myColor);

@@ -69,15 +69,15 @@ public class ArkanoidGame extends JComponent
     public void start() {
         // Define o paddle mais embaixo
         pad = new Paddle(Color.RED, 200, 430, 50, 10);
-        ball = new Ball(Color.yellow, pad.x + pad.width / 2 - 10, pad.y - 20, 5);
+        ball = new Ball(Color.yellow, pad.x + pad.width / 2 - 10, pad.y - 45, 5);
 
         ///Bricks
         bricks = new ArrayList<>();
         int larguraTela = Math.max(getWidth(), 560); // Largura da tela
-        int alturaBrick = 10;
-        int larguraBrick = 30;
+        int alturaBrick = 20;
+        int larguraBrick = 50;
         int espacamento = 5; // Espaço entre os bricks
-        int bricksPorLinha = 10; // Número de bricks por linha
+        int bricksPorLinha = 9; // Número de bricks por linha
 
         int[] linhasY = {25, 50, 75}; // Posições Y das linhas
 
@@ -97,7 +97,7 @@ public class ArkanoidGame extends JComponent
 
     }
 
-    /// retirar o aleatorio -> retirado
+   
 
     
 
@@ -240,9 +240,9 @@ public class ArkanoidGame extends JComponent
         } else if (key == KeyEvent.VK_RIGHT) {
             pad.moveRight(getWidth()); // Limite direito do jogo
         }
-        // A bola acompanha o Paddle até ser lançad
+        // A bola acompanha o Paddle até ser lançada
         if (!ballReadyToMove) {
-            ball.setPosition(pad.x + pad.width / 2 - 10, pad.y - 20);
+            ball.setPosition(pad.x + pad.width / 2 - 10, pad.y - 45);
         }
         //Lançar a bola ao pressionar Espaço
         if (key == KeyEvent.VK_SPACE && !ballReadyToMove) {
