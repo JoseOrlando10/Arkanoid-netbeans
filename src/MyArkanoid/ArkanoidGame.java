@@ -63,17 +63,17 @@ public class ArkanoidGame extends JComponent
         timeTimer.start(); // Inicia o contador de tempo
 
         addMouseMotionListener(this);// deixa de funcionar o rato
-         addMouseListener(this);     
+        addMouseListener(this);
     }
-                      
+
     public void mouseClicked(MouseEvent e) {
-                if (!ballReadyToMove) {
+        if (!ballReadyToMove) {
             Random random = new Random();
-                    int direction = random.nextBoolean() ? 1 : -1;
-                    ball.launch(direction);
-                    ballReadyToMove = true;
-                    gameTimer.start();
-                  }
+            int direction = random.nextBoolean() ? 1 : -1;
+            ball.launch(direction);
+            ballReadyToMove = true;
+            gameTimer.start();
+        }
     }
 
     public void start() {
@@ -143,9 +143,6 @@ public class ArkanoidGame extends JComponent
         g2d.dispose();
     }
 
-   
-        
-
     public void actionPerformed(ActionEvent e) {
         if (!ballReadyToMove) {
             repaint();
@@ -177,14 +174,17 @@ public class ArkanoidGame extends JComponent
         verificarFimJogo();
     }
 
-public void mouseDragged(MouseEvent e){
+    public void mouseDragged(MouseEvent e) {
     }
 
     public void mouseMoved(MouseEvent e) {
         pad.moveTo(e.getX(), getWidth());
 
         if (!ballReadyToMove) {
+
             ball.setPosition(pad.x + pad.width / 2 - 10, pad.y - 27);
+
+
         }
     }
 
@@ -252,7 +252,9 @@ public void mouseDragged(MouseEvent e){
         }
         // A bola acompanha o Paddle até ser lançada
         if (!ballReadyToMove) {
+
             ball.setPosition(pad.x + pad.width / 2 - 10, pad.y - 27);
+
         }
         //Lançar a bola ao pressionar Espaço
         if (key == KeyEvent.VK_SPACE && !ballReadyToMove) {
@@ -291,19 +293,42 @@ public void mouseDragged(MouseEvent e){
     }
 
     public void resetJogo() {
-        pararJogo();
+        pararJogo(); // para ambos os timers
+
         score = 0;
         timeElapsed = 0;
-
-        // Limpar todos os elementos antes de reiniciar
-        bricks.clear();
-
+        isGameOver = false;
         ballReadyToMove = false;
-        ball.setPosition(pad.x + pad.width / 2 - 10, pad.y - 45);
 
-        start(); // Recria os elementos
+        // Reposicionar paddle e bola
+        pad = new Paddle(Color.RED, 200, 430, 50, 10);
+        ball = new Ball(pad.x + pad.width / 2 - 20, pad.y - 40);
+
+        // Recriar bricks
+        bricks.clear();
+        int larguraTela = Math.max(getWidth(), 560);
+        int alturaBrick = 20;
+        int larguraBrick = 50;
+        int espacamento = 5;
+        int bricksPorLinha = 1;
+
+        int[] linhasY = {25};
+
+        for (int y : linhasY) {
+            int larguraTotalLinha = (larguraBrick * bricksPorLinha) + (espacamento * (bricksPorLinha - 1));
+            int startX = (larguraTela - larguraTotalLinha) / 2;
+
+            for (int i = 0; i < bricksPorLinha; i++) {
+                int x = startX + (i * (larguraBrick + espacamento));
+                bricks.add(new ImageBrick("/resources/pedras.png", x, y, larguraBrick, alturaBrick));
+            }
+        }
+
+        // Reiniciar os timers
+        gameTimer.start();
+        timeTimer.start();
+
         repaint();
-
     }
 
     public void verificarFimJogo() {
@@ -317,17 +342,14 @@ public void mouseDragged(MouseEvent e){
 
         if (!existemBricks) {
             gameTimer.stop();
-            int escolha = JOptionPane.showOptionDialog(null, "Parabens! Concluiste o 1 nivel", "nivel Conluido", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new String[]{"Proximo Nivel", "Menu Iniciar"}, "Proximo nivel");
+            int escolha = JOptionPane.showOptionDialog(null, "Parabens! Concluiste o 1 nivel", "nivel Conluido", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new String[]{"Proximo Nivel", "Niveis"}, "Proximo nivel");
 
             if (escolha == 0) {
                 //colcoar proximo nivel
             } else {
-                //colcoar menu inical
+                new Niveis().setVisible(true);
             }
         }
     }
 
 }
-
-
-
