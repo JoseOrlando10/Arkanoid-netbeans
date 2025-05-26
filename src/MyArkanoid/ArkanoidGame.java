@@ -67,7 +67,7 @@ public class ArkanoidGame extends JComponent
     public void start() {
         // Define o paddle mais embaixo
         pad = new Paddle(Color.RED, 200, 430, 50, 10);
-        ball = new Ball(Color.yellow, pad.x + pad.width / 2 - 10, pad.y - 45, 5);
+        ball = new Ball(pad.x + pad.width / 2 - 20, pad.y - 40);
 
         ///Bricks
         bricks = new ArrayList<>();
