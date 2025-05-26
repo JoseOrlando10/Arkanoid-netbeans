@@ -18,6 +18,7 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Random;
+import javax.management.Query;
 
 /**
  *
@@ -39,7 +40,6 @@ public class ArkanoidGame extends JComponent
 
     private static int score = 0; // Inicializa a pontuação
 
- 
     private Timer fallTimer;
     private boolean isGameOver = false;
 
@@ -61,7 +61,7 @@ public class ArkanoidGame extends JComponent
         });
         timeTimer.start(); // Inicia o contador de tempo
 
-        //addMouseMotionListener(this);// deixa de funcionar o rato
+        addMouseMotionListener(this);// deixa de funcionar o rato
     }
 
     public void start() {
@@ -131,9 +131,12 @@ public class ArkanoidGame extends JComponent
         g2d.dispose();
     }
 
+   
+        
+
     public void actionPerformed(ActionEvent e) {
         if (!ballReadyToMove) {
-            repaint(); // A bola ainda não se move
+            repaint();
             return;
         }
 
@@ -143,13 +146,11 @@ public class ArkanoidGame extends JComponent
             for (Brick brick : bricks) {
                 if (brick.intersects(ball) && brick.isVisible) {
                     brick.isVisible = false;
-                    score++; // Incrementa Pontuação
+                    score++;
 
-                    // Ajusta a direção corretamente
-                    ball.reverseX(); // Inverte direção horizontal
-                    ball.reverseY(); // Inverte direção vertical
-
-                    break; // Evita múltiplas colisões simultâneas
+                    ball.reverseX();
+                    ball.reverseY();
+                    break;
                 }
             }
 
@@ -159,9 +160,12 @@ public class ArkanoidGame extends JComponent
             ex.show();
             gameTimer.stop();
         }
+
+        // ⚠️ Chamar fora do loop
+        verificarFimJogo();
     }
 
-    public void mouseDragged(MouseEvent e) {
+public void mouseDragged(MouseEvent e){
     }
 
     public void mouseMoved(MouseEvent e) {
@@ -226,7 +230,6 @@ public class ArkanoidGame extends JComponent
         }
         fallTimer.start();
     }*/
-
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         //seta esquerda
@@ -290,29 +293,26 @@ public class ArkanoidGame extends JComponent
         repaint();
 
     }
-    
-    public void iniciarProximoNivel() {
-    // Limpa os elementos do nível atual
-    bricks.clear();
-    score = 0;
-    timeElapsed = 0;
 
-    // Carrega novos elementos para o próximo nível
-    start();
+    public void verificarFimJogo() {
+        boolean existemBricks = false;
+        for (Brick brick : bricks) {
+            if (brick.isVisible) {
+                existemBricks = true;
+                break;
+            }
+        }
 
-    JOptionPane.showMessageDialog(null, "Bem-vindo ao próximo nível!", "Novo Nível", JOptionPane.INFORMATION_MESSAGE);
-}
-    
-    public void salvarProgresso() {
-    // Simulação de um sistema de salvamento simples
-    String progresso = "Tempo: " + timeElapsed + "\nPontuação: " + score;
-    
-    JOptionPane.showMessageDialog(null, "Progresso salvo!\n" + progresso, "Salvamento", JOptionPane.INFORMATION_MESSAGE);
-    
-    // Aqui, idealmente, você salvaria essas informações em um arquivo ou banco de dados
-}
+        if (!existemBricks) {
+            gameTimer.stop();
+            int escolha = JOptionPane.showOptionDialog(null, "Parabens! Concluiste o 1 nivel", "nivel Conluido", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new String[]{"Proximo Nivel", "Menu Iniciar"}, "Proximo nivel");
 
-    
-
+            if (escolha == 0) {
+                //colcoar proximo nivel
+            } else {
+                //colcoar menu inical
+            }
+        }
+    }
 
 }
