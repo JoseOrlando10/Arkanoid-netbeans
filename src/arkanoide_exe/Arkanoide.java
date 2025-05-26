@@ -1,6 +1,6 @@
 package arkanoide_exe;
 
-import MyArkanoid.Créditos;
+import MyArkanoid.Creditos;
 import MyArkanoid.Niveis;
 import MyArkanoid.playGame;
 import java.awt.Image;
@@ -32,6 +32,7 @@ public class Arkanoide extends javax.swing.JFrame {
         btniveis = new javax.swing.JButton();
         btsair = new javax.swing.JButton();
         btjogar = new javax.swing.JButton();
+        btManual = new javax.swing.JButton();
         imagemfundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,7 +48,7 @@ public class Arkanoide extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btCreditos);
-        btCreditos.setBounds(40, 510, 100, 39);
+        btCreditos.setBounds(40, 460, 100, 39);
 
         btniveis.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
         btniveis.setText("Niveis");
@@ -83,6 +84,16 @@ public class Arkanoide extends javax.swing.JFrame {
         getContentPane().add(btjogar);
         btjogar.setBounds(290, 460, 100, 40);
 
+        btManual.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
+        btManual.setText("Manual");
+        btManual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btManualActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btManual);
+        btManual.setBounds(40, 510, 100, 39);
+
         imagemfundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/smashtheageslogo.png"))); // NOI18N
         getContentPane().add(imagemfundo);
         imagemfundo.setBounds(0, 0, 696, 570);
@@ -91,7 +102,7 @@ public class Arkanoide extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCreditosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreditosActionPerformed
-        new Créditos(this, true).setVisible(true);// TODO add your handling code here:
+        new Creditos(this, true).setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_btCreditosActionPerformed
 
     private void btsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btsairActionPerformed
@@ -109,6 +120,10 @@ public class Arkanoide extends javax.swing.JFrame {
     setVisible(false);
     new Niveis().setVisible(true);
     }//GEN-LAST:event_btniveisActionPerformed
+
+    private void btManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btManualActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btManualActionPerformed
 
     
     public static void main(String args[]) {
@@ -146,6 +161,7 @@ public class Arkanoide extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCreditos;
+    private javax.swing.JButton btManual;
     private javax.swing.JButton btjogar;
     private javax.swing.JButton btniveis;
     private javax.swing.JButton btsair;

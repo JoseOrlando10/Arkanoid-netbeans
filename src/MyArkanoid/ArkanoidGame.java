@@ -38,8 +38,8 @@ public class ArkanoidGame extends JComponent
     boolean ballReadyToMove = false;
 
     private static int score = 0; // Inicializa a pontuação
-    
-    private ArrayList<FallingBrick> fallingBricks = new ArrayList<>();
+
+ 
     private Timer fallTimer;
     private boolean isGameOver = false;
 
@@ -51,8 +51,6 @@ public class ArkanoidGame extends JComponent
         timeElapsed = 0; // Inicia o contador de tempo
         gameTimer = new Timer(10, this); // A cada 10 milissegundos
         gameTimer.start();
-        
-        
 
         // Timer para o contador de tempo (incrementa a cada 1000 milissegundos)
         timeTimer = new Timer(1000, new ActionListener() {
@@ -77,9 +75,9 @@ public class ArkanoidGame extends JComponent
         int alturaBrick = 20;
         int larguraBrick = 50;
         int espacamento = 5; // Espaço entre os bricks
-        int bricksPorLinha = 9; // Número de bricks por linha
+        int bricksPorLinha = 1; // Número de bricks por linha
 
-        int[] linhasY = {25, 50, 75}; // Posições Y das linhas
+        int[] linhasY = {25}; // Posições Y das linhas
 
         for (int y : linhasY) {
             // Calcula a largura total ocupada pelos bricks e espaços na linha
@@ -96,10 +94,6 @@ public class ArkanoidGame extends JComponent
         }//fim dos bricks
 
     }
-
-   
-
-    
 
     protected void paintComponent(Graphics gr) {
         super.paintComponent(gr);
@@ -195,7 +189,8 @@ public class ArkanoidGame extends JComponent
 
     }
 
-    private class FallingBrick {
+    /*private class FallingBrick {
+
         float x, y;
         float yVel = 5; // Velocidade fixa para todos
         int width, height;
@@ -214,24 +209,24 @@ public class ArkanoidGame extends JComponent
 
         public void paint(Graphics2D g2d) {
             g2d.setColor(color);
-            g2d.fillRect((int)x, (int)y, width, height);
+            g2d.fillRect((int) x, (int) y, width, height);
         }
     }
 
     private void createFallingBricks() {
-        for(Brick brick : bricks) {
-            if(brick.isVisible) {
+        for (Brick brick : bricks) {
+            if (brick.isVisible) {
                 fallingBricks.add(new FallingBrick(
-                    brick.x, 
-                    brick.y, 
-                    brick.width, 
-                    brick.height
+                        brick.x,
+                        brick.y,
+                        brick.width,
+                        brick.height
                 ));
             }
         }
         fallTimer.start();
-    }
-    
+    }*/
+
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         //seta esquerda
@@ -284,9 +279,40 @@ public class ArkanoidGame extends JComponent
         pararJogo();
         score = 0;
         timeElapsed = 0;
-        start();
+
+        // Limpar todos os elementos antes de reiniciar
+        bricks.clear();
+
+        ballReadyToMove = false;
+        ball.setPosition(pad.x + pad.width / 2 - 10, pad.y - 45);
+
+        start(); // Recria os elementos
         repaint();
 
     }
+    
+    public void iniciarProximoNivel() {
+    // Limpa os elementos do nível atual
+    bricks.clear();
+    score = 0;
+    timeElapsed = 0;
+
+    // Carrega novos elementos para o próximo nível
+    start();
+
+    JOptionPane.showMessageDialog(null, "Bem-vindo ao próximo nível!", "Novo Nível", JOptionPane.INFORMATION_MESSAGE);
+}
+    
+    public void salvarProgresso() {
+    // Simulação de um sistema de salvamento simples
+    String progresso = "Tempo: " + timeElapsed + "\nPontuação: " + score;
+    
+    JOptionPane.showMessageDialog(null, "Progresso salvo!\n" + progresso, "Salvamento", JOptionPane.INFORMATION_MESSAGE);
+    
+    // Aqui, idealmente, você salvaria essas informações em um arquivo ou banco de dados
+}
+
+    
+
 
 }
