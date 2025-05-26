@@ -20,6 +20,7 @@ import java.awt.event.KeyListener;
 import java.util.Random;
 import javax.management.Query;
 
+
 /**
  *
  * @author Pedro Coelho - 25026
@@ -27,7 +28,7 @@ import javax.management.Query;
  *
  */
 public class ArkanoidGame extends JComponent
-        implements ActionListener, MouseMotionListener, KeyListener {
+        implements ActionListener, MouseMotionListener, KeyListener, MouseListener {
 
     Ball ball;
     ArrayList<Brick> bricks;
@@ -62,6 +63,17 @@ public class ArkanoidGame extends JComponent
         timeTimer.start(); // Inicia o contador de tempo
 
         addMouseMotionListener(this);// deixa de funcionar o rato
+         addMouseListener(this);     
+    }
+                      
+    public void mouseClicked(MouseEvent e) {
+                if (!ballReadyToMove) {
+            Random random = new Random();
+                    int direction = random.nextBoolean() ? 1 : -1;
+                    ball.launch(direction);
+                    ballReadyToMove = true;
+                    gameTimer.start();
+                  }
     }
 
     public void start() {
@@ -172,7 +184,7 @@ public void mouseDragged(MouseEvent e){
         pad.moveTo(e.getX(), getWidth());
 
         if (!ballReadyToMove) {
-            ball.setPosition(pad.x + pad.width / 2 - 10, pad.y - 20);
+            ball.setPosition(pad.x + pad.width / 2 , pad.y - 27);
         }
     }
 
@@ -240,7 +252,7 @@ public void mouseDragged(MouseEvent e){
         }
         // A bola acompanha o Paddle até ser lançada
         if (!ballReadyToMove) {
-            ball.setPosition(pad.x + pad.width / 2 - 10, pad.y - 45);
+            ball.setPosition(pad.x + pad.width / 2 , pad.y - 27);
         }
         //Lançar a bola ao pressionar Espaço
         if (key == KeyEvent.VK_SPACE && !ballReadyToMove) {
@@ -316,3 +328,6 @@ public void mouseDragged(MouseEvent e){
     }
 
 }
+
+
+
