@@ -184,7 +184,7 @@ public void mouseDragged(MouseEvent e){
         pad.moveTo(e.getX(), getWidth());
 
         if (!ballReadyToMove) {
-            ball.setPosition(pad.x + pad.width / 2 , pad.y - 27);
+            ball.setPosition(pad.x + pad.width / 2 - 10, pad.y - 27);
         }
     }
 
@@ -252,7 +252,7 @@ public void mouseDragged(MouseEvent e){
         }
         // A bola acompanha o Paddle até ser lançada
         if (!ballReadyToMove) {
-            ball.setPosition(pad.x + pad.width / 2 , pad.y - 27);
+            ball.setPosition(pad.x + pad.width / 2 - 10, pad.y - 27);
         }
         //Lançar a bola ao pressionar Espaço
         if (key == KeyEvent.VK_SPACE && !ballReadyToMove) {

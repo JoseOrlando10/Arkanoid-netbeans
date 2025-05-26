@@ -19,7 +19,7 @@ public class Paddle extends GameObject {
     private final int speed = 18; // Velocidade de movimento com as setas
 
     public Paddle(Color myColor, int x, int y, int width, int height) {
-        super(myColor, x, y, width, height);
+        super(myColor, x, y, 80, 20);
 
         try {
             image = ImageIO.read(getClass().getResource("/resources/tronco.jpg")); // Caminho relativo ao src
