@@ -55,6 +55,6 @@ public class Ball extends GameObject {
 
     public void launch(int direction) {
         vx = 0;
-        vy = -2;
+        vy = -6;
     }
 }

@@ -60,7 +60,7 @@ public class ArkanoidGame extends JComponent
                 timeElapsed++; // Incrementa o tempo em 1 segundo
             }
         });
-        timeTimer.start(); // Inicia o contador de tempo
+        
 
         addMouseMotionListener(this);// deixa de funcionar o rato
         addMouseListener(this);
@@ -73,6 +73,7 @@ public class ArkanoidGame extends JComponent
             ball.launch(direction);
             ballReadyToMove = true;
             gameTimer.start();
+            timeTimer.start();
         }
     }
 
@@ -263,6 +264,7 @@ public class ArkanoidGame extends JComponent
             ball.launch(direction);
             ballReadyToMove = true;
             gameTimer.start(); // Agora o jogo começa
+            timeTimer.start();
         }
 
         if (key == KeyEvent.VK_ESCAPE) {
@@ -351,5 +353,21 @@ public class ArkanoidGame extends JComponent
             }
         }
     }
-
+  
+    
+    
+    
+    /*
+    
+    panel com 2 nivel, montar estrutura, mudar ecra de fundo e fotos etc
+    fazer entre menu de nivel, nivel 2 como niveis, e ligaçoes
+    clicar no esc menu pausa, cotinuar e restart tem de funcionar no lvl 2
+    ficar mais apresentavel menu pauisa
+    sons, ficheiros)= urgente
+    botao no esc pra mute som
+    //FINAL SE TEMPO HOUVBER apresentavem os creditos
+    QUANOD CONCLUIS O NIVEL A JANELA, E QUANDO ERRAR PERDES E TEM SIMBOLO ARKNANOIDE, MEXER DESIGN
+    
+    
+    */
 }
