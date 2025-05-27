@@ -356,18 +356,4 @@ public class ArkanoidGame extends JComponent
   
     
     
-    
-    /*
-    
-    panel com 2 nivel, montar estrutura, mudar ecra de fundo e fotos etc
-    fazer entre menu de nivel, nivel 2 como niveis, e ligaçoes
-    clicar no esc menu pausa, cotinuar e restart tem de funcionar no lvl 2
-    ficar mais apresentavel menu pauisa
-    sons, ficheiros)= urgente
-    botao no esc pra mute som
-    //FINAL SE TEMPO HOUVBER apresentavem os creditos
-    QUANOD CONCLUIS O NIVEL A JANELA, E QUANDO ERRAR PERDES E TEM SIMBOLO ARKNANOIDE, MEXER DESIGN
-    
-    
-    */
 }

@@ -31,8 +31,12 @@ public class MenuPausa extends javax.swing.JFrame {
         btSair = new javax.swing.JButton();
         btNiveis = new javax.swing.JButton();
         btRestart = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(400, 330));
+        setMinimumSize(new java.awt.Dimension(400, 330));
+        getContentPane().setLayout(null);
 
         btConti.setText("Continuar");
         btConti.addActionListener(new java.awt.event.ActionListener() {
@@ -40,6 +44,8 @@ public class MenuPausa extends javax.swing.JFrame {
                 btContiActionPerformed(evt);
             }
         });
+        getContentPane().add(btConti);
+        btConti.setBounds(150, 50, 90, 30);
 
         btSair.setText("Sair");
         btSair.addActionListener(new java.awt.event.ActionListener() {
@@ -47,6 +53,9 @@ public class MenuPausa extends javax.swing.JFrame {
                 btSairActionPerformed(evt);
             }
         });
+        getContentPane().add(btSair);
+        btSair.setBounds(150, 240, 90, 30);
+        btSair.getAccessibleContext().setAccessibleName("esc_sair");
 
         btNiveis.setText("Niveis");
         btNiveis.addActionListener(new java.awt.event.ActionListener() {
@@ -54,43 +63,22 @@ public class MenuPausa extends javax.swing.JFrame {
                 btNiveisActionPerformed(evt);
             }
         });
+        getContentPane().add(btNiveis);
+        btNiveis.setBounds(150, 120, 90, 30);
+        btNiveis.getAccessibleContext().setAccessibleName("esc_niveis");
 
-        btRestart.setText("ReStart");
+        btRestart.setText("Reiniciar");
         btRestart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btRestartActionPerformed(evt);
             }
         });
+        getContentPane().add(btRestart);
+        btRestart.setBounds(150, 180, 90, 30);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(144, 144, 144)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btRestart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btConti, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                    .addComponent(btNiveis, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btSair, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(143, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btConti, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(btRestart, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(btNiveis, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(btSair, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        btSair.getAccessibleContext().setAccessibleName("esc_sair");
-        btNiveis.getAccessibleContext().setAccessibleName("esc_niveis");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/smashtheagesmenupausa.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 400, 300);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -131,5 +119,6 @@ public class MenuPausa extends javax.swing.JFrame {
     private javax.swing.JButton btNiveis;
     private javax.swing.JButton btRestart;
     private javax.swing.JButton btSair;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
