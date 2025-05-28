@@ -1,11 +1,13 @@
 package MyArkanoid;
-
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Pedro Coelho - 25026
  * @author Jose Martins - 24269
  *
  */
+
 public class MenuPausa extends javax.swing.JFrame {
 
     private ArkanoidGame jogo;

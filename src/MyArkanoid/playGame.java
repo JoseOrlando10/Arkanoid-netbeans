@@ -31,11 +31,11 @@ public class playGame extends javax.swing.JFrame {
         arkanoidGame1 = new MyArkanoid.ArkanoidGame();
         imgnivel1 = new javax.swing.JLabel();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
         setMaximumSize(new java.awt.Dimension(702, 565));
         setMinimumSize(new java.awt.Dimension(702, 565));
-        setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(702, 565));
+        setPreferredSize(new java.awt.Dimension(702, 602));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {

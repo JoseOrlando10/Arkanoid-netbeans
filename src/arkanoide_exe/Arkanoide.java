@@ -81,7 +81,7 @@ public class Arkanoide extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btjogar);
-        btjogar.setBounds(290, 460, 100, 40);
+        btjogar.setBounds(290, 450, 100, 40);
 
         imagemfundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/smashtheageslogo.png"))); // NOI18N
         getContentPane().add(imagemfundo);

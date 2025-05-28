@@ -12,8 +12,8 @@ public class Niveis extends javax.swing.JFrame {
     
     public Niveis() {
         initComponents();
-        jLabel2.setOpaque(true);
-        jLabel2.setBackground(new java.awt.Color(211, 211, 211, 200)); // light gray com transparência alpha=100
+        fundotransparente.setOpaque(true);
+        fundotransparente.setBackground(new java.awt.Color(211, 211, 211, 200)); // light gray com transparência alpha=100
         setLocationRelativeTo(null);//coloca ao centro
     }
 
@@ -22,37 +22,49 @@ public class Niveis extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        nivel_2 = new javax.swing.JButton();
-        nivel_1 = new javax.swing.JButton();
+        btnivel2 = new javax.swing.JButton();
+        btnivel1 = new javax.swing.JButton();
+        nivel1fundo = new javax.swing.JButton();
         voltar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        nivel2fundo = new javax.swing.JLabel();
+        fundotransparente = new javax.swing.JLabel();
+        fundojogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(400, 300));
         setMinimumSize(new java.awt.Dimension(500, 426));
+        setPreferredSize(new java.awt.Dimension(500, 429));
         setResizable(false);
         getContentPane().setLayout(null);
 
-        nivel_2.setText("Nivel 1");
-        nivel_2.setBorder(null);
-        nivel_2.addActionListener(new java.awt.event.ActionListener() {
+        btnivel2.setText("Nivel 2");
+        btnivel2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nivel_2ActionPerformed(evt);
+                btnivel2ActionPerformed(evt);
             }
         });
-        getContentPane().add(nivel_2);
-        nivel_2.setBounds(50, 70, 62, 16);
+        getContentPane().add(btnivel2);
+        btnivel2.setBounds(180, 70, 70, 20);
 
-        nivel_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/nivel1nosniveis.png"))); // NOI18N
-        nivel_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        nivel_1.addActionListener(new java.awt.event.ActionListener() {
+        btnivel1.setText("Nivel 1");
+        btnivel1.setBorder(null);
+        btnivel1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nivel_1ActionPerformed(evt);
+                btnivel1ActionPerformed(evt);
             }
         });
-        getContentPane().add(nivel_1);
-        nivel_1.setBounds(30, 20, 100, 102);
+        getContentPane().add(btnivel1);
+        btnivel1.setBounds(50, 70, 62, 16);
+
+        nivel1fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/nivel1nosniveis.png"))); // NOI18N
+        nivel1fundo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        nivel1fundo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nivel1fundoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nivel1fundo);
+        nivel1fundo.setBounds(30, 20, 100, 102);
 
         voltar.setText("Voltar");
         voltar.addActionListener(new java.awt.event.ActionListener() {
@@ -63,34 +75,45 @@ public class Niveis extends javax.swing.JFrame {
         getContentPane().add(voltar);
         voltar.setBounds(190, 350, 72, 23);
 
-        jLabel2.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.black, java.awt.Color.black, java.awt.Color.black, java.awt.Color.black));
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(20, 10, 450, 370);
+        nivel2fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/nivel2nosniveis.png"))); // NOI18N
+        getContentPane().add(nivel2fundo);
+        nivel2fundo.setBounds(160, 20, 100, 100);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/smashtheagesnosniveis.png"))); // NOI18N
-        jLabel1.setMaximumSize(new java.awt.Dimension(300, 300));
-        jLabel1.setMinimumSize(new java.awt.Dimension(300, 300));
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 490, 390);
+        fundotransparente.setBackground(new java.awt.Color(204, 204, 204));
+        fundotransparente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.black, java.awt.Color.black, java.awt.Color.black, java.awt.Color.black));
+        getContentPane().add(fundotransparente);
+        fundotransparente.setBounds(20, 10, 450, 370);
+
+        fundojogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/smashtheagesnosniveis.png"))); // NOI18N
+        fundojogo.setMaximumSize(new java.awt.Dimension(300, 300));
+        fundojogo.setMinimumSize(new java.awt.Dimension(300, 300));
+        getContentPane().add(fundojogo);
+        fundojogo.setBounds(0, 0, 490, 390);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nivel_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nivel_1ActionPerformed
+    private void nivel1fundoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nivel1fundoActionPerformed
             setVisible(false);
             new playGame(this).setVisible(true);                // TODO add your handling code here:
-    }//GEN-LAST:event_nivel_1ActionPerformed
+    }//GEN-LAST:event_nivel1fundoActionPerformed
 
     private void voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarActionPerformed
         setVisible(false);
         new arkanoide_exe.Arkanoide().setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_voltarActionPerformed
 
-    private void nivel_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nivel_2ActionPerformed
+    private void btnivel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnivel1ActionPerformed
        setVisible(false);
             new playGame(this).setVisible(true);
-    }//GEN-LAST:event_nivel_2ActionPerformed
+    }//GEN-LAST:event_btnivel1ActionPerformed
+
+    private void btnivel2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnivel2ActionPerformed
+                                        
+    setVisible(false);
+    new playGame2().setVisible(true);
+
+    }//GEN-LAST:event_btnivel2ActionPerformed
 
     
     public static void main(String args[]) {
@@ -126,10 +149,12 @@ public class Niveis extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JButton nivel_1;
-    private javax.swing.JButton nivel_2;
+    private javax.swing.JButton btnivel1;
+    private javax.swing.JButton btnivel2;
+    private javax.swing.JLabel fundojogo;
+    private javax.swing.JLabel fundotransparente;
+    private javax.swing.JButton nivel1fundo;
+    private javax.swing.JLabel nivel2fundo;
     private javax.swing.JButton voltar;
     // End of variables declaration//GEN-END:variables
 }
