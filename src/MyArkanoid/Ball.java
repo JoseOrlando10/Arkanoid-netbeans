@@ -2,6 +2,7 @@ package MyArkanoid;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 public class Ball extends GameObject {
 
@@ -10,7 +11,7 @@ public class Ball extends GameObject {
 
     public Ball(int x, int y) {
         // Ajusta para raio maior (25 de diâmetro)
-        super(Color.LIGHT_GRAY, x, y, 25, 25); 
+        super(Color.LIGHT_GRAY, x, y, 25, 25);
     }
 
     public void paint(Graphics gr) {
@@ -24,17 +25,27 @@ public class Ball extends GameObject {
         translate(vx, vy);
     }
 
-    public void move(java.awt.Rectangle bounds) throws ExceptionJogo {
+    public void move(Rectangle bounds, ArkanoidGame game) throws ExceptionJogo {
         move();
+
+        // Se a bola caiu (atingiu o fundo)
         if (y + height >= bounds.height) {
-            throw new ExceptionJogo("Perdeu o jogo! \n\n\n\t Pontuação Final: " + ArkanoidGame.getScore());
+            game.decrementarVidas();
+            if (game.getVidas() > 0) {
+                game.resetBola();
+            } else {
+                throw new ExceptionJogo("Perdeu o jogo! \n\n\n\t Pontuação Final: " + ArkanoidGame.getScore());
+            }
+            return; // IMPORTANTE: não continue processando colisões!
         }
 
+        // Colisão lateral
         if (x < 0 || x + width > bounds.width) {
             vx *= -1;
             move();
         }
-        if (y < 0 || y + height > bounds.height) {
+        // Colisão superior
+        if (y < 0) {
             vy *= -1;
             move();
         }

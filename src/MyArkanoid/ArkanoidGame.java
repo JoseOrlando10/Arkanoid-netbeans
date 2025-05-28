@@ -19,7 +19,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Random;
 import javax.management.Query;
-
+import MyArkanoid.ExceptionJogo;
 
 /**
  *
@@ -41,6 +41,7 @@ public class ArkanoidGame extends JComponent
 
     private static int score = 0; // Inicializa a pontuação
 
+    //private int vidas = 2; // Número máximo de vidas
     private Timer fallTimer;
     private boolean isGameOver = false;
 
@@ -60,7 +61,6 @@ public class ArkanoidGame extends JComponent
                 timeElapsed++; // Incrementa o tempo em 1 segundo
             }
         });
-        
 
         addMouseMotionListener(this);// deixa de funcionar o rato
         addMouseListener(this);
@@ -141,6 +141,10 @@ public class ArkanoidGame extends JComponent
         gr.setColor(Color.BLACK);//Posição do Score aparece depois da ,
         gr.drawString("Pontuação: " + score, getWidth() - 480, 460);
 
+        // Vidas
+        gr.setColor(Color.BLACK);
+        gr.drawString("Vidas: " + vidas, getWidth() - 400, 460);
+
         g2d.dispose();
     }
 
@@ -151,7 +155,7 @@ public class ArkanoidGame extends JComponent
         }
 
         try {
-            ball.move(this.getBounds());
+            ball.move(getBounds(), this); // CORRIGIDO AQUI
 
             for (Brick brick : bricks) {
                 if (brick.intersects(ball) && brick.isVisible) {
@@ -171,7 +175,6 @@ public class ArkanoidGame extends JComponent
             gameTimer.stop();
         }
 
-        // ⚠️ Chamar fora do loop
         verificarFimJogo();
     }
 
@@ -184,7 +187,6 @@ public class ArkanoidGame extends JComponent
         if (!ballReadyToMove) {
 
             ball.setPosition(pad.x + pad.width / 2 - 10, pad.y - 27);
-
 
         }
     }
@@ -204,6 +206,21 @@ public class ArkanoidGame extends JComponent
 
     public void mouseExited(MouseEvent e) {
 
+    }
+    private int vidas = 2;
+
+    public void decrementarVidas() {
+        vidas--;
+    }
+
+    public int getVidas() {
+        return vidas;
+    }
+
+    public void resetBola() {
+        ballReadyToMove = false; // Permite novo disparo
+        ball.setPosition(pad.x + pad.width / 2 - ball.width / 2, pad.y - ball.height);
+        repaint();
     }
 
     /*private class FallingBrick {
@@ -301,6 +318,7 @@ public class ArkanoidGame extends JComponent
         timeElapsed = 0;
         isGameOver = false;
         ballReadyToMove = false;
+        vidas = 2;
 
         // Reposicionar paddle e bola
         pad = new Paddle(Color.RED, 200, 430, 50, 10);
@@ -353,7 +371,5 @@ public class ArkanoidGame extends JComponent
             }
         }
     }
-  
-    
-    
+
 }
