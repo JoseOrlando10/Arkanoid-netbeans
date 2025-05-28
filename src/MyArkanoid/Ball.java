@@ -26,17 +26,17 @@ public class Ball extends GameObject {
     }
 
     public void move(Rectangle bounds, ArkanoidGame game) throws ExceptionJogo {
-        move();
+        
 
-        // Se a bola caiu (atingiu o fundo)
+        move();
         if (y + height >= bounds.height) {
             game.decrementarVidas();
             if (game.getVidas() > 0) {
-                game.resetBola();
+                game.resetBola(); // Permite novo disparo
             } else {
                 throw new ExceptionJogo("Perdeu o jogo! \n\n\n\t Pontuação Final: " + ArkanoidGame.getScore());
             }
-            return; // IMPORTANTE: não continue processando colisões!
+            return;
         }
 
         // Colisão lateral
