@@ -12,8 +12,6 @@ public class Niveis extends javax.swing.JFrame {
     
     public Niveis() {
         initComponents();
-        fundotransparente.setOpaque(true);
-        fundotransparente.setBackground(new java.awt.Color(211, 211, 211, 200)); // light gray com transparência alpha=100
         setLocationRelativeTo(null);//coloca ao centro
     }
 
@@ -25,7 +23,6 @@ public class Niveis extends javax.swing.JFrame {
         btnivel2 = new javax.swing.JButton();
         btnivel1 = new javax.swing.JButton();
         voltar = new javax.swing.JButton();
-        fundotransparente = new javax.swing.JLabel();
         fundojogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -42,7 +39,7 @@ public class Niveis extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnivel2);
-        btnivel2.setBounds(180, 70, 70, 20);
+        btnivel2.setBounds(200, 140, 90, 30);
 
         btnivel1.setText("Nivel 1");
         btnivel1.setBorder(null);
@@ -52,7 +49,7 @@ public class Niveis extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnivel1);
-        btnivel1.setBounds(50, 70, 62, 16);
+        btnivel1.setBounds(200, 70, 90, 30);
 
         voltar.setText("Voltar");
         voltar.addActionListener(new java.awt.event.ActionListener() {
@@ -61,12 +58,7 @@ public class Niveis extends javax.swing.JFrame {
             }
         });
         getContentPane().add(voltar);
-        voltar.setBounds(190, 350, 72, 23);
-
-        fundotransparente.setBackground(new java.awt.Color(204, 204, 204));
-        fundotransparente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.black, java.awt.Color.black, java.awt.Color.black, java.awt.Color.black));
-        getContentPane().add(fundotransparente);
-        fundotransparente.setBounds(20, 10, 450, 370);
+        voltar.setBounds(200, 330, 80, 30);
 
         fundojogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/smashtheagesnosniveis.png"))); // NOI18N
         fundojogo.setMaximumSize(new java.awt.Dimension(300, 300));
@@ -131,7 +123,6 @@ public class Niveis extends javax.swing.JFrame {
     private javax.swing.JButton btnivel1;
     private javax.swing.JButton btnivel2;
     private javax.swing.JLabel fundojogo;
-    private javax.swing.JLabel fundotransparente;
     private javax.swing.JButton voltar;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,10 +16,9 @@ public class Paddle extends GameObject implements Serializable {
 
     // Construtor do paddle
     public Paddle(Color myColor, int x, int y, int width, int height) {
-        super(myColor, x, y, width, height);
+        super(myColor, x, y, (int)(width * 1.3), height); // Aumenta o tamanho do paddle em 30% (*1.3)
     }
 
-    
     public void paint(Graphics gr) {
         // Pintura ao estilo clássico Arkanoid (cantos arredondados e highlight para 3D)
 
@@ -52,11 +51,18 @@ public class Paddle extends GameObject implements Serializable {
 
     // Movimento para a direita
     public void moveRight(int panelWidth) {
-        x += speed;
-        if (x + width > panelWidth) {
-            x = panelWidth - width;
-        }
+    // Calcula a nova posição proposta
+    int newX = x + speed;
+
+    // Se a nova posição proposta + largura do paddle passa do painel
+    if (newX + width > panelWidth) {
+        // Encosta o paddle ao limite direito
+        x = panelWidth - width;
+    } else {
+        // Caso contrário, move normalmente
+        x = newX;
     }
+}
 
     // Colisão entre bola e paddle
     public void collide(Ball b) {
