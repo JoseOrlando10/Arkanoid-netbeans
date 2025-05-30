@@ -44,13 +44,13 @@ public class ArkanoidGame extends JComponent
 
     public static boolean somAtivo = true;
 
-    private static int score = 0; // Inicializa a pontuação
+    private int score = 0; // Inicializa a pontuação
 
     //private int vidas = 2; // Número máximo de vidas
     private Timer fallTimer;
     private boolean isGameOver = false;
 
-    private String caminhoFundo = "/resources/nivel1.jpg";
+    private String caminhoFundo = "/resources/nivel1.png";
     private transient Image imageFundo;
 
     public ArkanoidGame() {
@@ -137,7 +137,7 @@ public class ArkanoidGame extends JComponent
 
     }
 
-    @Override
+    
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
@@ -228,7 +228,7 @@ public class ArkanoidGame extends JComponent
         }
     }
 
-    public static int getScore() {
+    public int getScore() {
         return score;
     }
 
@@ -395,16 +395,17 @@ public class ArkanoidGame extends JComponent
     }
 
     public void saveGame(File file) throws IOException {
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) {
-            out.writeObject(ball);
-            out.writeObject(pad);
-            out.writeObject(bricks);
-            out.writeInt(score);
-            out.writeInt(vidas);
-            out.writeInt(timeElapsed);
-            out.writeBoolean(ballReadyToMove);
-        }
+    try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) {
+        out.writeObject(ball);
+        out.writeObject(pad);
+        out.writeObject(bricks);
+        out.writeInt(score);
+        out.writeInt(vidas);
+        out.writeInt(timeElapsed);
+        out.writeBoolean(ballReadyToMove);
+        out.writeObject(caminhoFundo); // <-- Adiciona isto!
     }
+}
 
     @SuppressWarnings("unchecked")
     public void loadGame(File file) throws IOException, ClassNotFoundException {
@@ -418,6 +419,7 @@ public class ArkanoidGame extends JComponent
             vidas = in.readInt();
             timeElapsed = in.readInt();
             ballReadyToMove = in.readBoolean();
+            caminhoFundo = (String) in.readObject(); // <-- Adiciona isto!
             reloadFundo();
 
             // Recarregar imagens dos bricks

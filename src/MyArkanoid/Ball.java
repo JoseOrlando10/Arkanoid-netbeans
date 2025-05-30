@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 import java.io.Serializable;
 
 public class Ball extends GameObject implements Serializable {
+
     private transient Image image;
     int vx = 2;
     int vy = 2;
@@ -28,7 +29,6 @@ public class Ball extends GameObject implements Serializable {
     }
 
     public void move(Rectangle bounds, ArkanoidGame game) throws ExceptionJogo {
-        
 
         move();
         if (y + height >= bounds.height) {
@@ -36,7 +36,7 @@ public class Ball extends GameObject implements Serializable {
             if (game.getVidas() > 0) {
                 game.resetBola(); // Permite novo disparo
             } else {
-                throw new ExceptionJogo("Perdeu o jogo! \n\n\n\t Pontuação Final: " + ArkanoidGame.getScore());
+                throw new ExceptionJogo("Perdeu o jogo! \n\n\n\t Pontuação Final: " + game.getScore());
             }
             return;
         }
@@ -72,10 +72,10 @@ public class Ball extends GameObject implements Serializable {
     }
 
     public void reload() {
-    try {
-        image = javax.imageio.ImageIO.read(getClass().getResource("/resources/ball.png"));
-    } catch (Exception e) {
-        image = null;
+        try {
+            image = javax.imageio.ImageIO.read(getClass().getResource("/resources/ball.png"));
+        } catch (Exception e) {
+            image = null;
+        }
     }
-}
 }
