@@ -50,6 +50,7 @@ public class ArkanoidGame extends JComponent
     private Timer fallTimer;
     private boolean isGameOver = false;
 
+    private String caminhoFundo = "/resources/nivel1.jpg";
     private transient Image imageFundo;
 
     public ArkanoidGame() {
@@ -141,6 +142,13 @@ public class ArkanoidGame extends JComponent
         super.paintComponent(g);
 
         Graphics2D g2d = (Graphics2D) g.create();
+
+        if (imageFundo != null) {
+            g2d.drawImage(imageFundo, 0, 0, getWidth(), getHeight(), null);
+        } else {
+            g2d.setColor(Color.LIGHT_GRAY);
+            g2d.fillRect(0, 0, getWidth(), getHeight());
+        }
 
         // Pintar fundo com transparência
         float alpha = 0.8f; // Ajusta a opacidade do fundo aqui (0.0f = totalmente transparente, 1.0f = opaco)
@@ -343,8 +351,6 @@ public class ArkanoidGame extends JComponent
         repaint();
     }
 
-    
-
     public void verificarFimJogo() {
         boolean existemBricks = false;
         for (Brick brick : bricks) {
@@ -413,7 +419,7 @@ public class ArkanoidGame extends JComponent
             timeElapsed = in.readInt();
             ballReadyToMove = in.readBoolean();
             reloadFundo();
-            
+
             // Recarregar imagens dos bricks
             for (Brick brick : bricks) {
                 if (brick instanceof ImageBrick) {
@@ -436,27 +442,33 @@ public class ArkanoidGame extends JComponent
             timeTimer.start();
 
             // Re-adicionar listeners
-            for (KeyListener kl : getKeyListeners()) removeKeyListener(kl);
+            for (KeyListener kl : getKeyListeners()) {
+                removeKeyListener(kl);
+            }
             addKeyListener(this);
             setFocusable(true);
 
-            for (MouseListener ml : getMouseListeners()) removeMouseListener(ml);
+            for (MouseListener ml : getMouseListeners()) {
+                removeMouseListener(ml);
+            }
             addMouseListener(this);
 
-            for (MouseMotionListener mml : getMouseMotionListeners()) removeMouseMotionListener(mml);
+            for (MouseMotionListener mml : getMouseMotionListeners()) {
+                removeMouseMotionListener(mml);
+            }
             addMouseMotionListener(this);
 
             requestFocusInWindow(); // <-- isto é essencial!
             repaint();
-            
+
         }
     }
 
     public void reloadFundo() {
-    try {
-        imageFundo = javax.imageio.ImageIO.read(getClass().getResource("/resources/nivel1.jpg"));
-    } catch (Exception e) {
-        imageFundo = null;
+        try {
+            imageFundo = javax.imageio.ImageIO.read(getClass().getResource(caminhoFundo));
+        } catch (Exception e) {
+            imageFundo = null;
+        }
     }
-}
 }
