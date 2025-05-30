@@ -31,7 +31,7 @@ public class Paddle extends GameObject implements Serializable{
     
     public void reload() {
     try {
-        image = javax.imageio.ImageIO.read(getClass().getResource("/resources/tronco.png"));
+        image = javax.imageio.ImageIO.read(getClass().getResource("/resources/tronco.jpg"));
     } catch (Exception e) {
         image = null;
     }

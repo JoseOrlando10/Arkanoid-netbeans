@@ -412,7 +412,8 @@ public class ArkanoidGame extends JComponent
             vidas = in.readInt();
             timeElapsed = in.readInt();
             ballReadyToMove = in.readBoolean();
-
+            reloadFundo();
+            
             // Recarregar imagens dos bricks
             for (Brick brick : bricks) {
                 if (brick instanceof ImageBrick) {
@@ -435,31 +436,25 @@ public class ArkanoidGame extends JComponent
             timeTimer.start();
 
             // Re-adicionar listeners
-            for (KeyListener kl : getKeyListeners()) {
-                removeKeyListener(kl);
-            }
+            for (KeyListener kl : getKeyListeners()) removeKeyListener(kl);
             addKeyListener(this);
             setFocusable(true);
 
-            for (MouseListener ml : getMouseListeners()) {
-                removeMouseListener(ml);
-            }
+            for (MouseListener ml : getMouseListeners()) removeMouseListener(ml);
             addMouseListener(this);
 
-            for (MouseMotionListener mml : getMouseMotionListeners()) {
-                removeMouseMotionListener(mml);
-            }
+            for (MouseMotionListener mml : getMouseMotionListeners()) removeMouseMotionListener(mml);
             addMouseMotionListener(this);
 
-            requestFocusInWindow();
+            requestFocusInWindow(); // <-- isto é essencial!
             repaint();
-            reloadFundo();
+            
         }
     }
 
     public void reloadFundo() {
     try {
-        imageFundo = javax.imageio.ImageIO.read(getClass().getResource("/resources/tronco.jpg"));
+        imageFundo = javax.imageio.ImageIO.read(getClass().getResource("/resources/nivel1.jpg"));
     } catch (Exception e) {
         imageFundo = null;
     }
