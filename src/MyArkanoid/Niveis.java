@@ -24,9 +24,7 @@ public class Niveis extends javax.swing.JFrame {
 
         btnivel2 = new javax.swing.JButton();
         btnivel1 = new javax.swing.JButton();
-        nivel1fundo = new javax.swing.JButton();
         voltar = new javax.swing.JButton();
-        nivel2fundo = new javax.swing.JLabel();
         fundotransparente = new javax.swing.JLabel();
         fundojogo = new javax.swing.JLabel();
 
@@ -56,16 +54,6 @@ public class Niveis extends javax.swing.JFrame {
         getContentPane().add(btnivel1);
         btnivel1.setBounds(50, 70, 62, 16);
 
-        nivel1fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/nivel1nosniveis.png"))); // NOI18N
-        nivel1fundo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        nivel1fundo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nivel1fundoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(nivel1fundo);
-        nivel1fundo.setBounds(30, 20, 100, 102);
-
         voltar.setText("Voltar");
         voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,10 +62,6 @@ public class Niveis extends javax.swing.JFrame {
         });
         getContentPane().add(voltar);
         voltar.setBounds(190, 350, 72, 23);
-
-        nivel2fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/nivel2nosniveis.png"))); // NOI18N
-        getContentPane().add(nivel2fundo);
-        nivel2fundo.setBounds(160, 20, 100, 100);
 
         fundotransparente.setBackground(new java.awt.Color(204, 204, 204));
         fundotransparente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.black, java.awt.Color.black, java.awt.Color.black, java.awt.Color.black));
@@ -92,11 +76,6 @@ public class Niveis extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void nivel1fundoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nivel1fundoActionPerformed
-            setVisible(false);
-            new playGame(this).setVisible(true);                // TODO add your handling code here:
-    }//GEN-LAST:event_nivel1fundoActionPerformed
 
     private void voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarActionPerformed
         setVisible(false);
@@ -153,8 +132,6 @@ public class Niveis extends javax.swing.JFrame {
     private javax.swing.JButton btnivel2;
     private javax.swing.JLabel fundojogo;
     private javax.swing.JLabel fundotransparente;
-    private javax.swing.JButton nivel1fundo;
-    private javax.swing.JLabel nivel2fundo;
     private javax.swing.JButton voltar;
     // End of variables declaration//GEN-END:variables
 }

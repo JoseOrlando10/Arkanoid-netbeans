@@ -50,7 +50,7 @@ public class ArkanoidGame extends JComponent
     private Timer fallTimer;
     private boolean isGameOver = false;
 
-    private String caminhoFundo = "/resources/nivel1.png";
+    private String caminhoFundo = "/resources/fundov2.png";
     private transient Image imageFundo;
 
     public ArkanoidGame() {
@@ -74,6 +74,7 @@ public class ArkanoidGame extends JComponent
 
         addMouseMotionListener(this);// deixa de funcionar o rato
         addMouseListener(this);
+        reloadFundo();
     }
 
     public ArkanoidGame(boolean skipStart) {
@@ -151,7 +152,7 @@ public class ArkanoidGame extends JComponent
         }
 
         // Pintar fundo com transparência
-        float alpha = 0.8f; // Ajusta a opacidade do fundo aqui (0.0f = totalmente transparente, 1.0f = opaco)
+        float alpha = 0.4f; // Ajusta a opacidade do fundo aqui (0.0f = totalmente transparente, 1.0f = opaco)
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
         g2d.setColor(Color.LIGHT_GRAY);
         g2d.fillRect(0, 0, getWidth(), getHeight());
@@ -413,7 +414,6 @@ public class ArkanoidGame extends JComponent
             ball = (Ball) in.readObject();
             ball.reload();
             pad = (Paddle) in.readObject();
-            pad.reload();
             bricks = (ArrayList<Brick>) in.readObject();
             score = in.readInt();
             vidas = in.readInt();

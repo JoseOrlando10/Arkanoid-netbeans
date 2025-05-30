@@ -29,7 +29,6 @@ public class playGame extends javax.swing.JFrame {
     private void initComponents() {
 
         arkanoidGame1 = new MyArkanoid.ArkanoidGame();
-        imgnivel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -48,21 +47,12 @@ public class playGame extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         arkanoidGame1.setBackground(new java.awt.Color(0, 0, 0));
-        arkanoidGame1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        arkanoidGame1.setForeground(new java.awt.Color(255, 51, 51));
+        arkanoidGame1.setForeground(new java.awt.Color(255, 51, 204));
         arkanoidGame1.setMaximumSize(new java.awt.Dimension(600, 450));
         arkanoidGame1.setMinimumSize(new java.awt.Dimension(600, 450));
         arkanoidGame1.setLayout(new javax.swing.OverlayLayout(arkanoidGame1));
         getContentPane().add(arkanoidGame1);
-        arkanoidGame1.setBounds(70, 50, 560, 470);
-
-        imgnivel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/nivel1.png"))); // NOI18N
-        imgnivel1.setMaximumSize(new java.awt.Dimension(702, 563));
-        imgnivel1.setMinimumSize(new java.awt.Dimension(702, 700));
-        imgnivel1.setName(""); // NOI18N
-        imgnivel1.setPreferredSize(new java.awt.Dimension(702, 563));
-        getContentPane().add(imgnivel1);
-        imgnivel1.setBounds(0, 0, 700, 563);
+        arkanoidGame1.setBounds(0, 0, 700, 570);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -79,6 +69,5 @@ public class playGame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private MyArkanoid.ArkanoidGame arkanoidGame1;
-    private javax.swing.JLabel imgnivel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -36,7 +36,6 @@ public class MenuPausa extends javax.swing.JFrame {
         btRestart = new javax.swing.JButton();
         btSave = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        btSom = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(400, 330));
@@ -89,15 +88,6 @@ public class MenuPausa extends javax.swing.JFrame {
         });
         getContentPane().add(btSave);
         btSave.setBounds(300, 130, 72, 23);
-
-        btSom.setText("🔊");
-        btSom.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                alternarSom();
-            }
-        });
-        getContentPane().add(btSom);
-        btSom.setBounds(300, 180, 72, 23);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/smashtheagesmenupausa.png"))); // NOI18N
         getContentPane().add(jLabel1);
@@ -176,7 +166,6 @@ public class MenuPausa extends javax.swing.JFrame {
     private javax.swing.JButton btRestart;
     private javax.swing.JButton btSair;
     private javax.swing.JButton btSave;
-    private javax.swing.JButton btSom;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
