@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
  *
  */
 public class MenuPausa extends javax.swing.JFrame {
-
+    private javax.swing.JButton btSom;
     private ArkanoidGame jogo;
 
     static void setVisible() {
