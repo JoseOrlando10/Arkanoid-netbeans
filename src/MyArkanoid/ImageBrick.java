@@ -36,7 +36,7 @@ public class ImageBrick extends Brick implements Serializable{
 
     @Override
     public void paint(Graphics g) {
-        System.out.println("A pintar ImageBrick em " + x + "," + y);
+
         if (imagem != null) {
             g.drawImage(imagem, x, y, width, height, null);
         } else {
