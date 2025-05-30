@@ -4,26 +4,25 @@ import MyArkanoid.Creditos;
 import MyArkanoid.Niveis;
 import MyArkanoid.playGame;
 import java.awt.Image;
+import javax.swing.JFrame;
 
 /**
  *
  * @author Pedro Coelho - 25026
  * @author Jose Martins - 24269
- * 
+ *
  */
-
 public class Arkanoide extends javax.swing.JFrame {
 
     /**
      * Creates new form Arkanoide
      */
     public Arkanoide() {
-        
+
         initComponents();
         setLocationRelativeTo(null);
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -32,6 +31,8 @@ public class Arkanoide extends javax.swing.JFrame {
         btniveis = new javax.swing.JButton();
         btsair = new javax.swing.JButton();
         btjogar = new javax.swing.JButton();
+        btCarregar = new javax.swing.JButton();
+        btSom = new javax.swing.JButton(MyArkanoid.ArkanoidGame.somAtivo ? "🔊" : "🔇");
         imagemfundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -83,6 +84,28 @@ public class Arkanoide extends javax.swing.JFrame {
         getContentPane().add(btjogar);
         btjogar.setBounds(290, 450, 100, 40);
 
+        btCarregar.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
+        btCarregar.setText("Carregar");
+        btCarregar.setMaximumSize(new java.awt.Dimension(85, 27));
+        btCarregar.setMinimumSize(new java.awt.Dimension(85, 27));
+        btCarregar.setPreferredSize(new java.awt.Dimension(85, 27));
+        btCarregar.setRequestFocusEnabled(false);
+        btCarregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCarregarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btCarregar);
+        btCarregar.setBounds(560, 450, 100, 40);
+
+        btSom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSomActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btSom);
+        btSom.setBounds(610, 50, 72, 40);
+
         imagemfundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/smashtheageslogo.png"))); // NOI18N
         getContentPane().add(imagemfundo);
         imagemfundo.setBounds(0, 0, 696, 570);
@@ -101,16 +124,54 @@ public class Arkanoide extends javax.swing.JFrame {
     private void btjogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btjogarActionPerformed
         setVisible(false);
         new playGame(this).setVisible(true);
-        
+
     }//GEN-LAST:event_btjogarActionPerformed
 
     private void btniveisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btniveisActionPerformed
-    //dispose();
-    setVisible(false);
-    new Niveis().setVisible(true);
+        //dispose();
+        setVisible(false);
+        new Niveis().setVisible(true);
     }//GEN-LAST:event_btniveisActionPerformed
 
-    
+    private void btCarregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCarregarActionPerformed
+        javax.swing.JFileChooser chooser = new javax.swing.JFileChooser();
+        if (chooser.showOpenDialog(this) == javax.swing.JFileChooser.APPROVE_OPTION) {
+            try {
+                MyArkanoid.ArkanoidGame game = new MyArkanoid.ArkanoidGame(true); // skipStart = true
+                game.loadGame(chooser.getSelectedFile());
+                javax.swing.JFrame frame = new javax.swing.JFrame("Arkanoid - Jogo Carregado");
+                frame.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+                frame.add(game);
+                frame.pack(); // Usa o tamanho preferido do ArkanoidGame
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+                frame.setExtendedState(JFrame.NORMAL);
+                frame.setAlwaysOnTop(true);
+                frame.setAlwaysOnTop(false);
+                frame.toFront();
+                frame.requestFocus();
+                // NÃO uses frame.setSize(600, 450);
+                this.dispose();
+            } catch (Exception ex) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Erro ao carregar: " + ex.getMessage());
+            }
+        }
+    }//GEN-LAST:event_btCarregarActionPerformed
+
+    private void btSomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSomActionPerformed
+        alternarSom();
+    }//GEN-LAST:event_btSomActionPerformed
+
+    private void alternarSom() {
+        MyArkanoid.ArkanoidGame.somAtivo = !MyArkanoid.ArkanoidGame.somAtivo;
+        if (MyArkanoid.ArkanoidGame.somAtivo) {
+            btSom.setText("🔊");
+            MyArkanoid.ArkanoidGame.playSound("/resources/sound.wav");//mudar som
+        } else {
+            btSom.setText("🔇");
+        }
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -138,14 +199,16 @@ public class Arkanoide extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
+
                 new Arkanoide().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btCarregar;
     private javax.swing.JButton btCreditos;
+    private javax.swing.JButton btSom;
     private javax.swing.JButton btjogar;
     private javax.swing.JButton btniveis;
     private javax.swing.JButton btsair;

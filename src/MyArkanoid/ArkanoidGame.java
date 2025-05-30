@@ -20,6 +20,9 @@ import java.awt.event.KeyListener;
 import java.util.Random;
 import javax.management.Query;
 import MyArkanoid.ExceptionJogo;
+import java.awt.Image;
+import java.io.*;
+import javax.sound.sampled.*;
 
 /**
  *
@@ -39,13 +42,19 @@ public class ArkanoidGame extends JComponent
     int timeElapsed; // Variável para armazenar o tempo (em segundos)
     boolean ballReadyToMove = false;
 
+    public static boolean somAtivo = true;
+
     private static int score = 0; // Inicializa a pontuação
 
     //private int vidas = 2; // Número máximo de vidas
     private Timer fallTimer;
     private boolean isGameOver = false;
 
+    private transient Image imageFundo;
+
     public ArkanoidGame() {
+        this(false);
+        setPreferredSize(new java.awt.Dimension(600, 450)); // ou o tamanho do teu jogo
         start();
         addKeyListener(this);//Adiciona esta linha para captar teclas
         setFocusable(true);//recebe dados do teclado
@@ -63,6 +72,25 @@ public class ArkanoidGame extends JComponent
         });
 
         addMouseMotionListener(this);// deixa de funcionar o rato
+        addMouseListener(this);
+    }
+
+    public ArkanoidGame(boolean skipStart) {
+        setPreferredSize(new java.awt.Dimension(600, 450));
+        if (!skipStart) {
+            start();
+        }
+        addKeyListener(this);
+        setFocusable(true);
+        timeElapsed = 0;
+        gameTimer = new Timer(10, this);
+        timeTimer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                timeElapsed++;
+            }
+        });
+        addMouseMotionListener(this);
         addMouseListener(this);
     }
 
@@ -102,16 +130,17 @@ public class ArkanoidGame extends JComponent
             // Cria cada brick na linha
             for (int i = 0; i < bricksPorLinha; i++) {
                 int x = startX + (i * (larguraBrick + espacamento));
-                bricks.add(new ImageBrick("/resources/pedras.png", x, y, larguraBrick, alturaBrick));
+                bricks.add(new ImageBrick("/resources/pedras.png", Color.GRAY, x, y, larguraBrick, alturaBrick));
             }
         }//fim dos bricks
 
     }
 
-    protected void paintComponent(Graphics gr) {
-        super.paintComponent(gr);
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
 
-        Graphics2D g2d = (Graphics2D) gr.create();
+        Graphics2D g2d = (Graphics2D) g.create();
 
         // Pintar fundo com transparência
         float alpha = 0.8f; // Ajusta a opacidade do fundo aqui (0.0f = totalmente transparente, 1.0f = opaco)
@@ -138,12 +167,12 @@ public class ArkanoidGame extends JComponent
         g2d.drawString("Tempo: " + timeElapsed, getWidth() - 550, 460);
 
         //Pontuação
-        gr.setColor(Color.BLACK);//Posição do Score aparece depois da ,
-        gr.drawString("Pontuação: " + score, getWidth() - 480, 460);
+        g.setColor(Color.BLACK);//Posição do Score aparece depois da ,
+        g.drawString("Pontuação: " + score, getWidth() - 480, 460);
 
         // Vidas
-        gr.setColor(Color.BLACK);
-        gr.drawString("Vidas: " + vidas, getWidth() - 400, 460);
+        g.setColor(Color.BLACK);
+        g.drawString("Vidas: " + vidas, getWidth() - 400, 460);
 
         g2d.dispose();
     }
@@ -223,43 +252,6 @@ public class ArkanoidGame extends JComponent
         repaint();
     }
 
-    /*private class FallingBrick {
-
-        float x, y;
-        float yVel = 5; // Velocidade fixa para todos
-        int width, height;
-        Color color = Color.DARK_GRAY; // Cor uniforme
-
-        public FallingBrick(int x, int y, int width, int height) {
-            this.x = x;
-            this.y = y;
-            this.width = width;
-            this.height = height;
-        }
-
-        public void update() {
-            y += yVel; // Movimento apenas vertical
-        }
-
-        public void paint(Graphics2D g2d) {
-            g2d.setColor(color);
-            g2d.fillRect((int) x, (int) y, width, height);
-        }
-    }
-
-    private void createFallingBricks() {
-        for (Brick brick : bricks) {
-            if (brick.isVisible) {
-                fallingBricks.add(new FallingBrick(
-                        brick.x,
-                        brick.y,
-                        brick.width,
-                        brick.height
-                ));
-            }
-        }
-        fallTimer.start();
-    }*/
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         //seta esquerda
@@ -340,7 +332,7 @@ public class ArkanoidGame extends JComponent
 
             for (int i = 0; i < bricksPorLinha; i++) {
                 int x = startX + (i * (larguraBrick + espacamento));
-                bricks.add(new ImageBrick("/resources/pedras.png", x, y, larguraBrick, alturaBrick));
+                bricks.add(new ImageBrick("/resources/pedras.png", Color.GRAY, x, y, larguraBrick, alturaBrick));
             }
         }
 
@@ -350,6 +342,8 @@ public class ArkanoidGame extends JComponent
 
         repaint();
     }
+
+    
 
     public void verificarFimJogo() {
         boolean existemBricks = false;
@@ -364,12 +358,110 @@ public class ArkanoidGame extends JComponent
             gameTimer.stop();
             int escolha = JOptionPane.showOptionDialog(null, "Parabens! Concluiste o 1 nivel", "nivel Conluido", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new String[]{"Proximo Nivel", "Niveis"}, "Proximo nivel");
 
+            java.awt.Window janelaAtual = javax.swing.SwingUtilities.getWindowAncestor(this);
             if (escolha == 0) {
-                //colcoar proximo nivel
+                if (janelaAtual != null) {
+                    janelaAtual.dispose();
+                }
+                new playGame2().setVisible(true);
             } else {
+                if (janelaAtual != null) {
+                    janelaAtual.dispose();
+                }
                 new Niveis().setVisible(true);
             }
         }
     }
 
+    public static void playSound(String caminho) {
+        if (!somAtivo) {
+            return; // só toca se o som estiver ativo
+        }
+        try {
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(
+                    ArkanoidGame.class.getResource(caminho));
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            clip.start();
+        } catch (Exception e) {
+            System.out.println("Erro ao tocar som: " + e.getMessage());
+        }
+    }
+
+    public void saveGame(File file) throws IOException {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) {
+            out.writeObject(ball);
+            out.writeObject(pad);
+            out.writeObject(bricks);
+            out.writeInt(score);
+            out.writeInt(vidas);
+            out.writeInt(timeElapsed);
+            out.writeBoolean(ballReadyToMove);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public void loadGame(File file) throws IOException, ClassNotFoundException {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
+            ball = (Ball) in.readObject();
+            ball.reload();
+            pad = (Paddle) in.readObject();
+            pad.reload();
+            bricks = (ArrayList<Brick>) in.readObject();
+            score = in.readInt();
+            vidas = in.readInt();
+            timeElapsed = in.readInt();
+            ballReadyToMove = in.readBoolean();
+
+            // Recarregar imagens dos bricks
+            for (Brick brick : bricks) {
+                if (brick instanceof ImageBrick) {
+                    ((ImageBrick) brick).reloadImage();
+                }
+            }
+
+            // Parar timers antigos se existirem
+            if (gameTimer != null) {
+                gameTimer.stop();
+            }
+            if (timeTimer != null) {
+                timeTimer.stop();
+            }
+
+            // Recriar e iniciar timers
+            gameTimer = new Timer(10, this);
+            timeTimer = new Timer(1000, e -> timeElapsed++);
+            gameTimer.start();
+            timeTimer.start();
+
+            // Re-adicionar listeners
+            for (KeyListener kl : getKeyListeners()) {
+                removeKeyListener(kl);
+            }
+            addKeyListener(this);
+            setFocusable(true);
+
+            for (MouseListener ml : getMouseListeners()) {
+                removeMouseListener(ml);
+            }
+            addMouseListener(this);
+
+            for (MouseMotionListener mml : getMouseMotionListeners()) {
+                removeMouseMotionListener(mml);
+            }
+            addMouseMotionListener(this);
+
+            requestFocusInWindow();
+            repaint();
+            reloadFundo();
+        }
+    }
+
+    public void reloadFundo() {
+    try {
+        imageFundo = javax.imageio.ImageIO.read(getClass().getResource("/resources/tronco.jpg"));
+    } catch (Exception e) {
+        imageFundo = null;
+    }
+}
 }

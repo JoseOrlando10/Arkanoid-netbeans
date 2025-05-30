@@ -2,7 +2,9 @@ package MyArkanoid;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Rectangle;
+import java.io.Serializable;
 
 /**
  *
@@ -10,14 +12,20 @@ import java.awt.Rectangle;
  * @author Jose Martins - 24269
  * 
  */
-public class Brick extends GameObject{
-
+public class Brick extends GameObject implements Serializable{
+ private transient Image image;
+    public int x, y, width, height;
     
     boolean isVisible = true;
 
     public Brick(Color myColor, int x, int y, int width, int height) {
         super(myColor,x, y, width, height);
+        this.x=x;
+        this.y=y;
+        this.width=width;
+        this.height=height;
     }
+    
     
     
     public void paint(Graphics gr){
@@ -34,5 +42,12 @@ public class Brick extends GameObject{
     {
         this.isVisible = true;
     }
-
+    
+    public void reload() {
+        try {
+            image = javax.imageio.ImageIO.read(getClass().getResource("/resources/pedras.png"));
+        } catch (Exception e) {
+            image = null;
+        }
+    }
 }

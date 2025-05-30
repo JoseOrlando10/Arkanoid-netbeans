@@ -1,10 +1,13 @@
 package MyArkanoid;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.IOException;
+import java.io.Serializable;
 
 /**
  *
@@ -13,21 +16,42 @@ import java.io.IOException;
  * 
  */
 
-public class ImageBrick extends Brick {
-    private Image image;
+public class ImageBrick extends Brick implements Serializable{
+    private String caminhoImagem;
+    private transient BufferedImage imagem;
 
-    public ImageBrick(String imagePath, int x, int y, int width, int height) {
-        super(null, x, y, width, height); // ignora a cor
+    public ImageBrick(String caminhoImagem, Color color, int x, int y, int width, int height) {
+        super(color, x, y, width, height);
+        this.caminhoImagem = caminhoImagem;
+        reloadImage();
+    }
+
+    public void reloadImage() {
         try {
-            image = ImageIO.read(getClass().getResource("/resources/pedras.png"));
-        } catch (IOException | IllegalArgumentException e) {
-            System.err.println("Erro ao carregar imagem: " + imagePath);
+            imagem = javax.imageio.ImageIO.read(getClass().getResource(caminhoImagem));
+        } catch (Exception e) {
+            imagem = null;
         }
     }
 
+    @Override
     public void paint(Graphics g) {
-        if (isVisible && image != null) {
-            g.drawImage(image, x, y, width, height, null);
+        System.out.println("A pintar ImageBrick em " + x + "," + y);
+        if (imagem != null) {
+            g.drawImage(imagem, x, y, width, height, null);
+        } else {
+            g.setColor(Color.GRAY);
+            g.fillRect(x, y, width, height);
         }
+    }
+    
+    public static void main(String[] args) {
+        // Exemplo de como criar um objeto ImageBrick
+        int x = 50;
+        int y = 100;
+        int larguraBrick = 75;
+        int alturaBrick = 20;
+        ImageBrick brick = new ImageBrick("/resources/pedras.png", Color.GRAY, x, y, larguraBrick, alturaBrick);
     }
 }
+

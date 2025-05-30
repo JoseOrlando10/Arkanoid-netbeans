@@ -1,13 +1,14 @@
 package MyArkanoid;
+
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author Pedro Coelho - 25026
  * @author Jose Martins - 24269
  *
  */
-
 public class MenuPausa extends javax.swing.JFrame {
 
     private ArkanoidGame jogo;
@@ -33,7 +34,9 @@ public class MenuPausa extends javax.swing.JFrame {
         btSair = new javax.swing.JButton();
         btNiveis = new javax.swing.JButton();
         btRestart = new javax.swing.JButton();
+        btSave = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btSom = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(400, 330));
@@ -78,6 +81,24 @@ public class MenuPausa extends javax.swing.JFrame {
         getContentPane().add(btRestart);
         btRestart.setBounds(150, 180, 90, 30);
 
+        btSave.setText("Save");
+        btSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSaveActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btSave);
+        btSave.setBounds(300, 130, 72, 23);
+
+        btSom.setText("🔊");
+        btSom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alternarSom();
+            }
+        });
+        getContentPane().add(btSom);
+        btSom.setBounds(300, 180, 72, 23);
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/smashtheagesmenupausa.png"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 400, 300);
@@ -94,7 +115,17 @@ public class MenuPausa extends javax.swing.JFrame {
     }//GEN-LAST:event_btNiveisActionPerformed
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
-        System.exit(0);// TODO add your handling code here:
+
+        if (jogo != null) {
+            java.awt.Window janelaJogo = javax.swing.SwingUtilities.getWindowAncestor(jogo);
+            if (janelaJogo != null) {
+                janelaJogo.dispose();
+            }
+        }
+        // Fecha o menu de pausa
+        this.dispose();
+        // Abre o menu inicial
+        new arkanoide_exe.Arkanoide().setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_btSairActionPerformed
 
     private void btContiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btContiActionPerformed
@@ -116,11 +147,36 @@ public class MenuPausa extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btRestartActionPerformed
 
+    private void btSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaveActionPerformed
+        javax.swing.JFileChooser chooser = new javax.swing.JFileChooser();
+        if (chooser.showSaveDialog(this) == javax.swing.JFileChooser.APPROVE_OPTION) {
+            try {
+
+                jogo.saveGame(chooser.getSelectedFile());
+                javax.swing.JOptionPane.showMessageDialog(this, "Jogo guardado com sucesso!");
+            } catch (Exception ex) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Erro ao guardar: " + ex.getMessage());
+            }
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_btSaveActionPerformed
+
+    private void alternarSom() {
+        ArkanoidGame.somAtivo = !ArkanoidGame.somAtivo;
+        if (ArkanoidGame.somAtivo) {
+            btSom.setText("🔊");
+            ArkanoidGame.playSound("/resources/sound.wav");
+        } else {
+            btSom.setText("🔇");
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btConti;
     private javax.swing.JButton btNiveis;
     private javax.swing.JButton btRestart;
     private javax.swing.JButton btSair;
+    private javax.swing.JButton btSave;
+    private javax.swing.JButton btSom;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

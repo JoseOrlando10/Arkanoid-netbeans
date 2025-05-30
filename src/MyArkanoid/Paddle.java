@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
+import java.io.Serializable;
 import javax.imageio.ImageIO;
 
 /**
@@ -13,9 +14,9 @@ import javax.imageio.ImageIO;
  * 
  */
 
-public class Paddle extends GameObject {
+public class Paddle extends GameObject implements Serializable{
 
-    private Image image;
+    private transient Image image;
     private final int speed = 18; // Velocidade de movimento com as setas
 
     public Paddle(Color myColor, int x, int y, int width, int height) {
@@ -27,6 +28,14 @@ public class Paddle extends GameObject {
             System.err.println("Erro ao carregar imagem do paddle: " + ex.getMessage());
         }
     }
+    
+    public void reload() {
+    try {
+        image = javax.imageio.ImageIO.read(getClass().getResource("/resources/tronco.png"));
+    } catch (Exception e) {
+        image = null;
+    }
+}
     
     public void paint(Graphics gr) {
         if (image != null) {

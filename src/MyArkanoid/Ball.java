@@ -2,10 +2,12 @@ package MyArkanoid;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Rectangle;
+import java.io.Serializable;
 
-public class Ball extends GameObject {
-
+public class Ball extends GameObject implements Serializable {
+    private transient Image image;
     int vx = 2;
     int vy = 2;
 
@@ -68,4 +70,12 @@ public class Ball extends GameObject {
         vx = 0;
         vy = -6;
     }
+
+    public void reload() {
+    try {
+        image = javax.imageio.ImageIO.read(getClass().getResource("/resources/ball.png"));
+    } catch (Exception e) {
+        image = null;
+    }
+}
 }
