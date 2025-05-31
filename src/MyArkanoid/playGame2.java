@@ -14,6 +14,7 @@ public class playGame2 extends javax.swing.JFrame {
         setLocationRelativeTo(null);// coloca no centro do ecra
         // Ajusta a altura do paddle (por exemplo, para y=450)
     arkanoidGame1.setPaddleY(480);
+     arkanoidGame1.start2();  // chamo o nivel 2
     }
 
     /**

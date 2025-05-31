@@ -102,9 +102,9 @@ public class MenuPausa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btNiveisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNiveisActionPerformed
-        setVisible(false);
-        Niveis niveis = new Niveis(this); // passa a referência do MenuPausa!
-    niveis.setVisible(true);
+        this.setVisible(false);
+        Niveis niveis = new Niveis(this, jogo); // passa a referência do MenuPausa!
+        niveis.setVisible(true);
 
     }//GEN-LAST:event_btNiveisActionPerformed
 

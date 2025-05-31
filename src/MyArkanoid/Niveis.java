@@ -1,5 +1,8 @@
 package MyArkanoid;
 
+
+import java.awt.Window;
+import javax.swing.SwingUtilities;
 /**
  *
  * @author Pedro Coelho - 25026
@@ -10,13 +13,15 @@ package MyArkanoid;
 public class Niveis extends javax.swing.JFrame {
 
     private MenuPausa menuPausa;
+    private ArkanoidGame jogoAtual;
     public Niveis() {
         initComponents();
         setLocationRelativeTo(null);//coloca ao centro
         this.menuPausa = menuPausa;
+        this.jogoAtual = jogoAtual;
     }
 
-    public Niveis(MenuPausa menuPausa) {
+    public Niveis(MenuPausa menuPausa, ArkanoidGame jogoAtual) {
     initComponents();
     setLocationRelativeTo(null);
     this.menuPausa = menuPausa;
@@ -85,15 +90,49 @@ public class Niveis extends javax.swing.JFrame {
     }//GEN-LAST:event_voltarActionPerformed
 
     private void btnivel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnivel1ActionPerformed
-       setVisible(false);
-            new playGame(this).setVisible(true);
+       this.setVisible(false);
+
+        // Fecha o jogo atual, se existir
+        if (jogoAtual != null) {
+            Window janelaDoJogo = SwingUtilities.getWindowAncestor(jogoAtual);
+            if (janelaDoJogo != null) {
+                janelaDoJogo.dispose();
+            }
+        }
+
+        // Abre o nível 2
+        playGame2 jogo2 = new playGame2();
+        jogo2.setVisible(true);
+
+        // Fecha o menu pausa também, se estiver aberto
+        if (menuPausa != null) {
+            menuPausa.dispose();
+        }
     }//GEN-LAST:event_btnivel1ActionPerformed
 
     private void btnivel2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnivel2ActionPerformed
                                         
     setVisible(false);
     new playGame2().setVisible(true);
+// Fecha o menu de níveis
+    this.setVisible(false);
 
+    // Fecha o jogo atual, se existir
+    if (jogoAtual != null) {
+        Window janelaDoJogo = SwingUtilities.getWindowAncestor(jogoAtual);
+        if (janelaDoJogo != null) {
+            janelaDoJogo.dispose();
+        }
+    }
+
+    // Abre o nível 2
+    playGame2 jogo2 = new playGame2();
+    jogo2.setVisible(true);
+
+    // Fecha o menu pausa também, se estiver aberto
+    if (menuPausa != null) {
+        menuPausa.dispose();
+    }
     }//GEN-LAST:event_btnivel2ActionPerformed
 
     

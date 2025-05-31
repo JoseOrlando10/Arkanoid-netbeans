@@ -178,7 +178,35 @@ public class ArkanoidGame extends JComponent
 
     }
 
-    
+    public void start2() {
+    pad = new Paddle(Color.RED, 200, 480, 50, 10);
+    ball = new Ball(pad.x + pad.width / 2 - 20, pad.y - 40);
+
+    bricks = new ArrayList<>();
+    int larguraTela = Math.max(getWidth(), 680);
+    int alturaBrick = 25;
+    int larguraBrick = 55;
+    int espacamento = 10;
+    int bricksPorLinha = 9;
+
+    int[] linhasY = {75, 115, 155};
+
+    // Cores diferentes para as linhas, por exemplo:
+    Color[] cores = {Color.RED, Color.GREEN, Color.ORANGE};
+
+    for (int i = 0; i < linhasY.length; i++) {
+        int y = linhasY[i];
+        int larguraTotalLinha = (larguraBrick * bricksPorLinha) + (espacamento * (bricksPorLinha - 1));
+        int startX = (larguraTela - larguraTotalLinha) / 2;
+
+        Color corLinha = cores[i % cores.length];
+
+        for (int j = 0; j < bricksPorLinha; j++) {
+            int x = startX + (j * (larguraBrick + espacamento));
+            bricks.add(new EstilosBricks(corLinha, x, y, larguraBrick, alturaBrick));
+        }
+    }
+}
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
