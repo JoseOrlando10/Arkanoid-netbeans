@@ -13,17 +13,19 @@ import java.io.Serializable;
  * 
  */
 public class Brick extends GameObject implements Serializable{
+    protected Color baseColor;
  private transient Image image;
     public int x, y, width, height;
     
     boolean isVisible = true;
 
-    public Brick(Color myColor, int x, int y, int width, int height) {
-        super(myColor,x, y, width, height);
-        this.x=x;
-        this.y=y;
-        this.width=width;
-        this.height=height;
+    public Brick(Color baseColor, int x, int y, int width, int height) {
+        super(baseColor, x, y, width, height); // chama o construtor da superclasse GameObject
+        this.baseColor = baseColor;
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
     }
     
     

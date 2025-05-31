@@ -5,6 +5,11 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.io.Serializable;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.RadialGradientPaint;
+import java.awt.BasicStroke;
+import java.awt.Color;
 
 public class Ball extends GameObject implements Serializable {
 
@@ -18,11 +23,34 @@ public class Ball extends GameObject implements Serializable {
     }
 
     public void paint(Graphics gr) {
-        gr.setColor(myColor); // agora azul
-        gr.fillOval(x, y, width, height);
-        gr.setColor(Color.BLACK);
-        gr.drawOval(x, y, width, height);
-    }
+    Graphics2D g2d = (Graphics2D) gr.create();
+
+    // Ativa antialias para suavizar bordas
+    g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+    int diameter = width;  // usa o width já definido (25 no seu caso)
+
+    // Degradê radial: luz no topo esquerdo, sombra no canto oposto
+    RadialGradientPaint gradient = new RadialGradientPaint(
+        x + diameter / 3f, y + diameter / 3f, diameter,
+        new float[] {0f, 1f},
+        new Color[] {Color.WHITE, new Color(200, 200, 200)}
+    );
+
+    g2d.setPaint(gradient);
+    g2d.fillOval(x, y, diameter, diameter);
+
+    // Borda mais escura e suave
+    g2d.setColor(new Color(100, 100, 100));
+    g2d.setStroke(new BasicStroke(2));
+    g2d.drawOval(x, y, diameter, diameter);
+
+    // Pequeno reflexo branco para dar brilho
+    g2d.setColor(new Color(255, 255, 255, 150));
+    g2d.fillOval(x + diameter / 4, y + diameter / 4, diameter / 5, diameter / 5);
+
+    g2d.dispose();
+}
 
     public void move() {
         translate(vx, vy);

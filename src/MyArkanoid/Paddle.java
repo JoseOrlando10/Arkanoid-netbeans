@@ -15,7 +15,7 @@ public class Paddle extends GameObject implements Serializable {
     private final int speed = 18; // Velocidade de movimento com as setas
 
     // Construtor do paddle
-    public Paddle(Color myColor, int x, int y, int width, int height) {
+    public Paddle(Color myColor, int x, int y, int width, int height ) {
         super(myColor, x, y, (int)(width * 1.3), height); // Aumenta o tamanho do paddle em 30% (*1.3)
     }
 
@@ -23,11 +23,11 @@ public class Paddle extends GameObject implements Serializable {
         // Pintura ao estilo clássico Arkanoid (cantos arredondados e highlight para 3D)
 
         // Corpo principal do paddle: cor base
-        gr.setColor(new Color(200, 200, 255)); // azul clarinho
+        gr.setColor(new Color(127, 255, 212)); // cor do paddle para aquamarine
         gr.fillRoundRect(x, y, width, height, 20, 20);
 
         // Borda mais escura para dar profundidade
-        gr.setColor(new Color(100, 100, 255));
+        gr.setColor(new Color(100, 100, 100));
         gr.drawRoundRect(x, y, width, height, 20, 20);
 
         // Highlight para efeito 3D
@@ -50,16 +50,11 @@ public class Paddle extends GameObject implements Serializable {
     }
 
     // Movimento para a direita
-    public void moveRight(int panelWidth) {
-    // Calcula a nova posição proposta
+public void moveRight(int panelWidth) {
     int newX = x + speed;
-
-    // Se a nova posição proposta + largura do paddle passa do painel
     if (newX + width > panelWidth) {
-        // Encosta o paddle ao limite direito
         x = panelWidth - width;
     } else {
-        // Caso contrário, move normalmente
         x = newX;
     }
 }

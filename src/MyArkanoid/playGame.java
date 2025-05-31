@@ -32,9 +32,9 @@ public class playGame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
-        setMaximumSize(new java.awt.Dimension(702, 565));
-        setMinimumSize(new java.awt.Dimension(702, 565));
-        setPreferredSize(new java.awt.Dimension(702, 602));
+        setMaximumSize(new java.awt.Dimension(700, 570));
+        setMinimumSize(new java.awt.Dimension(680, 570));
+        setPreferredSize(new java.awt.Dimension(695, 570));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -52,7 +52,7 @@ public class playGame extends javax.swing.JFrame {
         arkanoidGame1.setMinimumSize(new java.awt.Dimension(600, 450));
         arkanoidGame1.setLayout(new javax.swing.OverlayLayout(arkanoidGame1));
         getContentPane().add(arkanoidGame1);
-        arkanoidGame1.setBounds(0, 0, 700, 570);
+        arkanoidGame1.setBounds(0, 0, 680, 570);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

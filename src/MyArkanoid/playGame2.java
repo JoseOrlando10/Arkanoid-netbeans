@@ -5,13 +5,15 @@ package MyArkanoid;
  * @author pedro
  */
 public class playGame2 extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form playGame2
      */
     public playGame2() {  
         initComponents();
         setLocationRelativeTo(null);// coloca no centro do ecra
+        // Ajusta a altura do paddle (por exemplo, para y=450)
+    arkanoidGame1.setPaddleY(480);
     }
 
     /**
@@ -26,10 +28,10 @@ public class playGame2 extends javax.swing.JFrame {
         arkanoidGame1 = new MyArkanoid.ArkanoidGame();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(702, 565));
-        setMinimumSize(new java.awt.Dimension(702, 565));
+        setMaximumSize(new java.awt.Dimension(700, 570));
+        setMinimumSize(new java.awt.Dimension(680, 570));
         setName("nivel2"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(715, 600));
+        setPreferredSize(new java.awt.Dimension(695, 570));
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -39,7 +41,7 @@ public class playGame2 extends javax.swing.JFrame {
         arkanoidGame1.setMinimumSize(new java.awt.Dimension(600, 450));
         arkanoidGame1.setLayout(new javax.swing.OverlayLayout(arkanoidGame1));
         getContentPane().add(arkanoidGame1);
-        arkanoidGame1.setBounds(0, 0, 710, 560);
+        arkanoidGame1.setBounds(0, 0, 680, 570);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
