@@ -142,16 +142,23 @@ public class MenuPausa extends javax.swing.JFrame {
     }//GEN-LAST:event_btRestartActionPerformed
 
     private void btSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaveActionPerformed
-        javax.swing.JFileChooser chooser = new javax.swing.JFileChooser();
-        if (chooser.showSaveDialog(this) == javax.swing.JFileChooser.APPROVE_OPTION) {
-            try {
-
-                jogo.saveGame(chooser.getSelectedFile());
-                javax.swing.JOptionPane.showMessageDialog(this, "Jogo guardado com sucesso!");
-            } catch (Exception ex) {
-                javax.swing.JOptionPane.showMessageDialog(this, "Erro ao guardar: " + ex.getMessage());
+    javax.swing.JFileChooser chooser = new javax.swing.JFileChooser();
+    int retorno = chooser.showSaveDialog(this);
+    if (retorno == javax.swing.JFileChooser.APPROVE_OPTION) {
+        java.io.File arquivoSelecionado = chooser.getSelectedFile();
+        System.out.println("Arquivo selecionado: " + arquivoSelecionado.getAbsolutePath());
+        try {
+            // Teste simples: só criar um arquivo vazio
+            if (!arquivoSelecionado.exists()) {
+                boolean criado = arquivoSelecionado.createNewFile();
+                System.out.println("Arquivo criado: " + criado);
             }
-        }// TODO add your handling code here:
+            javax.swing.JOptionPane.showMessageDialog(this, "Jogo guardado com sucesso!");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, "Erro ao guardar o save: " + ex.getMessage());
+        }
+    }
     }//GEN-LAST:event_btSaveActionPerformed
 
     private void alternarSom() {

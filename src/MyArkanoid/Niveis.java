@@ -112,9 +112,7 @@ public class Niveis extends javax.swing.JFrame {
 
     private void btnivel2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnivel2ActionPerformed
                                         
-    setVisible(false);
-    new playGame2().setVisible(true);
-// Fecha o menu de níveis
+    // Fecha o menu de níveis
     this.setVisible(false);
 
     // Fecha o jogo atual, se existir
@@ -125,7 +123,7 @@ public class Niveis extends javax.swing.JFrame {
         }
     }
 
-    // Abre o nível 2
+    // Abre o nível 2 apenas uma vez
     playGame2 jogo2 = new playGame2();
     jogo2.setVisible(true);
 
@@ -133,6 +131,7 @@ public class Niveis extends javax.swing.JFrame {
     if (menuPausa != null) {
         menuPausa.dispose();
     }
+
     }//GEN-LAST:event_btnivel2ActionPerformed
 
     
