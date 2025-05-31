@@ -42,6 +42,7 @@ public class MenuPausa extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(400, 330));
         getContentPane().setLayout(null);
 
+        btConti.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
         btConti.setText("Continuar");
         btConti.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -49,18 +50,20 @@ public class MenuPausa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btConti);
-        btConti.setBounds(150, 50, 90, 30);
+        btConti.setBounds(140, 50, 100, 30);
 
-        btSair.setText("Sair");
+        btSair.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
+        btSair.setText("Abandonar Jogo");
         btSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSairActionPerformed(evt);
             }
         });
         getContentPane().add(btSair);
-        btSair.setBounds(150, 240, 90, 30);
+        btSair.setBounds(120, 240, 137, 30);
         btSair.getAccessibleContext().setAccessibleName("esc_sair");
 
+        btNiveis.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
         btNiveis.setText("Niveis");
         btNiveis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,9 +71,10 @@ public class MenuPausa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btNiveis);
-        btNiveis.setBounds(150, 120, 90, 30);
+        btNiveis.setBounds(140, 180, 100, 30);
         btNiveis.getAccessibleContext().setAccessibleName("esc_niveis");
 
+        btRestart.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
         btRestart.setText("Reiniciar");
         btRestart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,8 +82,9 @@ public class MenuPausa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btRestart);
-        btRestart.setBounds(150, 180, 90, 30);
+        btRestart.setBounds(140, 110, 100, 30);
 
+        btSave.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
         btSave.setText("Save");
         btSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,7 +92,7 @@ public class MenuPausa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btSave);
-        btSave.setBounds(300, 130, 72, 23);
+        btSave.setBounds(290, 240, 90, 30);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/smashtheagesmenupausa.png"))); // NOI18N
         getContentPane().add(jLabel1);
@@ -98,9 +103,8 @@ public class MenuPausa extends javax.swing.JFrame {
 
     private void btNiveisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNiveisActionPerformed
         setVisible(false);
-        new Niveis().setVisible(true);
-
-        this.dispose();// TODO add your handling code here:
+        Niveis niveis = new Niveis(this); // passa a referência do MenuPausa!
+    niveis.setVisible(true);
 
     }//GEN-LAST:event_btNiveisActionPerformed
 

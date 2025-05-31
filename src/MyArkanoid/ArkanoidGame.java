@@ -49,7 +49,7 @@ public class ArkanoidGame extends JComponent
     public static boolean somAtivo = true;
 
     private int score = 0; // Inicializa a pontuação
-
+    private MenuPausa menuPausa;
     //private int vidas = 2; // Número máximo de vidas
     private Timer fallTimer;
     private boolean isGameOver = false;
@@ -332,10 +332,12 @@ public class ArkanoidGame extends JComponent
         }
 
         if (key == KeyEvent.VK_ESCAPE) {
-            gameTimer.stop();
-            MenuPausa menu = new MenuPausa(this);
-            menu.setVisible(true);
-        }
+    gameTimer.stop();
+    if (menuPausa == null || !menuPausa.isVisible()) {
+        menuPausa = new MenuPausa(this);
+        menuPausa.setVisible(true);
+    }
+}
         repaint();
 
     }
@@ -361,42 +363,21 @@ public class ArkanoidGame extends JComponent
     public void resetJogo() {
         pararJogo(); // para ambos os timers
 
-        score = 0;
-        timeElapsed = 0;
-        isGameOver = false;
-        ballReadyToMove = false;
-        vidas = 2;
+    score = 0;
+    timeElapsed = 0;
+    isGameOver = false;
+    ballReadyToMove = false;
+    vidas = 2;
 
-        // Reposicionar paddle e bola
-        pad = new Paddle(Color.RED, 200, 480, 50, 10);
-        ball = new Ball(pad.x + pad.width / 2 - 20, pad.y - 40);
+    // Recriar o mesmo nível que já estava no jogo
+    start();
 
-        // Recriar bricks
-        bricks.clear();
-        int larguraTela = Math.max(getWidth(), 560);
-        int alturaBrick = 20;
-        int larguraBrick = 50;
-        int espacamento = 5;
-        int bricksPorLinha = 1;
+    // Reiniciar os timers
+    gameTimer.start();
+    timeTimer.start();
 
-        int[] linhasY = {25};
-
-        for (int y : linhasY) {
-            int larguraTotalLinha = (larguraBrick * bricksPorLinha) + (espacamento * (bricksPorLinha - 1));
-            int startX = (larguraTela - larguraTotalLinha) / 2;
-
-            for (int i = 0; i < bricksPorLinha; i++) {
-                int x = startX + (i * (larguraBrick + espacamento));
-                bricks.add(new ImageBrick("/resources/pedras.png", Color.GRAY, x, y, larguraBrick, alturaBrick));
-            }
-        }
-
-        // Reiniciar os timers
-        gameTimer.start();
-        timeTimer.start();
-
-        repaint();
-    }
+    repaint();
+}
 
     public void verificarFimJogo() {
         boolean existemBricks = false;

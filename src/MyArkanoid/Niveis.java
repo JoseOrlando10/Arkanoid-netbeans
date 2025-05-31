@@ -9,13 +9,18 @@ package MyArkanoid;
 
 public class Niveis extends javax.swing.JFrame {
 
-    
+    private MenuPausa menuPausa;
     public Niveis() {
         initComponents();
         setLocationRelativeTo(null);//coloca ao centro
+        this.menuPausa = menuPausa;
     }
 
-    
+    public Niveis(MenuPausa menuPausa) {
+    initComponents();
+    setLocationRelativeTo(null);
+    this.menuPausa = menuPausa;
+}
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -32,6 +37,7 @@ public class Niveis extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
+        btnivel2.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
         btnivel2.setText("Nivel 2");
         btnivel2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -41,6 +47,7 @@ public class Niveis extends javax.swing.JFrame {
         getContentPane().add(btnivel2);
         btnivel2.setBounds(200, 140, 90, 30);
 
+        btnivel1.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
         btnivel1.setText("Nivel 1");
         btnivel1.setBorder(null);
         btnivel1.addActionListener(new java.awt.event.ActionListener() {
@@ -51,6 +58,7 @@ public class Niveis extends javax.swing.JFrame {
         getContentPane().add(btnivel1);
         btnivel1.setBounds(200, 70, 90, 30);
 
+        voltar.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
         voltar.setText("Voltar");
         voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,8 +78,10 @@ public class Niveis extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarActionPerformed
-        setVisible(false);
-        new arkanoide_exe.Arkanoide().setVisible(true);// TODO add your handling code here:
+        this.setVisible(false); // Fecha o menu de níveis
+    if (menuPausa != null) {
+        menuPausa.setVisible(true); // Volta ao menu de pausa
+    }
     }//GEN-LAST:event_voltarActionPerformed
 
     private void btnivel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnivel1ActionPerformed
