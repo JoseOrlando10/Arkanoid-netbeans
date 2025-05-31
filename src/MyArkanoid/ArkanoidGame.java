@@ -228,7 +228,7 @@ public class ArkanoidGame extends JComponent
 
         // Vidas
         g2d.setColor(Color.BLACK);
-        g2d.drawString("Vidas: " + vidas, getWidth() - 420, 30);
+        g2d.drawString("Vidas: " + vidas, getWidth() - 100, 30);
 
         g2d.dispose();
     }
