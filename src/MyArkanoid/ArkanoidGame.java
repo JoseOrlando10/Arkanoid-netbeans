@@ -28,6 +28,7 @@ import java.awt.BasicStroke;
 import java.awt.GradientPaint;
 import java.awt.RenderingHints;
 import java.awt.geom.RoundRectangle2D;
+
 /**
  *
  * @author Pedro Coelho - 25026
@@ -99,6 +100,7 @@ public class ArkanoidGame extends JComponent
         addMouseMotionListener(this);
         addMouseListener(this);
     }
+
     public void mouseClicked(MouseEvent e) {
         if (!ballReadyToMove) {
             Random random = new Random();
@@ -109,42 +111,44 @@ public class ArkanoidGame extends JComponent
             timeTimer.start();
         }
     }
-   public class EstilosBricks extends Brick {
 
-    public EstilosBricks(Color baseColor, int x, int y, int width, int height) {
-        super(baseColor, x, y, width, height);
+    public class EstilosBricks extends Brick {
+
+        public EstilosBricks(Color baseColor, int x, int y, int width, int height) {
+            super(baseColor, x, y, width, height);
+        }
+
+        public void paint(Graphics g) {
+            Graphics2D g2d = (Graphics2D) g.create();
+
+            // Antialias para cantos suaves
+            g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+            // Gradiente vertical
+            GradientPaint gp = new GradientPaint(
+                    x, y, baseColor.brighter(),
+                    x, y + height, baseColor.darker());
+
+            g2d.setPaint(gp);
+            RoundRectangle2D.Double rect = new RoundRectangle2D.Double(x, y, width, height, 15, 15);
+            g2d.fill(rect);
+
+            // Borda brilhante
+            g2d.setStroke(new BasicStroke(2));
+            g2d.setColor(baseColor.brighter().brighter());
+            g2d.draw(rect);
+
+            // Highlight (reflexo)
+            GradientPaint highlight = new GradientPaint(
+                    x, y, new Color(255, 255, 255, 150),
+                    x, y + height / 2, new Color(255, 255, 255, 0));
+            g2d.setPaint(highlight);
+            g2d.fill(new RoundRectangle2D.Double(x + 2, y + 2, width - 4, height / 2, 15, 15));
+
+            g2d.dispose();
+        }
     }
 
-    public void paint(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g.create();
-
-        // Antialias para cantos suaves
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-        // Gradiente vertical
-        GradientPaint gp = new GradientPaint(
-            x, y, baseColor.brighter(),
-            x, y + height, baseColor.darker());
-
-        g2d.setPaint(gp);
-        RoundRectangle2D.Double rect = new RoundRectangle2D.Double(x, y, width, height, 15, 15);
-        g2d.fill(rect);
-
-        // Borda brilhante
-        g2d.setStroke(new BasicStroke(2));
-        g2d.setColor(baseColor.brighter().brighter());
-        g2d.draw(rect);
-
-        // Highlight (reflexo)
-        GradientPaint highlight = new GradientPaint(
-            x, y, new Color(255, 255, 255, 150),
-            x, y + height / 2, new Color(255, 255, 255, 0));
-        g2d.setPaint(highlight);
-        g2d.fill(new RoundRectangle2D.Double(x + 2, y + 2, width - 4, height / 2, 15, 15));
-
-        g2d.dispose();
-    }
-}
     public void start() {
         // Define o paddle mais embaixo
         pad = new Paddle(Color.RED, 200, 480, 50, 10);
@@ -158,7 +162,7 @@ public class ArkanoidGame extends JComponent
         int espacamento = 10; // Espaço entre os bricks
         int bricksPorLinha = 9; // Número de bricks por linha
 
-        int[] linhasY = {75,115,155}; // Posições Y das linhas
+        int[] linhasY = {75, 115, 155}; // Posições Y das linhas
 
         for (int y : linhasY) {
             // Calcula a largura total ocupada pelos bricks e espaços na linha
@@ -172,48 +176,47 @@ public class ArkanoidGame extends JComponent
                 int x = startX + (i * (larguraBrick + espacamento));
                 //Cor base dos bricks (podes variar por linha se quisermos
                 Color corBrick = new Color(0, 150, 255); //azul futurista
-                        bricks.add(new EstilosBricks(corBrick, x, y, larguraBrick, alturaBrick));
+                bricks.add(new EstilosBricks(corBrick, x, y, larguraBrick, alturaBrick));
             }
         }//fim dos bricks
 
     }
 
     public void start2() {
-    pad = new Paddle(Color.RED, 200, 480, 50, 10);
-    ball = new Ball(pad.x + pad.width / 2 - 20, pad.y - 40);
+        pad = new Paddle(Color.RED, 200, 480, 50, 10);
+        ball = new Ball(pad.x + pad.width / 2 - 20, pad.y - 40);
 
-    bricks = new ArrayList<>();
-    int larguraTela = Math.max(getWidth(), 680);
-    int alturaBrick = 25;
-    int larguraBrick = 55;
-    int espacamento = 10;
-    int bricksPorLinha = 9;
+        bricks = new ArrayList<>();
+        int larguraTela = Math.max(getWidth(), 680);
+        int alturaBrick = 25;
+        int larguraBrick = 55;
+        int espacamento = 10;
+        int bricksPorLinha = 9;
 
-    int[] linhasY = {75, 115, 155};
+        int[] linhasY = {75, 115, 155};
 
-    // Cores diferentes para as linhas, por exemplo:
-    Color[] cores = {Color.RED, Color.GREEN, Color.ORANGE};
+        // Cores diferentes para as linhas, por exemplo:
+        Color[] cores = {Color.RED, Color.GREEN, Color.ORANGE};
 
-    for (int i = 0; i < linhasY.length; i++) {
-        int y = linhasY[i];
-        int larguraTotalLinha = (larguraBrick * bricksPorLinha) + (espacamento * (bricksPorLinha - 1));
-        int startX = (larguraTela - larguraTotalLinha) / 2;
+        for (int i = 0; i < linhasY.length; i++) {
+            int y = linhasY[i];
+            int larguraTotalLinha = (larguraBrick * bricksPorLinha) + (espacamento * (bricksPorLinha - 1));
+            int startX = (larguraTela - larguraTotalLinha) / 2;
 
-        Color corLinha = cores[i % cores.length];
+            Color corLinha = cores[i % cores.length];
 
-        for (int j = 0; j < bricksPorLinha; j++) {
-            int x = startX + (j * (larguraBrick + espacamento));
-            bricks.add(new EstilosBricks(corLinha, x, y, larguraBrick, alturaBrick));
+            for (int j = 0; j < bricksPorLinha; j++) {
+                int x = startX + (j * (larguraBrick + espacamento));
+                bricks.add(new EstilosBricks(corLinha, x, y, larguraBrick, alturaBrick));
+            }
         }
     }
-}
+
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
         Graphics2D g2d = (Graphics2D) g.create();
-        for (Brick brick : bricks) {
-        brick.paint(g);
-        }
+        
         if (imageFundo != null) {
             g2d.drawImage(imageFundo, 0, 0, getWidth(), getHeight(), null);
         } else {
@@ -240,12 +243,11 @@ public class ArkanoidGame extends JComponent
         }
 
         pad.paint(g2d);
-       // Dentro do paintComponent(Graphics g):
+        // Dentro do paintComponent(Graphics g):
 
-
-         // Define uma fonte maior, por exemplo SansSerif, estilo normal, tamanho 18
-          Font fonteMaior = new Font("Serif", Font.PLAIN, 20);
-          g2d.setFont(fonteMaior);
+        // Define uma fonte maior, por exemplo SansSerif, estilo normal, tamanho 18
+        Font fonteMaior = new Font("Serif", Font.PLAIN, 20);
+        g2d.setFont(fonteMaior);
         // Tempo com opacidade total
         g2d.setColor(Color.BLACK);
         g2d.drawString("Tempo: " + timeElapsed, getWidth() - 650, 30);
@@ -295,14 +297,16 @@ public class ArkanoidGame extends JComponent
     }
 
     public void mouseMoved(MouseEvent e) {
-    pad.moveTo(e.getX(), getWidth());
-    if (!ballReadyToMove) {
-        ball.setPosition(pad.x + pad.width / 2 - 10, pad.y - 27);
+        pad.moveTo(e.getX(), getWidth());
+        if (!ballReadyToMove) {
+            ball.setPosition(pad.x + pad.width / 2 - 10, pad.y - 27);
+        }
     }
-}
+
     public void setPaddleY(int newY) {
-    pad.y = newY;
-}
+        pad.y = newY;
+    }
+
     public int getScore() {
         return score;
     }
@@ -360,12 +364,12 @@ public class ArkanoidGame extends JComponent
         }
 
         if (key == KeyEvent.VK_ESCAPE) {
-    gameTimer.stop();
-    if (menuPausa == null || !menuPausa.isVisible()) {
-        menuPausa = new MenuPausa(this);
-        menuPausa.setVisible(true);
-    }
-}
+            gameTimer.stop();
+            if (menuPausa == null || !menuPausa.isVisible()) {
+                menuPausa = new MenuPausa(this);
+                menuPausa.setVisible(true);
+            }
+        }
         repaint();
 
     }
@@ -391,49 +395,57 @@ public class ArkanoidGame extends JComponent
     public void resetJogo() {
         pararJogo(); // para ambos os timers
 
-    score = 0;
-    timeElapsed = 0;
-    isGameOver = false;
-    ballReadyToMove = false;
-    vidas = 2;
+        score = 0;
+        timeElapsed = 0;
+        isGameOver = false;
+        ballReadyToMove = false;
+        vidas = 2;
 
-    // Recriar o mesmo nível que já estava no jogo
-    start();
+        // Recriar o mesmo nível que já estava no jogo
+        start();
 
-    // Reiniciar os timers
-    gameTimer.start();
-    timeTimer.start();
+        // Reiniciar os timers
+        gameTimer.start();
+        timeTimer.start();
 
-    repaint();
-}
+        repaint();
+    }
 
-    public void verificarFimJogo() {
-        boolean existemBricks = false;
-        for (Brick brick : bricks) {
-            if (brick.isVisible) {
-                existemBricks = true;
-                break;
-            }
-        }
+    private int nivelAtual; // definir este valor no construtor
 
-        if (!existemBricks) {
-            gameTimer.stop();
-            int escolha = JOptionPane.showOptionDialog(null, "Parabens! Concluiste o 1 nivel", "nivel Conluido", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new String[]{"Proximo Nivel", "Niveis"}, "Proximo nivel");
-
-            java.awt.Window janelaAtual = javax.swing.SwingUtilities.getWindowAncestor(this);
-            if (escolha == 0) {
-                if (janelaAtual != null) {
-                    janelaAtual.dispose();
-                }
-                new playGame2().setVisible(true);
-            } else {
-                if (janelaAtual != null) {
-                    janelaAtual.dispose();
-                }
-                new Niveis().setVisible(true);
-            }
+public void verificarFimJogo() {
+    boolean existemBricks = false;
+    for (Brick brick : bricks) {
+        if (brick.isVisible) {
+            existemBricks = true;
+            break;
         }
     }
+
+    if (!existemBricks) {
+        gameTimer.stop();
+
+        int escolha = JOptionPane.showOptionDialog( null,"Parabéns! Concluíste o nível " + nivelAtual,"Nível Concluído",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE,null,new String[]{"Próximo Nível", "Níveis"},"Próximo Nível");
+
+        java.awt.Window janelaAtual = javax.swing.SwingUtilities.getWindowAncestor(this);
+        if (janelaAtual != null) {
+            janelaAtual.dispose();
+        }
+
+        if (escolha == 0) {
+            // Avança para o próximo nível
+            if (nivelAtual == 1) {
+                new playGame2().setVisible(true);
+            } else if (nivelAtual == 2) {
+                JOptionPane.showMessageDialog(null, "Todos os níveis foram concluídos!");
+                new Niveis().setVisible(true);
+            }
+        } else {
+            new Niveis().setVisible(true);
+        }
+    }
+}
+
 
     public static void playSound(String caminho) {
         if (!somAtivo) {
@@ -451,17 +463,17 @@ public class ArkanoidGame extends JComponent
     }
 
     public void saveGame(File file) throws IOException {
-    try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) {
-        out.writeObject(ball);
-        out.writeObject(pad);
-        out.writeObject(bricks);
-        out.writeInt(score);
-        out.writeInt(vidas);
-        out.writeInt(timeElapsed);
-        out.writeBoolean(ballReadyToMove);
-        out.writeObject(caminhoFundo); // <-- Adiciona isto!
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) {
+            out.writeObject(ball);
+            out.writeObject(pad);
+            out.writeObject(bricks);
+            out.writeInt(score);
+            out.writeInt(vidas);
+            out.writeInt(timeElapsed);
+            out.writeBoolean(ballReadyToMove);
+            out.writeObject(caminhoFundo); // <-- Adiciona isto!
+        }
     }
-}
 
     @SuppressWarnings("unchecked")
     public void loadGame(File file) throws IOException, ClassNotFoundException {

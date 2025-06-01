@@ -15,7 +15,7 @@ import java.io.Serializable;
 public class Brick extends GameObject implements Serializable{
     protected Color baseColor;
  private transient Image image;
-    public int x, y, width, height;
+    
     
     boolean isVisible = true;
 
@@ -52,4 +52,6 @@ public class Brick extends GameObject implements Serializable{
             image = null;
         }
     }
+    private static final long serialVersionUID = 1L;
+
 }

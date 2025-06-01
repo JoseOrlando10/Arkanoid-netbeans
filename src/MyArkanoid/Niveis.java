@@ -1,19 +1,20 @@
 package MyArkanoid;
 
-
 import java.awt.Window;
 import javax.swing.SwingUtilities;
+
 /**
  *
  * @author Pedro Coelho - 25026
  * @author Jose Martins - 24269
- * 
+ *
  */
 
 public class Niveis extends javax.swing.JFrame {
 
     private MenuPausa menuPausa;
     private ArkanoidGame jogoAtual;
+
     public Niveis() {
         initComponents();
         setLocationRelativeTo(null);//coloca ao centro
@@ -22,10 +23,11 @@ public class Niveis extends javax.swing.JFrame {
     }
 
     public Niveis(MenuPausa menuPausa, ArkanoidGame jogoAtual) {
-    initComponents();
-    setLocationRelativeTo(null);
-    this.menuPausa = menuPausa;
-}
+        initComponents();
+        setLocationRelativeTo(null);
+        this.menuPausa = menuPausa;
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -83,14 +85,15 @@ public class Niveis extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarActionPerformed
-        this.setVisible(false); // Fecha o menu de níveis
-    if (menuPausa != null) {
-        menuPausa.setVisible(true); // Volta ao menu de pausa
-    }
+        java.awt.Window janelaAtual = javax.swing.SwingUtilities.getWindowAncestor(this);
+        if (janelaAtual != null) {
+            janelaAtual.dispose(); // Fecha a janela atual corretamente
+        }
+        new arkanoide_exe.Arkanoide().setVisible(true);
     }//GEN-LAST:event_voltarActionPerformed
 
     private void btnivel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnivel1ActionPerformed
-       this.setVisible(false);
+        this.setVisible(false);
 
         // Fecha o jogo atual, se existir
         if (jogoAtual != null) {
@@ -111,30 +114,29 @@ public class Niveis extends javax.swing.JFrame {
     }//GEN-LAST:event_btnivel1ActionPerformed
 
     private void btnivel2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnivel2ActionPerformed
-                                        
-    // Fecha o menu de níveis
-    this.setVisible(false);
 
-    // Fecha o jogo atual, se existir
-    if (jogoAtual != null) {
-        Window janelaDoJogo = SwingUtilities.getWindowAncestor(jogoAtual);
-        if (janelaDoJogo != null) {
-            janelaDoJogo.dispose();
+        // Fecha o menu de níveis
+        this.setVisible(false);
+
+        // Fecha o jogo atual, se existir
+        if (jogoAtual != null) {
+            Window janelaDoJogo = SwingUtilities.getWindowAncestor(jogoAtual);
+            if (janelaDoJogo != null) {
+                janelaDoJogo.dispose();
+            }
         }
-    }
 
-    // Abre o nível 2 apenas uma vez
-    playGame2 jogo2 = new playGame2();
-    jogo2.setVisible(true);
+        // Abre o nível 2 apenas uma vez
+        playGame2 jogo2 = new playGame2();
+        jogo2.setVisible(true);
 
-    // Fecha o menu pausa também, se estiver aberto
-    if (menuPausa != null) {
-        menuPausa.dispose();
-    }
+        // Fecha o menu pausa também, se estiver aberto
+        if (menuPausa != null) {
+            menuPausa.dispose();
+        }
 
     }//GEN-LAST:event_btnivel2ActionPerformed
 
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

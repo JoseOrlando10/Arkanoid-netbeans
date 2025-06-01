@@ -96,5 +96,7 @@ public void moveRight(int panelWidth) {
             b.move(); // Aplica o movimento ajustado
         }
     }
+    private static final long serialVersionUID = 1L;
+
 
 }

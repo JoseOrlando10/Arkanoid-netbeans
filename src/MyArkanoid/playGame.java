@@ -10,19 +10,21 @@ import javax.swing.JFrame;
  */
 
 public class playGame extends javax.swing.JFrame {
-    
+        private int nivelAtual;
     private JFrame parent;
-
+    
     /**
      * Creates new form playGame
      */
     public playGame(JFrame parent) {
         initComponents();
+        this.nivelAtual = 1;
         setLocationRelativeTo(null);// coloca no centro do ecra
         this.parent = parent;
         
     }
 
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

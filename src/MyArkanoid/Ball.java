@@ -106,4 +106,6 @@ public class Ball extends GameObject implements Serializable {
             image = null;
         }
     }
+    private static final long serialVersionUID = 1L;
+
 }

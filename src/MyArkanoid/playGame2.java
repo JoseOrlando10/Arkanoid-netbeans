@@ -5,12 +5,13 @@ package MyArkanoid;
  * @author pedro
  */
 public class playGame2 extends javax.swing.JFrame {
-    
+    private int nivelAtual;
     /**
      * Creates new form playGame2
      */
     public playGame2() {  
         initComponents();
+        this.nivelAtual = 2;
         setLocationRelativeTo(null);// coloca no centro do ecra
         // Ajusta a altura do paddle (por exemplo, para y=450)
     arkanoidGame1.setPaddleY(480);
