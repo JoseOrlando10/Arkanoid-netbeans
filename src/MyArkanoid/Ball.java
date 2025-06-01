@@ -10,6 +10,9 @@ import java.awt.RenderingHints;
 import java.awt.RadialGradientPaint;
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 public class Ball extends GameObject implements Serializable {
 
@@ -100,12 +103,17 @@ public class Ball extends GameObject implements Serializable {
     }
 
     public void reload() {
-        try {
-            image = javax.imageio.ImageIO.read(getClass().getResource("/resources/ball.png"));
-        } catch (Exception e) {
-            image = null;
-        }
+        
     }
+    private void writeObject(ObjectOutputStream out) throws IOException {
+    out.defaultWriteObject();
+    // Adicione manualmente campos não-serializáveis se necessário
+}
+
+private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+    in.defaultReadObject();
+    this.reload(); // Recarrega recursos após desserialização
+}
     private static final long serialVersionUID = 1L;
 
 }

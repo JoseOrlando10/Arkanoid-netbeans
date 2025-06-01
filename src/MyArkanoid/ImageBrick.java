@@ -53,5 +53,6 @@ public class ImageBrick extends Brick implements Serializable{
         int alturaBrick = 20;
         ImageBrick brick = new ImageBrick("/resources/pedras.png", Color.GRAY, x, y, larguraBrick, alturaBrick);
     }
+    private static final long serialVersionUID = 1L;
 }
 

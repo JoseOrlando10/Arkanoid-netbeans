@@ -2,21 +2,24 @@ package MyArkanoid;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 /**
  *
  * @author Pedro Coelho - 25026
  * @author Jose Martins - 24269
- * 
+ *
  */
 public class Paddle extends GameObject implements Serializable {
 
     private final int speed = 18; // Velocidade de movimento com as setas
 
     // Construtor do paddle
-    public Paddle(Color myColor, int x, int y, int width, int height ) {
-        super(myColor, x, y, (int)(width * 1.3), height); // Aumenta o tamanho do paddle em 30% (*1.3)
+    public Paddle(Color myColor, int x, int y, int width, int height) {
+        super(myColor, x, y, (int) (width * 1.3), height); // Aumenta o tamanho do paddle em 30% (*1.3)
     }
 
     public void paint(Graphics gr) {
@@ -38,26 +41,32 @@ public class Paddle extends GameObject implements Serializable {
     // Movimento para onde está o rato (centraliza o paddle em relação ao rato)
     public void moveTo(int mouseX, int panelWidth) {
         int newX = mouseX - width / 2;
-        if (newX < 0) newX = 0;
-        if (newX + width > panelWidth) newX = panelWidth - width;
+        if (newX < 0) {
+            newX = 0;
+        }
+        if (newX + width > panelWidth) {
+            newX = panelWidth - width;
+        }
         this.x = newX;
     }
 
     // Movimento para a esquerda
     public void moveLeft() {
         x -= speed;
-        if (x < 0) x = 0;
+        if (x < 0) {
+            x = 0;
+        }
     }
 
     // Movimento para a direita
-public void moveRight(int panelWidth) {
-    int newX = x + speed;
-    if (newX + width > panelWidth) {
-        x = panelWidth - width;
-    } else {
-        x = newX;
+    public void moveRight(int panelWidth) {
+        int newX = x + speed;
+        if (newX + width > panelWidth) {
+            x = panelWidth - width;
+        } else {
+            x = newX;
+        }
     }
-}
 
     // Colisão entre bola e paddle
     public void collide(Ball b) {
@@ -96,7 +105,20 @@ public void moveRight(int panelWidth) {
             b.move(); // Aplica o movimento ajustado
         }
     }
-    private static final long serialVersionUID = 1L;
 
+    public void reload() {
+        // Reinicializa recursos se necessário
+    }
+    private void writeObject(ObjectOutputStream out) throws IOException {
+    out.defaultWriteObject();
+    // Adicione manualmente campos não-serializáveis se necessário
+}
+
+private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+    in.defaultReadObject();
+    this.reload(); // Recarrega recursos após desserialização
+}
+
+    private static final long serialVersionUID = 1L;
 
 }

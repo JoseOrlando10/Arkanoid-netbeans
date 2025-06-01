@@ -168,7 +168,7 @@ public class Niveis extends javax.swing.JFrame {
             }
         });
     }
-
+private static final long serialVersionUID = 1L;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnivel1;
     private javax.swing.JButton btnivel2;

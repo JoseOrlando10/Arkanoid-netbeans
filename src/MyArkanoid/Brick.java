@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 /**
@@ -46,12 +49,17 @@ public class Brick extends GameObject implements Serializable{
     }
     
     public void reload() {
-        try {
-            image = javax.imageio.ImageIO.read(getClass().getResource("/resources/pedras.png"));
-        } catch (Exception e) {
-            image = null;
-        }
+        
     }
+    private void writeObject(ObjectOutputStream out) throws IOException {
+    out.defaultWriteObject();
+    // Adicione manualmente campos não-serializáveis se necessário
+}
+
+private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+    in.defaultReadObject();
+    this.reload(); // Recarrega recursos após desserialização
+}
     private static final long serialVersionUID = 1L;
 
 }

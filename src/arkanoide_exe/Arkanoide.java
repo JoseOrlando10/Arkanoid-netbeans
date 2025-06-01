@@ -132,7 +132,7 @@ public class Arkanoide extends javax.swing.JFrame {
         setVisible(false);
         new Niveis().setVisible(true);
     }//GEN-LAST:event_btniveisActionPerformed
-
+private static final long serialVersionUID = 1L;
     private void btCarregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCarregarActionPerformed
         javax.swing.JFileChooser chooser = new javax.swing.JFileChooser();
         if (chooser.showOpenDialog(this) == javax.swing.JFileChooser.APPROVE_OPTION) {

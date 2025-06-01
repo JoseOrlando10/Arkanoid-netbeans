@@ -17,7 +17,7 @@ public class playGame2 extends javax.swing.JFrame {
     arkanoidGame1.setPaddleY(480);
      arkanoidGame1.start2();  // chamo o nivel 2
     }
-
+private static final long serialVersionUID = 1L;
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
