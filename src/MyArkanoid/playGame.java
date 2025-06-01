@@ -23,6 +23,8 @@ public class playGame extends javax.swing.JFrame {
         this.parent = parent;
         
     }
+    
+
 private static final long serialVersionUID = 1L;
     
     

@@ -24,7 +24,10 @@ public class Ball extends GameObject implements Serializable {
         // Ajusta para raio maior (25 de diâmetro)
         super(Color.LIGHT_GRAY, x, y, 25, 25);
     }
-
+    
+    public Ball(Color color, int x, int y) {
+        super(color, x, y, 25, 25);
+}
     public void paint(Graphics gr) {
     Graphics2D g2d = (Graphics2D) gr.create();
 
@@ -37,7 +40,7 @@ public class Ball extends GameObject implements Serializable {
     RadialGradientPaint gradient = new RadialGradientPaint(
         x + diameter / 3f, y + diameter / 3f, diameter,
         new float[] {0f, 1f},
-        new Color[] {Color.WHITE, new Color(200, 200, 200)}
+        new Color[] {Color.WHITE, myColor}
     );
 
     g2d.setPaint(gradient);

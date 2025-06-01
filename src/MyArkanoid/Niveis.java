@@ -35,6 +35,7 @@ public class Niveis extends javax.swing.JFrame {
         btnivel2 = new javax.swing.JButton();
         btnivel1 = new javax.swing.JButton();
         voltar = new javax.swing.JButton();
+        btnivel3 = new javax.swing.JButton();
         fundojogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -74,6 +75,16 @@ public class Niveis extends javax.swing.JFrame {
         });
         getContentPane().add(voltar);
         voltar.setBounds(200, 330, 80, 30);
+
+        btnivel3.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
+        btnivel3.setText("Nivel 3");
+        btnivel3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnivel3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnivel3);
+        btnivel3.setBounds(200, 210, 90, 30);
 
         fundojogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/smashtheagesnosniveis.png"))); // NOI18N
         fundojogo.setMaximumSize(new java.awt.Dimension(300, 300));
@@ -137,6 +148,28 @@ public class Niveis extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnivel2ActionPerformed
 
+    private void btnivel3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnivel3ActionPerformed
+        // Fecha o menu de níveis
+        this.setVisible(false);
+
+        // Fecha o jogo atual, se existir
+        if (jogoAtual != null) {
+            Window janelaDoJogo = SwingUtilities.getWindowAncestor(jogoAtual);
+            if (janelaDoJogo != null) {
+                janelaDoJogo.dispose();
+            }
+        }
+
+        // Abre o nível 2 apenas uma vez
+        playGame3 jogo2 = new playGame3();
+        jogo2.setVisible(true);
+
+        // Fecha o menu pausa também, se estiver aberto
+        if (menuPausa != null) {
+            menuPausa.dispose();
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_btnivel3ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -172,6 +205,7 @@ private static final long serialVersionUID = 1L;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnivel1;
     private javax.swing.JButton btnivel2;
+    private javax.swing.JButton btnivel3;
     private javax.swing.JLabel fundojogo;
     private javax.swing.JButton voltar;
     // End of variables declaration//GEN-END:variables

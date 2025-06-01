@@ -1,7 +1,16 @@
 package MyArkanoid;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -10,6 +19,7 @@ import javax.swing.JOptionPane;
  *
  */
 public class MenuPausa extends javax.swing.JFrame {
+
     private javax.swing.JButton btSom;
     private ArkanoidGame jogo;
 
@@ -142,23 +152,30 @@ public class MenuPausa extends javax.swing.JFrame {
     }//GEN-LAST:event_btRestartActionPerformed
 
     private void btSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaveActionPerformed
-    javax.swing.JFileChooser chooser = new javax.swing.JFileChooser();
-    int retorno = chooser.showSaveDialog(this);
-    if (retorno == javax.swing.JFileChooser.APPROVE_OPTION) {
-        java.io.File arquivoSelecionado = chooser.getSelectedFile();
-        System.out.println("Arquivo selecionado: " + arquivoSelecionado.getAbsolutePath());
-        try {
-            // Teste simples: só criar um arquivo vazio
-            if (!arquivoSelecionado.exists()) {
-                boolean criado = arquivoSelecionado.createNewFile();
-                System.out.println("Arquivo criado: " + criado);
+
+        jogo.pararJogo(); // Pausa o jogo
+
+        JFileChooser fc = new JFileChooser(".");
+        int result = fc.showSaveDialog(this);
+
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File arquivo = fc.getSelectedFile(); // CORRIGIDO aqui
+
+            // Adiciona extensão .save se não tiver
+            if (!arquivo.getName().toLowerCase().endsWith(".save")) {
+                arquivo = new File(arquivo.getAbsolutePath() + ".save");
             }
-            javax.swing.JOptionPane.showMessageDialog(this, "Jogo guardado com sucesso!");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            javax.swing.JOptionPane.showMessageDialog(this, "Erro ao guardar o save: " + ex.getMessage());
+
+            try {
+                jogo.saveGame(arquivo); // método deve aceitar File
+                JOptionPane.showMessageDialog(this, "Jogo salvo com sucesso!");
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Erro ao salvar: " + ex.getMessage());
+            }
+
         }
-    }
+
     }//GEN-LAST:event_btSaveActionPerformed
 
     private void alternarSom() {

@@ -28,6 +28,7 @@ import java.awt.BasicStroke;
 import java.awt.GradientPaint;
 import java.awt.RenderingHints;
 import java.awt.geom.RoundRectangle2D;
+import javax.swing.UIManager;
 
 /**
  *
@@ -48,10 +49,11 @@ public class ArkanoidGame extends JComponent
     boolean ballReadyToMove = false;
 
     public static boolean somAtivo = true;
-
+    private static Clip musicaMenu;
     private int score = 0; // Inicializa a pontuação
     private MenuPausa menuPausa;
-    //private int vidas = 2; // Número máximo de vidas
+    private int currentLevel = 1; // Começa no nível 1
+    private int totalLevels = 3; // Supondo que tens 3 níveis Número máximo de vidas
     private Timer fallTimer;
     private boolean isGameOver = false;
 
@@ -59,7 +61,12 @@ public class ArkanoidGame extends JComponent
     private transient Image imageFundo;
 
     public ArkanoidGame() {
-        this(false);
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //this(false);
         setPreferredSize(new java.awt.Dimension(700, 570)); // ou o tamanho do teu jogo
         start();
         addKeyListener(this);//Adiciona esta linha para captar teclas
@@ -83,6 +90,11 @@ public class ArkanoidGame extends JComponent
     }
 
     public ArkanoidGame(boolean skipStart) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         setPreferredSize(new java.awt.Dimension(700, 570));
         if (!skipStart) {
             start();
@@ -150,9 +162,10 @@ public class ArkanoidGame extends JComponent
     }
 
     public void start() {
+        currentLevel = 1;
         // Define o paddle mais embaixo
         pad = new Paddle(Color.RED, 200, 480, 50, 10);
-        ball = new Ball(pad.x + pad.width / 2 - 20, pad.y - 40);
+        ball = new Ball(Color.LIGHT_GRAY, pad.x + pad.width / 2 - 20, pad.y - 40);
 
         ///Bricks
         bricks = new ArrayList<>();
@@ -162,7 +175,7 @@ public class ArkanoidGame extends JComponent
         int espacamento = 10; // Espaço entre os bricks
         int bricksPorLinha = 1; // Número de bricks por linha
 
-        int[] linhasY = {75, 115, 155}; // Posições Y das linhas
+        int[] linhasY = {75}; // Posições Y das linhas
 
         for (int y : linhasY) {
             // Calcula a largura total ocupada pelos bricks e espaços na linha
@@ -179,12 +192,14 @@ public class ArkanoidGame extends JComponent
                 bricks.add(new EstilosBricks(corBrick, x, y, larguraBrick, alturaBrick));
             }
         }//fim dos bricks
+        verificarFimJogo();
 
     }
 
     public void start2() {
+        currentLevel = 2;
         pad = new Paddle(Color.RED, 200, 480, 50, 10);
-        ball = new Ball(pad.x + pad.width / 2 - 20, pad.y - 40);
+        ball = new Ball(Color.YELLOW, pad.x + pad.width / 2 - 20, pad.y - 40);
 
         bricks = new ArrayList<>();
         int larguraTela = Math.max(getWidth(), 680);
@@ -210,9 +225,43 @@ public class ArkanoidGame extends JComponent
                 bricks.add(new EstilosBricks(corLinha, x, y, larguraBrick, alturaBrick));
             }
         }
+        verificarFimJogo2();
+    }
+
+    public void start3() {
+        currentLevel = 3;
+        pad = new Paddle(Color.RED, 200, 480, 50, 10);
+        ball = new Ball(Color.RED, pad.x + pad.width / 2 - 20, pad.y - 40);
+
+        bricks = new ArrayList<>();
+        int larguraecra = Math.max(getWidth(), 680);
+        int alturaBrick = 25;
+        int larguraBrick = 55;
+        int espacamento = 10;
+        int bricksPorLinha = 1;
+
+        int[] linhasY = {75, 115, 155};
+
+        // Cores diferentes para as linhas, por exemplo:
+        Color[] cores = {Color.RED, Color.RED, Color.RED};
+
+        for (int i = 0; i < linhasY.length; i++) {
+            int y = linhasY[i];
+            int larguraTotalLinha = (larguraBrick * bricksPorLinha) + (espacamento * (bricksPorLinha - 1));
+            int startX = (larguraecra - larguraTotalLinha) / 2;
+
+            Color corLinha = cores[i % cores.length];
+
+            for (int j = 0; j < bricksPorLinha; j++) {
+                int x = startX + (j * (larguraBrick + espacamento));
+                bricks.add(new EstilosBricks(corLinha, x, y, larguraBrick, alturaBrick));
+            }
+        }
+        verificarFimJogo3();
     }
 
     protected void paintComponent(Graphics g) {
+
         super.paintComponent(g);
 
         Graphics2D g2d = (Graphics2D) g.create();
@@ -245,13 +294,15 @@ public class ArkanoidGame extends JComponent
         pad.paint(g2d);
         // Dentro do paintComponent(Graphics g):
 
-        // Define uma fonte maior, por exemplo SansSerif, estilo normal, tamanho 18
+        // Define uma fonte maior, por exemplo Serif, estilo normal, tamanho 20
         Font fonteMaior = new Font("Serif", Font.PLAIN, 20);
         g2d.setFont(fonteMaior);
         // Tempo com opacidade total
         g2d.setColor(Color.BLACK);
         g2d.drawString("Tempo: " + timeElapsed, getWidth() - 650, 30);
-
+        //Número de niveis no qual o jogador se encontra 
+        g2d.setColor(Color.BLACK);
+        g2d.drawString("Nível " + currentLevel + " / " + totalLevels, getWidth() - 210, 30);
         //Pontuação
         g2d.setColor(Color.BLACK);//Posição do Score aparece depois da ,
         g2d.drawString("Pontuação: " + score, getWidth() - 550, 30);
@@ -261,6 +312,7 @@ public class ArkanoidGame extends JComponent
         g2d.drawString("Vidas: " + vidas, getWidth() - 100, 30);
 
         g2d.dispose();
+
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -279,6 +331,7 @@ public class ArkanoidGame extends JComponent
 
                     ball.reverseX();
                     ball.reverseY();
+                    ArkanoidGame.playSound("/resources/somdepartir.wav");
                     break;
                 }
             }
@@ -425,24 +478,68 @@ public class ArkanoidGame extends JComponent
         if (!existemBricks) {
             gameTimer.stop();
 
-            int escolha = JOptionPane.showOptionDialog(null, "Parabéns! Concluíste o nível " + nivelAtual, "Nível Concluído", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new String[]{"Próximo Nível", "Níveis"}, "Próximo Nível");
+            int escolha = JOptionPane.showOptionDialog(null, "Parabéns! Concluíste o nível 1!",
+                    "Nível Concluído", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,
+                    null, new String[]{"Próximo Nível", "Sair"}, "Próximo Nível");
 
             java.awt.Window janelaAtual = javax.swing.SwingUtilities.getWindowAncestor(this);
             if (janelaAtual != null) {
                 janelaAtual.dispose();
             }
 
-            if (escolha == 1) {
-                // Avança para o próximo nível
-                if (nivelAtual == 2) {
-                    new playGame2().setVisible(true);
-                } else if (nivelAtual == 2) {
-                    JOptionPane.showMessageDialog(null, "Todos os níveis foram concluídos!");
-                    new Niveis().setVisible(true);
-                }
-            } else {
-                new Niveis().setVisible(true);
+            if (escolha == 0) { // Próximo Nível
+                new playGame2().setVisible(true);
+            } else { // Sair
+                new arkanoide_exe.Arkanoide().setVisible(true);
             }
+        }
+    }
+
+    public void verificarFimJogo2() {
+
+        boolean existemBricks = false;
+        for (Brick brick : bricks) {
+            if (brick.isVisible) {
+                existemBricks = true;
+                break;
+            }
+        }
+
+        if (!existemBricks) {
+            gameTimer.stop();
+
+            int escolha = JOptionPane.showOptionDialog(null, "Parabéns! Concluíste o nível 2!",
+                    "Nível Concluído", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,
+                    null, new String[]{"Próximo Nível", "Sair"}, "Próximo Nível");
+
+            java.awt.Window janelaAtual = javax.swing.SwingUtilities.getWindowAncestor(this);
+            if (janelaAtual != null) {
+                janelaAtual.dispose();
+            }
+
+            if (escolha == 0) { // Próximo Nível
+                new playGame3().setVisible(true);
+            } else { // Sair
+                new arkanoide_exe.Arkanoide().setVisible(true);
+            }
+        }
+    }
+
+    public void verificarFimJogo3() {
+
+        boolean existemBricks = false;
+        for (Brick brick : bricks) {
+            if (brick.isVisible) {
+                existemBricks = true;
+                break;
+            }
+        }
+
+        if (!existemBricks) {
+            gameTimer.stop();
+
+            JOptionPane.showMessageDialog(null, "Parabéns! Todos os níveis foram concluídos!");
+            new arkanoide_exe.Arkanoide().setVisible(true);
         }
     }
 
@@ -461,127 +558,36 @@ public class ArkanoidGame extends JComponent
         }
     }
 
-    private static class GameState implements Serializable {
+    public void saveGame(File file) throws Exception {
 
-          
+        Saves data = new Saves(this.vidas, this.score, this.bricks);
 
-        public Ball ball;
-        public Paddle pad;
-        public ArrayList<Brick> bricks;
-        public int score;
-        public int vidas;
-        public int timeElapsed;
-        public boolean ballReadyToMove;
-        public String caminhoFundo;
-
-        // Construtor para garantir inicialização
-        public GameState() {
-            bricks = new ArrayList<>();
-        }
-    }
-
-    public void saveGame(File file) throws IOException {
-        // Verifique se o arquivo é válido
-    if (file == null) {
-        throw new IOException("Arquivo inválido (null)");
-    }
-    
-    System.out.println("Salvando em: " + file.getAbsolutePath());
-    
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) {
-            GameState state = new GameState();
-            state.ball = this.ball;
-            state.pad = this.pad;
-            state.bricks = new ArrayList<>(this.bricks);  // Cópia segura
-            state.score = this.score;
-            state.vidas = this.vidas;
-            state.timeElapsed = this.timeElapsed;
-            state.ballReadyToMove = this.ballReadyToMove;
-            state.caminhoFundo = this.caminhoFundo;
-
-            out.writeObject(state);
-             out.flush();//força a escrita imediata
+            out.writeObject(data);
+            out.flush();
         }
-        catch (Exception e) {
-        System.err.println("ERRO ao salvar: " + e.getMessage());
-        e.printStackTrace();
-        throw e;
-    }
     }
 
     @SuppressWarnings("unchecked")
-    public void loadGame(File file) throws IOException, ClassNotFoundException {
+    public void loadGame(File file) throws Exception {
         if (!file.exists()) {
-        throw new FileNotFoundException("Arquivo não encontrado: " + file.getAbsolutePath());
-    }
-    
-    if (file.length() == 0) {
-        throw new EOFException("Arquivo vazio! Tamanho: 0 bytes");
-    }
-    
-    System.out.println("Carregando de: " + file.getAbsolutePath());
-    System.out.println("Tamanho do arquivo: " + file.length() + " bytes");
-    
-    try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
-        // Para completamente todos os timers
-        if (gameTimer != null) gameTimer.stop();
-        if (timeTimer != null) timeTimer.stop();
-        
-        GameState state = (GameState) in.readObject();
-        
-        // Restaura estado
-        this.ball = state.ball;
-        this.pad = state.pad;
-        this.bricks = state.bricks;
-        this.score = state.score;
-        this.vidas = state.vidas;
-        this.timeElapsed = state.timeElapsed;
-        this.ballReadyToMove = state.ballReadyToMove;
-        this.caminhoFundo = state.caminhoFundo;
-        
-        // RECARREGAMENTO CRÍTICO
-        reloadFundo();
-        ball.reload();
-        pad.reload();
-        
-        for (Brick brick : bricks) {
-            if (brick instanceof ImageBrick) {
-                ((ImageBrick) brick).reloadImage();
-            }
+            throw new FileNotFoundException("Arquivo não encontrado");
         }
-        
-        // Reinicia timers CORRETAMENTE
-        gameTimer = new Timer(10, this);
-        timeTimer = new Timer(1000, e -> timeElapsed++);
-        
-        // Força o jogo para estado "esperando lançamento"
-        if (!ballReadyToMove) {
-            ball.setPosition(pad.x + pad.width/2 - ball.width/2, pad.y - ball.height);
+
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
+            Saves data = (Saves) in.readObject();
+            this.vidas = data.vidas;
+            this.score = data.score;
+            this.bricks = data.bricks;
+
+            // Posiciona paddle e bola do zero
+            pad = new Paddle(Color.RED, 200, 480, 50, 10);
+            ball = new Ball(Color.LIGHT_GRAY, pad.x + pad.width / 2 - 20, pad.y - 40);
+
+            // Reinicia o jogo com os dados carregados
+            this.start();
         }
-        
-        // Remove e readiciona listeners
-        
-        addKeyListener(this);
-        addMouseListener(this);
-        addMouseMotionListener(this);
-        setFocusable(true);
-        requestFocusInWindow();
-        
-        // Inicia timers se necessário
-        if (ballReadyToMove) {
-            gameTimer.start();
-            timeTimer.start();
-        }
-        
-        repaint();
-    } catch (EOFException e) {
-        // Tratamento específico para arquivos vazios/corrompidos
-        System.err.println("ERRO: Arquivo corrompido ou incompleto");
-        e.printStackTrace();
-        throw new IOException("O arquivo de salvamento está corrompido", e);
     }
-    
-}
 
     public void reloadFundo() {
         try {

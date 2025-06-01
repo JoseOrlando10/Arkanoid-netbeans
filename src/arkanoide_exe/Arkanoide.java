@@ -1,10 +1,20 @@
 package arkanoide_exe;
 
+import MyArkanoid.ArkanoidGame;
 import MyArkanoid.Creditos;
 import MyArkanoid.Niveis;
 import MyArkanoid.playGame;
 import java.awt.Image;
+import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,6 +24,9 @@ import javax.swing.JFrame;
  */
 public class Arkanoide extends javax.swing.JFrame {
 
+    private Clip musicaMenu;
+    private FloatControl volumeControl;
+
     /**
      * Creates new form Arkanoide
      */
@@ -21,6 +34,7 @@ public class Arkanoide extends javax.swing.JFrame {
 
         initComponents();
         setLocationRelativeTo(null);
+        tocarMusicaMenu();
     }
 
     @SuppressWarnings("unchecked")
@@ -124,7 +138,7 @@ public class Arkanoide extends javax.swing.JFrame {
     private void btjogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btjogarActionPerformed
         setVisible(false);
         new playGame(this).setVisible(true);
-
+        reduzirVolume(-20.0f); // Reduz para -20 decibéis, ajuste conforme quiser
     }//GEN-LAST:event_btjogarActionPerformed
 
     private void btniveisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btniveisActionPerformed
@@ -132,52 +146,99 @@ public class Arkanoide extends javax.swing.JFrame {
         setVisible(false);
         new Niveis().setVisible(true);
     }//GEN-LAST:event_btniveisActionPerformed
-private static final long serialVersionUID = 1L;
+
     private void btCarregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCarregarActionPerformed
-        javax.swing.JFileChooser chooser = new javax.swing.JFileChooser();
-        if (chooser.showOpenDialog(this) == javax.swing.JFileChooser.APPROVE_OPTION) {
+        File pastaAtual = new File("."); // diretório atual
+
+// Se quiser checar se há arquivos .save no diretório atual antes:
+        File[] arquivosSalvos = pastaAtual.listFiles((dir, name) -> name.endsWith(".save"));
+
+        if (arquivosSalvos == null || arquivosSalvos.length == 0) {
+            JOptionPane.showMessageDialog(this, "Nenhum jogo salvo encontrado.");
+            return;
+        }
+
+        JFileChooser chooser = new JFileChooser(pastaAtual);
+        chooser.setDialogTitle("Carregar jogo");
+
+        int result = chooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
             try {
-                MyArkanoid.ArkanoidGame game = new MyArkanoid.ArkanoidGame(true); // skipStart = true
-                game.loadGame(chooser.getSelectedFile());
-                javax.swing.JFrame frame = new javax.swing.JFrame("Arkanoid - Jogo Carregado");
-                frame.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-                frame.add(game);
-                frame.pack(); // Usa o tamanho preferido do ArkanoidGame
+                File arquivo = chooser.getSelectedFile();
+                MyArkanoid.ArkanoidGame novoJogo = new ArkanoidGame();
+
+                novoJogo.loadGame(arquivo);
+
+                JFrame frame = new JFrame("Arkanoid - Jogo Carregado");
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.add(novoJogo);
+                frame.pack();
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
-                frame.setExtendedState(JFrame.NORMAL);
-                frame.setAlwaysOnTop(true);
-                frame.setAlwaysOnTop(false);
-                frame.toFront();
-                frame.requestFocus();
-                // NÃO uses frame.setSize(600, 450);
                 this.dispose();
+
             } catch (Exception ex) {
-                javax.swing.JOptionPane.showMessageDialog(this, "Erro ao carregar: " + ex.getMessage());
-            }
-        }
+                JOptionPane.showMessageDialog(this, "Erro ao carregar: " + ex.getMessage());
+                ex.printStackTrace();
+            }}
+        
     }//GEN-LAST:event_btCarregarActionPerformed
 
     private void btSomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSomActionPerformed
         alternarSom();
     }//GEN-LAST:event_btSomActionPerformed
+    private void tocarMusicaMenu() {
+        try {
+            File arquivoMusica = new File("src/resources/menusom.wav");
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(arquivoMusica);
+            musicaMenu = AudioSystem.getClip();
+            musicaMenu.open(audioStream);
+
+            // Controle de volume
+            volumeControl = (FloatControl) musicaMenu.getControl(FloatControl.Type.MASTER_GAIN);
+
+            // Só toca se o som estiver ativo
+            if (MyArkanoid.ArkanoidGame.somAtivo) {
+                musicaMenu.loop(Clip.LOOP_CONTINUOUSLY);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 
     private void alternarSom() {
         MyArkanoid.ArkanoidGame.somAtivo = !MyArkanoid.ArkanoidGame.somAtivo;
         if (MyArkanoid.ArkanoidGame.somAtivo) {
             btSom.setText("🔊");
-            MyArkanoid.ArkanoidGame.playSound("/resources/sound.wav");//mudar som
+            // Se a música do menu está carregada, volta a tocar
+            if (musicaMenu != null) {
+                musicaMenu.loop(Clip.LOOP_CONTINUOUSLY);
+                volumeControl.setValue(0.0f); // Volume normal
+            }
+            // Também podes tocar o efeito de clique, se quiseres
+            // MyArkanoid.ArkanoidGame.playSound("/resources/sound.wav");
         } else {
             btSom.setText("🔇");
+            // Se a música do menu está a tocar, para
+            if (musicaMenu != null) {
+                musicaMenu.stop();
+            }
+        }
+    }
+
+    private void reduzirVolume(float decibels) {
+        if (volumeControl != null) {
+            volumeControl.setValue(decibels); // Ex: -10.0f para reduzir o volume
         }
     }
 
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+        /* Set the Nimbus look and feel /
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        / If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         
+For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -193,8 +254,7 @@ private static final long serialVersionUID = 1L;
             java.util.logging.Logger.getLogger(Arkanoide.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Arkanoide.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+        }//</editor-fold>,
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -205,6 +265,7 @@ private static final long serialVersionUID = 1L;
         });
     }
 
+    private static final long serialVersionUID = 1L;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCarregar;
     private javax.swing.JButton btCreditos;
