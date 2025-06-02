@@ -4,6 +4,7 @@ import MyArkanoid.ArkanoidGame;
 import MyArkanoid.Creditos;
 import MyArkanoid.Niveis;
 import MyArkanoid.playGame;
+import MyArkanoid.Regras;
 import java.awt.Image;
 import java.io.File;
 import java.util.logging.Level;
@@ -41,20 +42,14 @@ public class Arkanoide extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-    // Botão Créditos: abre a janela de créditos
-    btCreditos = new javax.swing.JButton();
-    // Botão Níveis: abre a seleção de níveis
-    btniveis = new javax.swing.JButton();
-    // Botão Sair: fecha o programa
-    btsair = new javax.swing.JButton();
-    // Botão Jogar: inicia o jogo principal
-    btjogar = new javax.swing.JButton();
-    // Botão Carregar: permite carregar um jogo salvo
-    btCarregar = new javax.swing.JButton();
-    // Botão Som: ativa/desativa o som do menu
-    btSom = new javax.swing.JButton(MyArkanoid.ArkanoidGame.somAtivo ? "🔊" : "🔇");
-    // Label da imagem de fundo/logo
-    imagemfundo = new javax.swing.JLabel();
+        btCreditos = new javax.swing.JButton();
+        btniveis = new javax.swing.JButton();
+        btsair = new javax.swing.JButton();
+        btjogar = new javax.swing.JButton();
+        btCarregar = new javax.swing.JButton();
+        btSom = new javax.swing.JButton();
+        btRegras = new javax.swing.JButton();
+        imagemfundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(702, 609));
@@ -119,13 +114,24 @@ public class Arkanoide extends javax.swing.JFrame {
         getContentPane().add(btCarregar);
         btCarregar.setBounds(560, 450, 100, 40);
 
+        btSom.setText("🔊");
         btSom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSomActionPerformed(evt);
             }
         });
         getContentPane().add(btSom);
-        btSom.setBounds(610, 50, 72, 40);
+        btSom.setBounds(610, 50, 60, 40);
+
+        btRegras.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
+        btRegras.setText("Regras");
+        btRegras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRegrasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btRegras);
+        btRegras.setBounds(40, 450, 100, 39);
 
         imagemfundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/smashtheageslogo.png"))); // NOI18N
         getContentPane().add(imagemfundo);
@@ -137,6 +143,7 @@ public class Arkanoide extends javax.swing.JFrame {
     // Ação do botão Créditos
     private void btCreditosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreditosActionPerformed
         // Abre a janela de créditos
+        setVisible(false);
         new Creditos(this, true).setVisible(true);
     }//GEN-LAST:event_btCreditosActionPerformed
 
@@ -151,7 +158,7 @@ public class Arkanoide extends javax.swing.JFrame {
         // Esconde o menu e abre o jogo principal
         setVisible(false);
         new playGame(this, null).setVisible(true);
-        reduzirVolume(-20.0f); // Reduz o volume da música do menu
+        reduzirVolume(-15.0f); // Reduz o volume da música do menu
     }//GEN-LAST:event_btjogarActionPerformed
 
     // Ação do botão Níveis
@@ -202,10 +209,16 @@ public class Arkanoide extends javax.swing.JFrame {
         // Ativa ou desativa o som do menu
         alternarSom();
     }//GEN-LAST:event_btSomActionPerformed
+
+    private void btRegrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegrasActionPerformed
+        // Abre a janela das Regras
+        setVisible(false);
+        new Regras(this, true).setVisible(true);
+    }//GEN-LAST:event_btRegrasActionPerformed
     private void tocarMusicaMenu() {
         try {
-            File arquivoMusica = new File("src/resources/menusom.wav");
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(arquivoMusica);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(
+    getClass().getResource("/resources/menusom.wav"));
             musicaMenu = AudioSystem.getClip();
             musicaMenu.open(audioStream);
 
@@ -225,7 +238,7 @@ public class Arkanoide extends javax.swing.JFrame {
     private void alternarSom() {
         MyArkanoid.ArkanoidGame.somAtivo = !MyArkanoid.ArkanoidGame.somAtivo;
         if (MyArkanoid.ArkanoidGame.somAtivo) {
-            btSom.setText("🔊");
+            btSom.setText("🔊");//🔊
             // Se a música do menu está carregada, volta a tocar
             if (musicaMenu != null) {
                 musicaMenu.loop(Clip.LOOP_CONTINUOUSLY);
@@ -234,7 +247,7 @@ public class Arkanoide extends javax.swing.JFrame {
             // Também podes tocar o efeito de clique, se quiseres
             // MyArkanoid.ArkanoidGame.playSound("/resources/sound.wav");
         } else {
-            btSom.setText("🔇");
+            btSom.setText("🔇");//🔇
             // Se a música do menu está a tocar, para
             if (musicaMenu != null) {
                 musicaMenu.stop();
@@ -284,6 +297,7 @@ For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/p
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCarregar;
     private javax.swing.JButton btCreditos;
+    private javax.swing.JButton btRegras;
     private javax.swing.JButton btSom;
     private javax.swing.JButton btjogar;
     private javax.swing.JButton btniveis;

@@ -10,7 +10,7 @@
       <Dimension value="[521, 424]"/>
     </Property>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[530, 495]"/>
+      <Dimension value="[530, 470]"/>
     </Property>
   </Properties>
   <SyntheticProperties>
@@ -27,7 +27,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,-54,0,0,2,22"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,-85,0,0,2,23"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
@@ -40,7 +40,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="160" y="240" width="300" height="160"/>
+          <AbsoluteConstraints x="180" y="100" width="320" height="230"/>
         </Constraint>
       </Constraints>
 
@@ -52,7 +52,7 @@
             <Property name="columns" type="int" value="20"/>
             <Property name="lineWrap" type="boolean" value="true"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="Nome: Pedro Afonso Redol Cotralha In&#xe1;cio Coelho&#xa;&#xa;Curso: Engenharia Inform&#xe1;tica&#xa;&#xa;N&#xfa;mero: 25026&#xa;&#xa;Turma: B&#xa;&#xa;Email: aluno25026@ipt.pt"/>
+            <Property name="text" type="java.lang.String" value="O jogo &#xe9; constituido por 3 niveis. A cada nivel que passa, torna-se mais complicado pois ficas com mais blocos para destruir.&#xa;&#xa;Tanto podes mover o teu paddle nas setas esquerda (&lt;-) e direita (-&gt;) e clicar na tecla ESPA&#xc7;O para atirar a bola. Como podes mover o paddle no rato e atirar clicando no rato do lado esquerdo.&#xa;&#xa;Ganhas 1 ponto por cada bloco destruido.&#xa;&#xa;Tens 2 vidas se as perderes podes reiniciar o nivel.&#xa;&#xa;O tempo est&#xe1; a contar para teres a perse&#xe7;&#xe3;o de quanto tempo demoras a concluir o nivel.&#xa;&#xa;Se precisares de dar pausa basta clicares na tecla ESC , assim tens acesso ao menu de pausa onde consegues voltar para o menu inicial, reiniciar o nivel, continuar o nivel ou seja voltas a onde estavas a jogar e podes guardar o nivel para continuares a jogar mais tarde.&#xa;&#xa;Se quiseres carregar e jogar o nivel que guardas-te, basta clicares no bot&#xe3;o de carregar situado no menu inicial e selecionar o teu save.&#xa;&#xa;"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -68,7 +68,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value=" Cr&#xe9;ditos"/>
+        <Property name="text" type="java.lang.String" value=" Regras"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -76,50 +76,15 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Container class="javax.swing.JScrollPane" name="painelscrolljose">
-      <AuxValues>
-        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-      </AuxValues>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="160" y="70" width="300" height="160"/>
-        </Constraint>
-      </Constraints>
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-      <SubComponents>
-        <Component class="javax.swing.JTextArea" name="txtareajose">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-            <Property name="columns" type="int" value="20"/>
-            <Property name="lineWrap" type="boolean" value="true"/>
-            <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="Nome: Jos&#xe9; Orlando Louren&#xe7;o Martins&#xa;&#xa;Curso: Engenharia Inform&#xe1;tica&#xa;&#xa;N&#xfa;mero: 24269&#xa;&#xa;Turma: A&#xa;&#xa;Email: aluno24269@ipt.pt"/>
-          </Properties>
-        </Component>
-      </SubComponents>
-    </Container>
     <Component class="javax.swing.JLabel" name="fotopedro">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/resources/pedro.jpg"/>
+          <Image iconType="3" name="/resources/imgregras.png"/>
         </Property>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="20" y="240" width="130" height="160"/>
-        </Constraint>
-      </Constraints>
-    </Component>
-    <Component class="javax.swing.JLabel" name="fotojose">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/resources/jos&#xe9;.jpg"/>
-        </Property>
-      </Properties>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="20" y="70" width="130" height="160"/>
+          <AbsoluteConstraints x="10" y="70" width="160" height="190"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -135,7 +100,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="420" y="420" width="90" height="30"/>
+          <AbsoluteConstraints x="400" y="390" width="90" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -147,7 +112,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="0" width="520" height="460"/>
+          <AbsoluteConstraints x="0" y="0" width="520" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>

@@ -67,7 +67,7 @@ public class MenuPausa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btSair);
-        btSair.setBounds(120, 240, 137, 30);
+        btSair.setBounds(110, 240, 150, 30);
         btSair.getAccessibleContext().setAccessibleName("esc_sair");
 
         btNiveis.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
