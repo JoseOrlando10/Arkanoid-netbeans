@@ -28,6 +28,7 @@ import java.awt.BasicStroke;
 import java.awt.GradientPaint;
 import java.awt.RenderingHints;
 import java.awt.geom.RoundRectangle2D;
+import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
 /**
@@ -47,7 +48,7 @@ public class ArkanoidGame extends JComponent
     Timer timeTimer; // Timer separado para contar o tempo
     int timeElapsed; // Variável para armazenar o tempo (em segundos)
     boolean ballReadyToMove = false;
-
+    private int vidas = 2;
     public static boolean somAtivo = true;
     private static Clip musicaMenu;
     private int score = 0; // Inicializa a pontuação
@@ -56,9 +57,11 @@ public class ArkanoidGame extends JComponent
     private int totalLevels = 3; // Supondo que tens 3 níveis Número máximo de vidas
     private Timer fallTimer;
     private boolean isGameOver = false;
-
+     private int nivelAtual; // definir este valor no construtor
     private String caminhoFundo = "/resources/fundo.png";
     private transient Image imageFundo;
+
+    private int nivelMaxDesbloqueado = 1; // Começa só com o nível 1 desbloqueado
 
     public ArkanoidGame() {
         try {
@@ -176,6 +179,8 @@ public class ArkanoidGame extends JComponent
         int bricksPorLinha = 1; // Número de bricks por linha
 
         int[] linhasY = {75}; // Posições Y das linhas
+        
+        
 
         for (int y : linhasY) {
             // Calcula a largura total ocupada pelos bricks e espaços na linha
@@ -192,7 +197,7 @@ public class ArkanoidGame extends JComponent
                 bricks.add(new EstilosBricks(corBrick, x, y, larguraBrick, alturaBrick));
             }
         }//fim dos bricks
-        verificarFimJogo();
+        verificarFimDeNivel();
 
     }
 
@@ -225,7 +230,7 @@ public class ArkanoidGame extends JComponent
                 bricks.add(new EstilosBricks(corLinha, x, y, larguraBrick, alturaBrick));
             }
         }
-        verificarFimJogo2();
+
     }
 
     public void start3() {
@@ -257,7 +262,7 @@ public class ArkanoidGame extends JComponent
                 bricks.add(new EstilosBricks(corLinha, x, y, larguraBrick, alturaBrick));
             }
         }
-        verificarFimJogo3();
+
     }
 
     protected void paintComponent(Graphics g) {
@@ -343,7 +348,7 @@ public class ArkanoidGame extends JComponent
             gameTimer.stop();
         }
 
-        verificarFimJogo();
+        verificarFimDeNivel();
     }
 
     public void mouseDragged(MouseEvent e) {
@@ -376,7 +381,7 @@ public class ArkanoidGame extends JComponent
     public void mouseExited(MouseEvent e) {
 
     }
-    private int vidas = 2;
+    
 
     public void decrementarVidas() {
         vidas--;
@@ -445,6 +450,8 @@ public class ArkanoidGame extends JComponent
         timeTimer.stop();
     }
 
+    //VERIFICAR SE QUERES ESTA FUNÇÃO, SE QUERES REINICIAR SEMPRE A VOLTAR AO NIVEL 1, 
+    //SE NAO QUISERES TENS A FUNÇAO ABAIXO QUE REINICIA NO NIVEL ATUAL, e ta definida assim no menu pausa
     public void resetJogo() {
         pararJogo(); // para ambos os timers
 
@@ -464,96 +471,114 @@ public class ArkanoidGame extends JComponent
         repaint();
     }
 
-    private int nivelAtual; // definir este valor no construtor
-
-    public void verificarFimJogo() {
-        boolean existemBricks = false;
-        for (Brick brick : bricks) {
-            if (brick.isVisible) {
-                existemBricks = true;
-                break;
-            }
-        }
-
-        if (!existemBricks) {
-            gameTimer.stop();
-
-            int escolha = JOptionPane.showOptionDialog(null, "Parabéns! Concluíste o nível 1!",
-                    "Nível Concluído", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,
-                    null, new String[]{"Próximo Nível", "Sair"}, "Próximo Nível");
-
-            java.awt.Window janelaAtual = javax.swing.SwingUtilities.getWindowAncestor(this);
-            if (janelaAtual != null) {
-                janelaAtual.dispose();
-            }
-
-            if (escolha == 0) { // Próximo Nível
-                new playGame2().setVisible(true);
-            } else { // Sair
-                new arkanoide_exe.Arkanoide().setVisible(true);
-            }
-        }
-    }
-
-    public void carregarNivel(int nivel) {
-        
+    public void reiniciarNivelAtual() {
+        pararJogo();
+        // Limpa os bricks e recria-os como no início do nível
         this.bricks.clear();
-        if(nivel==1){
-            //carrega bricks nivel 1
-        }
-        else if(nivel == 2)
-        {
-             //carrega bricks nivel 2
-        }
-        this.currentLevel = nivel;
+        carregarNivel(currentLevel, true); // true para criar bricks do zero
+        // Reposiciona paddle e bola
+        pad = new Paddle(Color.RED, 200, 480, 50, 10);
+        ball = new Ball(Color.LIGHT_GRAY, pad.x + pad.width / 2 - 20, pad.y - 40);
+        ballReadyToMove = false;
+        isGameOver = false;
+        gameTimer.start();
+        timeTimer.start();
+        repaint();
     }
 
-    public void verificarFimJogo2() {
 
-        boolean existemBricks = false;
+    public void verificarFimDeNivel() {
+        boolean nivelCompleto = true;
         for (Brick brick : bricks) {
             if (brick.isVisible) {
-                existemBricks = true;
+                nivelCompleto = false;
                 break;
             }
         }
 
-        if (!existemBricks) {
+        if (nivelCompleto) {
             gameTimer.stop();
+            timeTimer.stop();
 
-            int escolha = JOptionPane.showOptionDialog(null, "Parabéns! Concluíste o nível 2!",
-                    "Nível Concluído", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,
-                    null, new String[]{"Próximo Nível", "Sair"}, "Próximo Nível");
+            String mensagem = "Parabéns! Concluíste o nível " + currentLevel + "!";
+            String[] opcoes;
 
-            java.awt.Window janelaAtual = javax.swing.SwingUtilities.getWindowAncestor(this);
-            if (janelaAtual != null) {
-                janelaAtual.dispose();
+            // Determinar opções baseadas no nível atual
+            if (currentLevel < totalLevels) {
+                opcoes = new String[]{"Próximo Nível", "Sair"};
+            } else {
+                opcoes = new String[]{"Menu Inicial"};
             }
 
-            if (escolha == 0) { // Próximo Nível
-                new playGame3().setVisible(true);
-            } else { // Sair
+            int escolha = JOptionPane.showOptionDialog(
+                    null,
+                    mensagem,
+                    "Nível Concluído",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.INFORMATION_MESSAGE,
+                    null,
+                    opcoes,
+                    opcoes[0]
+            );
+
+            // Obter referência à janela atual
+            java.awt.Window janelaAtual = javax.swing.SwingUtilities.getWindowAncestor(this);
+
+            if (escolha == 0) { // Usuário escolheu a primeira opção
+                if (currentLevel < totalLevels) {
+                    // Fechar janela atual e abrir próximo nível
+                    if (janelaAtual != null) {
+                        janelaAtual.dispose();
+                    }
+
+                    // Abrir nova janela com próximo nível
+                    switch (currentLevel) {
+                        case 1:
+                            new playGame2().setVisible(true);
+                            break;
+                        case 2:
+                            new playGame3().setVisible(true);
+                            break;
+                        case 3:
+                            JOptionPane.showMessageDialog(null, "Parabéns! Todos os níveis foram concluídos!");
+                            new arkanoide_exe.Arkanoide().setVisible(true);
+                            break;
+                    }
+                } else {
+                    // Último nível concluído - voltar ao menu
+                    if (janelaAtual != null) {
+                        janelaAtual.dispose();
+                    }
+
+                    new arkanoide_exe.Arkanoide().setVisible(true);
+                }
+            } else if (escolha == 1) { // Usuário escolheu "Sair"
+                // Voltar ao menu principal
+                if (janelaAtual != null) {
+                    janelaAtual.dispose();
+                }
                 new arkanoide_exe.Arkanoide().setVisible(true);
             }
+            // Se usuário fechar a janela (escolha = -1), não faz nada
         }
     }
 
-    public void verificarFimJogo3() {
+    public void carregarNivel(int nivel, boolean criarBricks) {
+        this.currentLevel = nivel;
 
-        boolean existemBricks = false;
-        for (Brick brick : bricks) {
-            if (brick.isVisible) {
-                existemBricks = true;
-                break;
+        if (criarBricks) {
+            this.bricks.clear();
+
+            if (nivel == 1) {
+                //colocar aqui dentro os bricks que me mandaste pro discord
+            } else if (nivel == 2) {
+
+            } else if (nivel == 3) {
+
             }
+
         }
 
-        if (!existemBricks) {
-            gameTimer.stop();
-
-            JOptionPane.showMessageDialog(null, "Parabéns! Todos os níveis foram concluídos!");
-            new arkanoide_exe.Arkanoide().setVisible(true);
-        }
     }
 
     public static void playSound(String caminho) {
@@ -592,21 +617,18 @@ public class ArkanoidGame extends JComponent
             this.vidas = data.vidas;
             this.score = data.score;
             this.currentLevel = data.nivel;
+            
 
-            System.out.println("Caregando nivel : " + data.nivel);
-            this.currentLevel = data.nivel;
-            this.carregarNivel(this.currentLevel);
-
+            
             this.bricks = new ArrayList<>();
             for (BrickData bd : data.bricks) {
                 this.bricks.add(bd.toBrick());
             }
-
+            this.carregarNivel(this.currentLevel, false);
             // Posiciona paddle e bola do zero
             pad = new Paddle(Color.RED, 200, 480, 50, 10);
             ball = new Ball(Color.LIGHT_GRAY, pad.x + pad.width / 2 - 20, pad.y - 40);
 
-            this.start();
         }
     }
 
@@ -619,3 +641,4 @@ public class ArkanoidGame extends JComponent
     }
     private static final long serialVersionUID = 1L;
 }
+//teste
