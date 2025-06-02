@@ -16,7 +16,7 @@ public class playGame extends javax.swing.JFrame {
     /**
      * Creates new form playGame
      */
-    public playGame(JFrame parent) {
+    public playGame(JFrame parent, ArkanoidGame jogoAtual) {
         initComponents();
         this.nivelAtual = 1;
         setLocationRelativeTo(null);// coloca no centro do ecra

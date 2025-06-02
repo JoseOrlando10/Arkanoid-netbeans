@@ -114,8 +114,8 @@ public class Niveis extends javax.swing.JFrame {
         }
 
         // Abre o nível 2
-        playGame2 jogo2 = new playGame2();
-        jogo2.setVisible(true);
+        playGame jogo = new playGame(menuPausa, jogoAtual);
+        jogo.setVisible(true);
 
         // Fecha o menu pausa também, se estiver aberto
         if (menuPausa != null) {
