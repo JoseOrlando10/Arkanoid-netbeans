@@ -348,6 +348,11 @@ public class ArkanoidGame extends JComponent
             gameTimer.stop();
         }
 
+        if (vidas <= 0) {
+    mostrarGameOver();
+    return;
+}
+
         verificarFimDeNivel();
     }
 
@@ -634,6 +639,36 @@ public class ArkanoidGame extends JComponent
             imageFundo = null;
         }
     }
+
+    public void mostrarGameOver() {
+    gameTimer.stop();
+    timeTimer.stop();
+
+    String mensagem = "Perdeste o jogo!";
+    String[] opcoes = {"Reiniciar Nível", "Menu Inicial"};
+
+    int escolha = JOptionPane.showOptionDialog(
+            null,
+            mensagem,
+            "Game Over",
+            JOptionPane.DEFAULT_OPTION,
+            JOptionPane.INFORMATION_MESSAGE,
+            null,
+            opcoes,
+            opcoes[0]
+    );
+
+    java.awt.Window janelaAtual = javax.swing.SwingUtilities.getWindowAncestor(this);
+
+    if (escolha == 0) { // Reiniciar Nível
+        reiniciarNivelAtual();
+    } else if (escolha == 1) { // Menu Inicial
+        if (janelaAtual != null) {
+            janelaAtual.dispose();
+        }
+        new arkanoide_exe.Arkanoide().setVisible(true);
+    }
+}
     private static final long serialVersionUID = 1L;
 }
 //teste
