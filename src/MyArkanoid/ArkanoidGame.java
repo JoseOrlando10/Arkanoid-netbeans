@@ -597,9 +597,7 @@ public class ArkanoidGame extends JComponent
     }
 
     public void saveGame(File file) throws Exception {
-
-        Saves data = new Saves(this.vidas, this.score, this.currentLevel, this.bricks);
-
+        Saves data = new Saves(this.vidas, this.score, this.currentLevel, this.bricks, this.ball);
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) {
             out.writeObject(data);
             out.flush();
@@ -624,7 +622,8 @@ public class ArkanoidGame extends JComponent
             }
             this.carregarNivel(this.currentLevel, false);
             pad = new Paddle(Color.RED, 200, 480, 50, 10);
-            ball = new Ball(Color.LIGHT_GRAY, pad.x + pad.width / 2 - 20, pad.y - 40);
+            Color corBola = new Color(data.ballR, data.ballG, data.ballB);
+            ball = new Ball(corBola, pad.x + pad.width / 2 - 20, pad.y - 40, data.gradCenterFactor, data.gradRadiusFactor);
         }
     }
 

@@ -20,6 +20,10 @@ public class Ball extends GameObject implements Serializable {
     int vx = 2;
     int vy = 2;
 
+    // Parâmetros do efeito visual
+    private float gradCenterFactor = 1f / 3f; // padrão: 1/3
+    private float gradRadiusFactor = 1f;      // padrão: 1 (raio igual ao diâmetro)
+
     public Ball(int x, int y) {
         // Ajusta para raio maior (25 de diâmetro)
         super(Color.LIGHT_GRAY, x, y, 25, 25);
@@ -27,40 +31,57 @@ public class Ball extends GameObject implements Serializable {
     
     public Ball(Color color, int x, int y) {
         super(color, x, y, 25, 25);
-}
+    }
+
+    // Novo construtor para restaurar efeito
+    public Ball(Color color, int x, int y, float gradCenterFactor, float gradRadiusFactor) {
+        super(color, x, y, 25, 25);
+        this.gradCenterFactor = gradCenterFactor;
+        this.gradRadiusFactor = gradRadiusFactor;
+    }
+
     public void paint(Graphics gr) {
-    Graphics2D g2d = (Graphics2D) gr.create();
+        Graphics2D g2d = (Graphics2D) gr.create();
 
-    // Ativa antialias para suavizar bordas
-    g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        // Ativa antialias para suavizar bordas
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-    int diameter = width;  // usa o width já definido (25 no seu caso)
+        int diameter = width;  // usa o width já definido (25 no seu caso)
 
-    // Degradê radial: luz no topo esquerdo, sombra no canto oposto
-    RadialGradientPaint gradient = new RadialGradientPaint(
-        x + diameter / 3f, y + diameter / 3f, diameter,
-        new float[] {0f, 1f},
-        new Color[] {Color.WHITE, myColor}
-    );
+        // Usa os fatores guardados
+        RadialGradientPaint gradient = new RadialGradientPaint(
+            x + diameter * gradCenterFactor, 
+            y + diameter * gradCenterFactor, 
+            diameter * gradRadiusFactor,
+            new float[] {0f, 1f},
+            new Color[] {Color.WHITE, myColor}
+        );
 
-    g2d.setPaint(gradient);
-    g2d.fillOval(x, y, diameter, diameter);
+        g2d.setPaint(gradient);
+        g2d.fillOval(x, y, diameter, diameter);
 
-    // Borda mais escura e suave
-    g2d.setColor(new Color(100, 100, 100));
-    g2d.setStroke(new BasicStroke(2));
-    g2d.drawOval(x, y, diameter, diameter);
+        // Borda mais escura e suave
+        g2d.setColor(new Color(100, 100, 100));
+        g2d.setStroke(new BasicStroke(2));
+        g2d.drawOval(x, y, diameter, diameter);
 
-    // Pequeno reflexo branco para dar brilho
-    g2d.setColor(new Color(255, 255, 255, 150));
-    g2d.fillOval(x + diameter / 4, y + diameter / 4, diameter / 5, diameter / 5);
+        // Pequeno reflexo branco para dar brilho
+        g2d.setColor(new Color(255, 255, 255, 150));
+        g2d.fillOval(x + diameter / 4, y + diameter / 4, diameter / 5, diameter / 5);
 
-    g2d.dispose();
-}
+        g2d.dispose();
+    }
 
     public void move() {
         translate(vx, vy);
     }
+    public float getGradCenterFactor() {
+        return gradCenterFactor;
+       }
+
+    public float getGradRadiusFactor() {
+        return gradRadiusFactor;
+       }
 
     public void move(Rectangle bounds, ArkanoidGame game) throws ExceptionJogo {
 

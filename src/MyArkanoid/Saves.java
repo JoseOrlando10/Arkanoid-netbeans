@@ -5,7 +5,7 @@
 package MyArkanoid;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -14,21 +14,21 @@ import java.util.ArrayList;
 public class Saves implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    public int vidas;
-    public int nivel; // ESTE campo será o currentLevel salvo
-    public int score;
-    public ArrayList<BrickData> bricks;
-   
+    public int vidas, score, nivel;
+    public List<BrickData> bricks;
+    public int ballR, ballG, ballB;
+    public float gradCenterFactor, gradRadiusFactor;
 
-    public Saves(int vidas, int score, int nivel, ArrayList<Brick> bricksOriginal) {
+    public Saves(int vidas, int score, int nivel, List<Brick> bricks, Ball ball) {
         this.vidas = vidas;
         this.score = score;
-        this.nivel = nivel; // CORRETO: o nivel real do jogo (currentLevel)
-        this.bricks = new ArrayList<>();
-        for (Brick b : bricksOriginal) {
-            this.bricks.add(new BrickData(b));
-        }
-        
+        this.nivel = nivel;
+        this.bricks = bricks.stream().map(BrickData::new).toList();
+        this.ballR = ball.getMyColor().getRed();
+        this.ballG = ball.getMyColor().getGreen();
+        this.ballB = ball.getMyColor().getBlue();
+        this.gradCenterFactor = ball.getGradCenterFactor();
+        this.gradRadiusFactor = ball.getGradRadiusFactor();
     }
 }
 
