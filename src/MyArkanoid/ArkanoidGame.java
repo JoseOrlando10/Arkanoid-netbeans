@@ -704,7 +704,7 @@ public class ArkanoidGame extends JComponent
     }
 
     public void saveGame(File file) throws Exception {
-        Saves data = new Saves(this.vidas, this.score, this.currentLevel, this.bricks, this.ball);
+        Saves data = new Saves(this.vidas, this.score, this.currentLevel, this.bricks, this.ball, this.timeElapsed);
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) {
             out.writeObject(data);
             out.flush();
@@ -720,6 +720,7 @@ public class ArkanoidGame extends JComponent
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
             Saves data = (Saves) in.readObject();
             this.vidas = data.vidas;
+            this.timeElapsed = data.timeElapsed;
             this.score = data.score;
             this.currentLevel = data.nivel;
 

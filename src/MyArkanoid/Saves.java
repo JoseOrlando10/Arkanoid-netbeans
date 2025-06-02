@@ -18,8 +18,9 @@ public class Saves implements Serializable {
     public List<BrickData> bricks;
     public int ballR, ballG, ballB;
     public float gradCenterFactor, gradRadiusFactor;
+    public int timeElapsed;
 
-    public Saves(int vidas, int score, int nivel, List<Brick> bricks, Ball ball) {
+    public Saves(int vidas, int score, int nivel, List<Brick> bricks, Ball ball, int timeElapsed) {
         this.vidas = vidas;
         this.score = score;
         this.nivel = nivel;
@@ -29,6 +30,7 @@ public class Saves implements Serializable {
         this.ballB = ball.getMyColor().getBlue();
         this.gradCenterFactor = ball.getGradCenterFactor();
         this.gradRadiusFactor = ball.getGradRadiusFactor();
+        this.timeElapsed = timeElapsed;
     }
 }
 
