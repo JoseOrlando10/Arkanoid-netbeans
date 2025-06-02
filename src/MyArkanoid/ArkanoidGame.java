@@ -495,6 +495,19 @@ public class ArkanoidGame extends JComponent
         }
     }
 
+    public void carregarNivel(int nivel) {
+        
+        this.bricks.clear();
+        if(nivel==1){
+            //carrega bricks nivel 1
+        }
+        else if(nivel == 2)
+        {
+             //carrega bricks nivel 2
+        }
+        this.currentLevel = nivel;
+    }
+
     public void verificarFimJogo2() {
 
         boolean existemBricks = false;
@@ -560,7 +573,7 @@ public class ArkanoidGame extends JComponent
 
     public void saveGame(File file) throws Exception {
 
-        Saves data = new Saves(this.vidas, this.score, this.bricks);
+        Saves data = new Saves(this.vidas, this.score, this.currentLevel, this.bricks);
 
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) {
             out.writeObject(data);
@@ -578,13 +591,21 @@ public class ArkanoidGame extends JComponent
             Saves data = (Saves) in.readObject();
             this.vidas = data.vidas;
             this.score = data.score;
-            this.bricks = data.bricks;
+            this.currentLevel = data.nivel;
+
+            System.out.println("Caregando nivel : " + data.nivel);
+            this.currentLevel = data.nivel;
+            this.carregarNivel(this.currentLevel);
+
+            this.bricks = new ArrayList<>();
+            for (BrickData bd : data.bricks) {
+                this.bricks.add(bd.toBrick());
+            }
 
             // Posiciona paddle e bola do zero
             pad = new Paddle(Color.RED, 200, 480, 50, 10);
             ball = new Ball(Color.LIGHT_GRAY, pad.x + pad.width / 2 - 20, pad.y - 40);
 
-            // Reinicia o jogo com os dados carregados
             this.start();
         }
     }

@@ -13,13 +13,13 @@ import java.io.Serializable;
  *
  * @author Pedro Coelho - 25026
  * @author Jose Martins - 24269
- * 
+ *
  */
-public class Brick extends GameObject implements Serializable{
+public class Brick extends GameObject implements Serializable {
+
     protected Color baseColor;
- private transient Image image;
-    
-    
+    private transient Image image;
+
     boolean isVisible = true;
 
     public Brick(Color baseColor, int x, int y, int width, int height) {
@@ -30,36 +30,40 @@ public class Brick extends GameObject implements Serializable{
         this.width = width;
         this.height = height;
     }
-    
-    
-    
-    public void paint(Graphics gr){
-        if( !isVisible)
+
+    public void paint(Graphics gr) {
+        if (!isVisible) {
             return;
-        
+        }
+
         gr.setColor(myColor);
         gr.fillRect(x, y, width, height);
         gr.setColor(Color.DARK_GRAY);
         gr.drawRect(x, y, width, height);
-        
+
     }
-    public void reset() 
-    {
+
+    public void reset() {
         this.isVisible = true;
     }
-    
-    public void reload() {
-        
-    }
-    private void writeObject(ObjectOutputStream out) throws IOException {
-    out.defaultWriteObject();
-    // Adicione manualmente campos não-serializáveis se necessário
-}
 
-private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-    in.defaultReadObject();
-    this.reload(); // Recarrega recursos após desserialização
-}
+    public void reload() {
+
+    }
+
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        out.defaultWriteObject();
+        // Adicione manualmente campos não-serializáveis se necessário
+    }
+
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        in.defaultReadObject();
+        this.reload(); // Recarrega recursos após desserialização
+    }
     private static final long serialVersionUID = 1L;
+
+    Brick toBrick() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
 }
