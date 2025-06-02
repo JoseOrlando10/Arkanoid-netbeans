@@ -617,18 +617,14 @@ public class ArkanoidGame extends JComponent
             this.vidas = data.vidas;
             this.score = data.score;
             this.currentLevel = data.nivel;
-            
 
-            
             this.bricks = new ArrayList<>();
             for (BrickData bd : data.bricks) {
-                this.bricks.add(bd.toBrick());
+                this.bricks.add(bd.toBrick(this)); // <-- passa o ArkanoidGame para criar EstilosBricks
             }
             this.carregarNivel(this.currentLevel, false);
-            // Posiciona paddle e bola do zero
             pad = new Paddle(Color.RED, 200, 480, 50, 10);
             ball = new Ball(Color.LIGHT_GRAY, pad.x + pad.width / 2 - 20, pad.y - 40);
-
         }
     }
 
