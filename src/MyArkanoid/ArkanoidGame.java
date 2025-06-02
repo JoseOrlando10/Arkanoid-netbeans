@@ -481,9 +481,15 @@ public class ArkanoidGame extends JComponent
         // Limpa os bricks e recria-os como no início do nível
         this.bricks.clear();
         carregarNivel(currentLevel, true); // true para criar bricks do zero
+        
+        // Guarda os efeitos atuais da bola
+    Color corBola = ball.getMyColor();
+    float gradCenter = ball.getGradCenterFactor();
+    float gradRadius = ball.getGradRadiusFactor();
+        
         // Reposiciona paddle e bola
         pad = new Paddle(Color.RED, 200, 480, 50, 10);
-        ball = new Ball(Color.LIGHT_GRAY, pad.x + pad.width / 2 - 20, pad.y - 40);
+        ball = new Ball(corBola, pad.x + pad.width / 2 - 20, pad.y - 40, gradCenter, gradRadius);
         ballReadyToMove = false;
         isGameOver = false;
         this.vidas = 2; // <-- repõe as vidas!
