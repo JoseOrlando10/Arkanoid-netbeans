@@ -486,6 +486,7 @@ public class ArkanoidGame extends JComponent
         ball = new Ball(Color.LIGHT_GRAY, pad.x + pad.width / 2 - 20, pad.y - 40);
         ballReadyToMove = false;
         isGameOver = false;
+        this.vidas = 2; // <-- repõe as vidas!
         gameTimer.start();
         timeTimer.start();
         repaint();
@@ -575,13 +576,61 @@ public class ArkanoidGame extends JComponent
             this.bricks.clear();
 
             if (nivel == 1) {
-                //colocar aqui dentro os bricks que me mandaste pro discord
+                // --- CÓDIGO DOS BRICKS DO NÍVEL 1 ---
+                int larguraTela = Math.max(getWidth(), 680);
+                int alturaBrick = 25;
+                int larguraBrick = 55;
+                int espacamento = 10;
+                int bricksPorLinha = 1;
+                int[] linhasY = {75};
+                for (int y : linhasY) {
+                    int larguraTotalLinha = (larguraBrick * bricksPorLinha) + (espacamento * (bricksPorLinha - 1));
+                    int startX = (larguraTela - larguraTotalLinha) / 2;
+                    for (int i = 0; i < bricksPorLinha; i++) {
+                        int x = startX + (i * (larguraBrick + espacamento));
+                        Color corBrick = new Color(0, 150, 255);
+                        bricks.add(new EstilosBricks(corBrick, x, y, larguraBrick, alturaBrick));
+                    }
+                }
             } else if (nivel == 2) {
-
+                // --- CÓDIGO DOS BRICKS DO NÍVEL 2 ---
+                int larguraTela = Math.max(getWidth(), 680);
+                int alturaBrick = 25;
+                int larguraBrick = 55;
+                int espacamento = 10;
+                int bricksPorLinha = 1;
+                int[] linhasY = {75};
+                Color[] cores = {Color.RED, Color.GREEN, Color.ORANGE};
+                for (int i = 0; i < linhasY.length; i++) {
+                    int y = linhasY[i];
+                    int larguraTotalLinha = (larguraBrick * bricksPorLinha) + (espacamento * (bricksPorLinha - 1));
+                    int startX = (larguraTela - larguraTotalLinha) / 2;
+                    Color corLinha = cores[i % cores.length];
+                    for (int j = 0; j < bricksPorLinha; j++) {
+                        int x = startX + (j * (larguraBrick + espacamento));
+                        bricks.add(new EstilosBricks(corLinha, x, y, larguraBrick, alturaBrick));
+                    }
+                }
             } else if (nivel == 3) {
-
+                // --- CÓDIGO DOS BRICKS DO NÍVEL 3 ---
+                int larguraTela = Math.max(getWidth(), 680);
+                int alturaBrick = 25;
+                int larguraBrick = 55;
+                int espacamento = 10;
+                int bricksPorLinha = 1;
+                int[] linhasY = {75};
+                Color[] cores = {Color.RED, Color.RED, Color.RED};
+                for (int i = 0; i < linhasY.length; i++) {
+                    int y = linhasY[i];
+                    int larguraTotalLinha = (larguraBrick * bricksPorLinha) + (espacamento * (bricksPorLinha - 1));
+                    int startX = (larguraTela - larguraTotalLinha) / 2;
+                    Color corLinha = cores[i % cores.length];
+                    for (int j = 0; j < bricksPorLinha; j++) {
+                        int x = startX + (j * (larguraBrick + espacamento));
+                        bricks.add(new EstilosBricks(corLinha, x, y, larguraBrick, alturaBrick));
+                    }
+                }
             }
-
         }
 
     }
