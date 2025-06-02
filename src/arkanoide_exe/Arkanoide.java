@@ -144,7 +144,7 @@ public class Arkanoide extends javax.swing.JFrame {
     private void btniveisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btniveisActionPerformed
         //dispose();
         setVisible(false);
-        new Niveis().setVisible(true);
+        new Niveis(null,null).setVisible(true);
     }//GEN-LAST:event_btniveisActionPerformed
 
     private void btCarregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCarregarActionPerformed
