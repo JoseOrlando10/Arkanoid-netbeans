@@ -596,59 +596,95 @@ public class ArkanoidGame extends JComponent
 
             if (nivel == 1) {
                 // --- CÓDIGO DOS BRICKS DO NÍVEL 1 ---
-                int larguraTela = Math.max(getWidth(), 680);
-                int alturaBrick = 25;
-                int larguraBrick = 55;
-                int espacamento = 10;
-                int bricksPorLinha = 1;
-                int[] linhasY = {75};
-                for (int y : linhasY) {
-                    int larguraTotalLinha = (larguraBrick * bricksPorLinha) + (espacamento * (bricksPorLinha - 1));
-                    int startX = (larguraTela - larguraTotalLinha) / 2;
-                    for (int i = 0; i < bricksPorLinha; i++) {
-                        int x = startX + (i * (larguraBrick + espacamento));
-                        Color corBrick = new Color(0, 150, 255);
-                        bricks.add(new EstilosBricks(corBrick, x, y, larguraBrick, alturaBrick));
-                    }
-                }
+                bricks = new ArrayList<>();
+    int larguraTela = Math.max(getWidth(), 680); // Largura da tela
+    int alturaBrick = 25;
+    int larguraBrick = 55;
+    int espacamento = 60; // Espaço entre os bricks
+
+    // Número de bricks por linha
+    int[] bricksPorLinha = {5, 4};
+    int[] linhasY = {75, 115}; // Posições Y das linhas
+
+    for (int linha = 0; linha < linhasY.length; linha++) {
+        int y = linhasY[linha];
+        int numBricks = bricksPorLinha[linha];
+
+        // Calcula a largura total ocupada pelos bricks e espaços na linha
+        int larguraTotalLinha = (larguraBrick * numBricks) + (espacamento * (numBricks - 1));
+
+        // Centraliza a linha horizontalmente
+        int startX = (larguraTela - larguraTotalLinha) / 2;
+
+        // Cria cada brick na linha
+        for (int i = 0; i < numBricks; i++) {
+            int x = startX + (i * (larguraBrick + espacamento));
+            Color corBrick = new Color(100, 149, 237); // azul 
+            bricks.add(new EstilosBricks(corBrick, x, y, larguraBrick, alturaBrick));
+        }
+    }// fim dos bricks
+
             } else if (nivel == 2) {
                 // --- CÓDIGO DOS BRICKS DO NÍVEL 2 ---
-                int larguraTela = Math.max(getWidth(), 680);
-                int alturaBrick = 25;
-                int larguraBrick = 55;
-                int espacamento = 10;
-                int bricksPorLinha = 1;
-                int[] linhasY = {75};
-                Color[] cores = {Color.RED, Color.GREEN, Color.ORANGE};
-                for (int i = 0; i < linhasY.length; i++) {
-                    int y = linhasY[i];
-                    int larguraTotalLinha = (larguraBrick * bricksPorLinha) + (espacamento * (bricksPorLinha - 1));
-                    int startX = (larguraTela - larguraTotalLinha) / 2;
-                    Color corLinha = cores[i % cores.length];
-                    for (int j = 0; j < bricksPorLinha; j++) {
-                        int x = startX + (j * (larguraBrick + espacamento));
-                        bricks.add(new EstilosBricks(corLinha, x, y, larguraBrick, alturaBrick));
-                    }
-                }
+                bricks = new ArrayList<>();
+    int larguraTela = Math.max(getWidth(), 680); // Largura da tela
+    int alturaBrick = 25;
+    int larguraBrick = 55;
+    int espacamento = 70; // Espaço entre os bricks
+
+    // Número de bricks por linha
+    int[] bricksPorLinha = {5, 4, 3};
+    int[] linhasY = {75, 115, 155}; // Posições Y das linhas
+
+    for (int linha = 0; linha < linhasY.length; linha++) {
+        int y = linhasY[linha];
+        int numBricks = bricksPorLinha[linha];
+
+        // Calcula a largura total ocupada pelos bricks e espaços na linha
+        int larguraTotalLinha = (larguraBrick * numBricks) + (espacamento * (numBricks - 1));
+
+        // Centraliza a linha horizontalmente
+        int startX = (larguraTela - larguraTotalLinha) / 2;
+
+        // Cria cada brick na linha
+        for (int i = 0; i < numBricks; i++) {
+            int x = startX + (i * (larguraBrick + espacamento));
+            Color corBrick = new Color(255, 255, 0); // amarelo
+            bricks.add(new EstilosBricks(corBrick, x, y, larguraBrick, alturaBrick));
+        }
+    }// fim dos bricks
+
             } else if (nivel == 3) {
                 // --- CÓDIGO DOS BRICKS DO NÍVEL 3 ---
-                int larguraTela = Math.max(getWidth(), 680);
-                int alturaBrick = 25;
-                int larguraBrick = 55;
-                int espacamento = 10;
-                int bricksPorLinha = 1;
-                int[] linhasY = {75};
-                Color[] cores = {Color.RED, Color.RED, Color.RED};
-                for (int i = 0; i < linhasY.length; i++) {
-                    int y = linhasY[i];
-                    int larguraTotalLinha = (larguraBrick * bricksPorLinha) + (espacamento * (bricksPorLinha - 1));
-                    int startX = (larguraTela - larguraTotalLinha) / 2;
-                    Color corLinha = cores[i % cores.length];
-                    for (int j = 0; j < bricksPorLinha; j++) {
-                        int x = startX + (j * (larguraBrick + espacamento));
-                        bricks.add(new EstilosBricks(corLinha, x, y, larguraBrick, alturaBrick));
-                    }
-                }
+                /// Bricks
+    bricks = new ArrayList<>();
+    int larguraTela = Math.max(getWidth(), 680); // Largura da tela
+    int alturaBrick = 25;
+    int larguraBrick = 55;
+    int espacamento = 90; // Espaço entre os bricks
+
+    // Número de bricks por linha
+    int[] bricksPorLinha = {5, 4, 3, 2, 1};
+    int[] linhasY = {75, 115, 155, 195, 235}; // Posições Y das linhas
+
+    for (int linha = 0; linha < linhasY.length; linha++) {
+        int y = linhasY[linha];
+        int numBricks = bricksPorLinha[linha];
+
+        // Calcula a largura total ocupada pelos bricks e espaços na linha
+        int larguraTotalLinha = (larguraBrick * numBricks) + (espacamento * (numBricks - 1));
+
+        // Centraliza a linha horizontalmente
+        int startX = (larguraTela - larguraTotalLinha) / 2;
+
+        // Cria cada brick na linha
+        for (int i = 0; i < numBricks; i++) {
+            int x = startX + (i * (larguraBrick + espacamento));
+            Color corBrick = new Color(255, 0, 0); // vermelho
+            bricks.add(new EstilosBricks(corBrick, x, y, larguraBrick, alturaBrick));
+        }
+    }// fim dos bricks
+
             }
         }
 
