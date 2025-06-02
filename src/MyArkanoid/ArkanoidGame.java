@@ -208,7 +208,7 @@ public class ArkanoidGame extends JComponent
         int espacamento = 10;
         int bricksPorLinha = 1;
 
-        int[] linhasY = {75, 115, 155};
+        int[] linhasY = {75};
 
         // Cores diferentes para as linhas, por exemplo:
         Color[] cores = {Color.RED, Color.GREEN, Color.ORANGE};
@@ -240,7 +240,7 @@ public class ArkanoidGame extends JComponent
         int espacamento = 10;
         int bricksPorLinha = 1;
 
-        int[] linhasY = {75, 115, 155};
+        int[] linhasY = {75};
 
         // Cores diferentes para as linhas, por exemplo:
         Color[] cores = {Color.RED, Color.RED, Color.RED};
