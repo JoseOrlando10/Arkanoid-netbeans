@@ -137,7 +137,7 @@ public class Arkanoide extends javax.swing.JFrame {
 
     private void btjogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btjogarActionPerformed
         setVisible(false);
-        new playGame(this).setVisible(true);
+        new playGame(this, null).setVisible(true);
         reduzirVolume(-20.0f); // Reduz para -20 decibéis, ajuste conforme quiser
     }//GEN-LAST:event_btjogarActionPerformed
 
