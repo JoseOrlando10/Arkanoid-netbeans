@@ -13,8 +13,9 @@ import java.io.Serializable;
  */
 public class BrickData implements Serializable {
     public int x, y, width, height;
-    public int r, g, b; // cor
-    public String tipo; // novo campo
+    public int r, g, b;
+    public String tipo;
+    public boolean isVisible; // <-- Adiciona isto
 
     public BrickData(Brick b) {
         this.x = b.x;
@@ -24,17 +25,23 @@ public class BrickData implements Serializable {
         this.r = b.getMyColor().getRed();
         this.g = b.getMyColor().getGreen();
         this.b = b.getMyColor().getBlue();
-        this.tipo = b.getClass().getSimpleName(); // salva o tipo
+        this.tipo = b.getClass().getSimpleName();
+        this.isVisible = b.isVisible; // <-- Guarda o estado
     }
 
     public Brick toBrick(ArkanoidGame game) {
         Color cor = new Color(r, g, b);
+        Brick brick;
         switch (tipo) {
             case "EstilosBricks":
-                return game.new EstilosBricks(cor, x, y, width, height);
+                brick = game.new EstilosBricks(cor, x, y, width, height);
+                break;
             default:
-                return new Brick(cor, x, y, width, height);
+                brick = new Brick(cor, x, y, width, height);
         }
+        brick.isVisible = this.isVisible; // <-- Restaura o estado
+        return brick;
     }
 }
+
 
