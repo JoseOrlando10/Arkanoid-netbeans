@@ -8,10 +8,8 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 /**
- *
- * @author Pedro Coelho - 25026
- * @author Jose Martins - 24269
- *
+ * Classe Paddle: representa o paddle controlado pelo jogador.
+ * Inclui lógica de movimento, colisão com a bola e desenho visual.
  */
 public class Paddle extends GameObject implements Serializable {
 
@@ -19,26 +17,26 @@ public class Paddle extends GameObject implements Serializable {
 
     // Construtor do paddle
     public Paddle(Color myColor, int x, int y, int width, int height) {
-        super(myColor, x, y, (int) (width * 1.3), height); // Aumenta o tamanho do paddle em 30% (*1.3)
+        // O paddle é 30% maior que o valor recebido (efeito visual)
+        super(myColor, x, y, (int) (width * 1.3), height);
     }
 
+    // Desenha o paddle com efeito 3D (cor aquamarine, borda escura e highlight)
     public void paint(Graphics gr) {
-        // Pintura ao estilo clássico Arkanoid (cantos arredondados e highlight para 3D)
-
-        // Corpo principal do paddle: cor base
-        gr.setColor(new Color(127, 255, 212)); // cor do paddle para aquamarine
+        // Corpo principal do paddle
+        gr.setColor(new Color(127, 255, 212)); // aquamarine
         gr.fillRoundRect(x, y, width, height, 20, 20);
 
-        // Borda mais escura para dar profundidade
+        // Borda escura para profundidade
         gr.setColor(new Color(100, 100, 100));
         gr.drawRoundRect(x, y, width, height, 20, 20);
 
-        // Highlight para efeito 3D
-        gr.setColor(new Color(255, 255, 255, 100)); // branco semi-transparente
+        // Highlight branco semi-transparente para efeito 3D
+        gr.setColor(new Color(255, 255, 255, 100));
         gr.fillRoundRect(x + 2, y + 2, width - 4, height / 2, 20, 20);
     }
 
-    // Movimento para onde está o rato (centraliza o paddle em relação ao rato)
+    // Move o paddle para a posição do rato, centralizando-o
     public void moveTo(int mouseX, int panelWidth) {
         int newX = mouseX - width / 2;
         if (newX < 0) {
@@ -50,7 +48,7 @@ public class Paddle extends GameObject implements Serializable {
         this.x = newX;
     }
 
-    // Movimento para a esquerda
+    // Move o paddle para a esquerda (tecla)
     public void moveLeft() {
         x -= speed;
         if (x < 0) {
@@ -58,7 +56,7 @@ public class Paddle extends GameObject implements Serializable {
         }
     }
 
-    // Movimento para a direita
+    // Move o paddle para a direita (tecla)
     public void moveRight(int panelWidth) {
         int newX = x + speed;
         if (newX + width > panelWidth) {
@@ -68,57 +66,54 @@ public class Paddle extends GameObject implements Serializable {
         }
     }
 
-    // Colisão entre bola e paddle
+    // Lógica de colisão entre bola e paddle
     public void collide(Ball b) {
-
-        // Problema encontrado: Quando o paddle está quieto, a colisão funciona mas a bola está a ficar presa dentro do paddle,
-        // tudo indica que o paddle está a ser pintado em cima da bola
-        // Solução: Verificar se o paddle não está a ser pintado em cima da bola; se sim, o jogo deve entender isso como um remate
+        // Se a bola intersecta o paddle
         if (b.intersects(this)) {
-            b.vy *= -1;
+            b.vy *= -1; // Inverte a direção vertical da bola
 
-            // Calcula o ponto central da bola e do paddle
+            // Calcula o centro da bola e do paddle
             int ballCenter = b.x + b.width / 2;
             int paddleCenter = this.x + this.width / 2;
 
-            // Distância do centro da bola para o centro do paddle
+            // Distância do centro da bola ao centro do paddle
             int distance = ballCenter - paddleCenter;
 
-            // Define um fator de escala para a velocidade horizontal, não obrigatório, mas faz com que o ricochete seja mais suave e proporcional à zona de impacto
+            // Fator de escala para ajustar a velocidade horizontal da bola
             double scale = (double) distance / (this.width / 2);
-            /* Vai dar sempre um resultado entre 1 e -1 conforme o sítio onde a bola colide com o paddle,
-             ou seja, se bater no extremo esquerdo, vai dar -1, se bater no centro vai dar 0 e se bater no extremo direito vai dar 1 */
+            // scale vai de -1 (extremo esquerdo) a 1 (extremo direito)
 
-            // Multiplica por uma velocidade máxima
-            int newVx = (int) (scale * 6); // velocidade máxima horizontal pode chegar até 6
+            // Calcula nova velocidade horizontal proporcional ao local do impacto
+            int newVx = (int) (scale * 6); // velocidade máxima horizontal = 6
 
-            // Garante que a bola tenha sempre um movimento leve horizontal, mesmo quando bate exatamente no meio do paddle
-            if (newVx == 0) { // Se newVx == 0, então a bola bateu exatamente no meio do paddle, o que faria que acontecesse apenas um movimento vertical
-                // Isso pode fazer com que a bola fique presa dentro do paddle, então forçamos um leve desvio horizontal
-                newVx = (b.vx > 0) ? 1 : -1; // vai manter a direção horizontal da bola, mas com intensidade mínima
+            // Garante que a bola nunca fica presa a ir só para cima/baixo
+            if (newVx == 0) {
+                newVx = (b.vx > 0) ? 1 : -1; // força um leve desvio horizontal
             }
 
             b.vx = newVx;
 
-            // Reposiciona a bola fora do paddle para não ficar presa
-            b.y = this.y - b.height; // Coloca a bola por cima do paddle
+            // Reposiciona a bola por cima do paddle para evitar ficar presa
+            b.y = this.y - b.height;
             b.move(); // Aplica o movimento ajustado
         }
     }
 
+    // Método para recarregar recursos após desserialização (se necessário)
     public void reload() {
         // Reinicializa recursos se necessário
     }
-    private void writeObject(ObjectOutputStream out) throws IOException {
-    out.defaultWriteObject();
-    // Adicione manualmente campos não-serializáveis se necessário
-}
 
-private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-    in.defaultReadObject();
-    this.reload(); // Recarrega recursos após desserialização
-}
+    // Serialização personalizada (caso precises de guardar mais campos)
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        out.defaultWriteObject();
+        // Adicione manualmente campos não-serializáveis se necessário
+    }
+
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        in.defaultReadObject();
+        this.reload(); // Recarrega recursos após desserialização
+    }
 
     private static final long serialVersionUID = 1L;
-
 }

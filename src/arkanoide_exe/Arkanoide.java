@@ -41,13 +41,20 @@ public class Arkanoide extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btCreditos = new javax.swing.JButton();
-        btniveis = new javax.swing.JButton();
-        btsair = new javax.swing.JButton();
-        btjogar = new javax.swing.JButton();
-        btCarregar = new javax.swing.JButton();
-        btSom = new javax.swing.JButton(MyArkanoid.ArkanoidGame.somAtivo ? "🔊" : "🔇");
-        imagemfundo = new javax.swing.JLabel();
+    // Botão Créditos: abre a janela de créditos
+    btCreditos = new javax.swing.JButton();
+    // Botão Níveis: abre a seleção de níveis
+    btniveis = new javax.swing.JButton();
+    // Botão Sair: fecha o programa
+    btsair = new javax.swing.JButton();
+    // Botão Jogar: inicia o jogo principal
+    btjogar = new javax.swing.JButton();
+    // Botão Carregar: permite carregar um jogo salvo
+    btCarregar = new javax.swing.JButton();
+    // Botão Som: ativa/desativa o som do menu
+    btSom = new javax.swing.JButton(MyArkanoid.ArkanoidGame.somAtivo ? "🔊" : "🔇");
+    // Label da imagem de fundo/logo
+    imagemfundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(702, 609));
@@ -127,31 +134,37 @@ public class Arkanoide extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // Ação do botão Créditos
     private void btCreditosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreditosActionPerformed
-        new Creditos(this, true).setVisible(true);// TODO add your handling code here:
+        // Abre a janela de créditos
+        new Creditos(this, true).setVisible(true);
     }//GEN-LAST:event_btCreditosActionPerformed
 
+    // Ação do botão Sair
     private void btsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btsairActionPerformed
-
+        // Fecha a janela principal (sai do jogo)
         dispose();
     }//GEN-LAST:event_btsairActionPerformed
 
+    // Ação do botão Jogar
     private void btjogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btjogarActionPerformed
+        // Esconde o menu e abre o jogo principal
         setVisible(false);
         new playGame(this, null).setVisible(true);
-        reduzirVolume(-20.0f); // Reduz para -20 decibéis, ajuste conforme quiser
+        reduzirVolume(-20.0f); // Reduz o volume da música do menu
     }//GEN-LAST:event_btjogarActionPerformed
 
+    // Ação do botão Níveis
     private void btniveisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btniveisActionPerformed
-        //dispose();
+        // Esconde o menu e abre a seleção de níveis
         setVisible(false);
-        new Niveis(null,null).setVisible(true);
+        new Niveis(null, null).setVisible(true);
     }//GEN-LAST:event_btniveisActionPerformed
 
+    // Ação do botão Carregar
     private void btCarregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCarregarActionPerformed
-        File pastaAtual = new File("."); // diretório atual
-
-// Se quiser checar se há arquivos .save no diretório atual antes:
+        // Permite escolher e carregar um ficheiro de jogo salvo
+        File pastaAtual = new File(".");
         File[] arquivosSalvos = pastaAtual.listFiles((dir, name) -> name.endsWith(".save"));
 
         if (arquivosSalvos == null || arquivosSalvos.length == 0) {
@@ -167,7 +180,6 @@ public class Arkanoide extends javax.swing.JFrame {
             try {
                 File arquivo = chooser.getSelectedFile();
                 MyArkanoid.ArkanoidGame novoJogo = new ArkanoidGame();
-
                 novoJogo.loadGame(arquivo);
 
                 JFrame frame = new JFrame("Arkanoid - Jogo Carregado");
@@ -181,11 +193,13 @@ public class Arkanoide extends javax.swing.JFrame {
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Erro ao carregar: " + ex.getMessage());
                 ex.printStackTrace();
-            }}
-        
+            }
+        }
     }//GEN-LAST:event_btCarregarActionPerformed
 
+    // Ação do botão Som
     private void btSomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSomActionPerformed
+        // Ativa ou desativa o som do menu
         alternarSom();
     }//GEN-LAST:event_btSomActionPerformed
     private void tocarMusicaMenu() {

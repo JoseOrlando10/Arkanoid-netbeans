@@ -20,20 +20,17 @@ import javax.swing.UIManager;
  */
 public class MenuPausa extends javax.swing.JFrame {
 
-    private javax.swing.JButton btSom;
+    // Referência ao jogo atual para poder controlar o estado do jogo a partir do menu de pausa
     private ArkanoidGame jogo;
-
-    static void setVisible() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+    private javax.swing.JButton btSom;
     /**
-     * Creates new form MenuPausa
+     * Construtor do menu de pausa.
+     * Recebe a instância do jogo para poder continuar, reiniciar, salvar, etc.
      */
     public MenuPausa(ArkanoidGame jogo) {
         initComponents();
-        setLocationRelativeTo(null);
-        this.jogo = jogo; // Guardamos a instância atual do jogo
+        setLocationRelativeTo(null); // Centraliza a janela
+        this.jogo = jogo; // Guarda a referência ao jogo
     }
 
     @SuppressWarnings("unchecked")
@@ -70,7 +67,7 @@ public class MenuPausa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btSair);
-        btSair.setBounds(120, 240, 145, 30);
+        btSair.setBounds(120, 240, 137, 30);
         btSair.getAccessibleContext().setAccessibleName("esc_sair");
 
         btNiveis.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
@@ -111,68 +108,64 @@ public class MenuPausa extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btNiveisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNiveisActionPerformed
-        this.setVisible(false);
-        Niveis niveis = new Niveis(this, jogo); // passa a referência do MenuPausa!
-        niveis.setVisible(true);
+    // Botão "Continuar": fecha o menu de pausa e retoma o jogo
+    private void btContiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btContiActionPerformed
+        if (jogo != null) {
+            jogo.continuarJogo(); // Retoma o timer e a ação do jogo
+        }
+        this.dispose(); // Fecha o menu de pausa
+    }//GEN-LAST:event_btContiActionPerformed
 
-    }//GEN-LAST:event_btNiveisActionPerformed
-
+    // Botão "Abandonar Jogo": fecha o jogo atual e volta ao menu inicial
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
-
         if (jogo != null) {
             java.awt.Window janelaJogo = javax.swing.SwingUtilities.getWindowAncestor(jogo);
             if (janelaJogo != null) {
-                janelaJogo.dispose();
+                janelaJogo.dispose(); // Fecha a janela do jogo
             }
         }
-        // Fecha o menu de pausa
-        this.dispose();
-        // Abre o menu inicial
-        new arkanoide_exe.Arkanoide().setVisible(true);// TODO add your handling code here:
+        this.dispose(); // Fecha o menu de pausa
+        new arkanoide_exe.Arkanoide().setVisible(true); // Abre o menu inicial
     }//GEN-LAST:event_btSairActionPerformed
 
-    private void btContiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btContiActionPerformed
-        if (jogo != null) {
-            jogo.continuarJogo(); // Recomeça o jogo
-        }
-        this.dispose(); // Fecha a janela do menu
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btContiActionPerformed
+    // Botão "Niveis": abre a janela de seleção de níveis
+    private void btNiveisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNiveisActionPerformed
+        this.setVisible(false); // Esconde o menu de pausa
+        Niveis niveis = new Niveis(this, jogo); // Cria janela de níveis, passando referência ao menu e ao jogo
+        niveis.setVisible(true); // Mostra a janela de níveis
+    }//GEN-LAST:event_btNiveisActionPerformed
 
+    // Botão "Reiniciar": reinicia o nível atual do jogo
     private void btRestartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRestartActionPerformed
         if (jogo != null) {
-            jogo.reiniciarNivelAtual(); // Reinicia o nível atual
+            jogo.reiniciarNivelAtual(); // Reinicia o nível (bricks, bola, paddle, vidas)
         }
         this.dispose(); // Fecha o menu de pausa
-
     }//GEN-LAST:event_btRestartActionPerformed
 
+    // Botão "Save": permite guardar o estado atual do jogo num ficheiro
     private void btSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaveActionPerformed
-
-        jogo.pararJogo(); // Pausa o jogo
+        jogo.pararJogo(); // Pausa o jogo antes de salvar
 
         JFileChooser fc = new JFileChooser(".");
         int result = fc.showSaveDialog(this);
 
         if (result == JFileChooser.APPROVE_OPTION) {
-            File arquivo = fc.getSelectedFile(); // CORRIGIDO aqui
+            File arquivo = fc.getSelectedFile();
 
-            // Adiciona extensão .save se não tiver
+            // Garante que o ficheiro tem extensão .save
             if (!arquivo.getName().toLowerCase().endsWith(".save")) {
                 arquivo = new File(arquivo.getAbsolutePath() + ".save");
             }
 
             try {
-                jogo.saveGame(arquivo); // método deve aceitar File
+                jogo.saveGame(arquivo); // Salva o estado do jogo
                 JOptionPane.showMessageDialog(this, "Jogo salvo com sucesso!");
             } catch (Exception ex) {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Erro ao salvar: " + ex.getMessage());
             }
-
         }
-
     }//GEN-LAST:event_btSaveActionPerformed
 
     private void alternarSom() {
