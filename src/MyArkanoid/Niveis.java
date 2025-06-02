@@ -14,19 +14,18 @@ public class Niveis extends javax.swing.JFrame {
 
     private MenuPausa menuPausa;
     private ArkanoidGame jogoAtual;
-
-    public Niveis() {
-        initComponents();
-        setLocationRelativeTo(null);//coloca ao centro
-        this.menuPausa = menuPausa;
-        this.jogoAtual = jogoAtual;
-    }
+    
 
     public Niveis(MenuPausa menuPausa, ArkanoidGame jogoAtual) {
         initComponents();
         setLocationRelativeTo(null);
         this.menuPausa = menuPausa;
+        this.jogoAtual = jogoAtual;
+        
+        
     }
+
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -197,7 +196,7 @@ public class Niveis extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Niveis().setVisible(true);
+                new Niveis(null,null).setVisible(true);
             }
         });
     }

@@ -142,12 +142,9 @@ public class MenuPausa extends javax.swing.JFrame {
 
     private void btRestartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRestartActionPerformed
         if (jogo != null) {
-            jogo.resetJogo(); // Usa o método resetJogo() da classe ArkanoidGame
+            jogo.reiniciarNivelAtual(); // Reinicia o nível atual
         }
-
         this.dispose(); // Fecha o menu de pausa
-
-        new ArkanoidGame().setVisible(true);
 
     }//GEN-LAST:event_btRestartActionPerformed
 
