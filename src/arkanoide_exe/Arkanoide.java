@@ -132,7 +132,8 @@ public class Arkanoide extends javax.swing.JFrame {
     }//GEN-LAST:event_btCreditosActionPerformed
 
     private void btsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btsairActionPerformed
-        dispose();// TODO add your handling code here:
+
+        dispose();
     }//GEN-LAST:event_btsairActionPerformed
 
     private void btjogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btjogarActionPerformed

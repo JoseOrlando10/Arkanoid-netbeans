@@ -13,7 +13,7 @@ public class ExceptionJogo extends Exception{
     }
     
     public void show(){
-        JOptionPane.showMessageDialog(null, getMessage(), "Arkanoid Error", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, getMessage(), "Ficaste sem Vidas", JOptionPane.WARNING_MESSAGE);
         
     }
 }
