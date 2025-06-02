@@ -46,7 +46,7 @@ public class Creditos extends javax.swing.JDialog {
         painelscrollpedro.setViewportView(txtareapedro);
 
         getContentPane().add(painelscrollpedro);
-        painelscrollpedro.setBounds(160, 240, 300, 160);
+        painelscrollpedro.setBounds(160, 240, 310, 160);
 
         txtcreditos.setBackground(new java.awt.Color(255, 255, 255));
         txtcreditos.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
@@ -63,7 +63,7 @@ public class Creditos extends javax.swing.JDialog {
         painelscrolljose.setViewportView(txtareajose);
 
         getContentPane().add(painelscrolljose);
-        painelscrolljose.setBounds(160, 70, 300, 160);
+        painelscrolljose.setBounds(160, 70, 310, 160);
 
         fotopedro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/pedro.jpg"))); // NOI18N
         getContentPane().add(fotopedro);

@@ -9,9 +9,7 @@ package MyArkanoid;
  */
 public class Regras extends javax.swing.JDialog {
 
-    /**
-     * Creates new form AboutDialog
-     */
+    
     public Regras(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -136,7 +134,7 @@ public class Regras extends javax.swing.JDialog {
         //</editor-fold>
         //</editor-fold>
 
-        /* Create and display the dialog */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Regras dialog = new Regras(new javax.swing.JFrame(), true);
