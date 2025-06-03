@@ -93,7 +93,7 @@ public class MenuPausa extends javax.swing.JFrame {
         btRestart.setBounds(140, 110, 100, 30);
 
         btSave.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
-        btSave.setText("Save");
+        btSave.setText("Guardar");
         btSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSaveActionPerformed(evt);
