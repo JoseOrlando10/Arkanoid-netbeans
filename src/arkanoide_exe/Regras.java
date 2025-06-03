@@ -28,7 +28,9 @@ public class Regras extends javax.swing.JDialog {
         fundocreditos = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(521, 424));
         setMinimumSize(new java.awt.Dimension(521, 424));
+        setPreferredSize(new java.awt.Dimension(525, 493));
         getContentPane().setLayout(null);
 
         txtareapedro.setEditable(false);
