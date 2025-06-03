@@ -1,4 +1,4 @@
-package MyArkanoid;
+package arkanoide_exe;
 
 
 /**
@@ -7,12 +7,10 @@ package MyArkanoid;
  * @author Jose Martins - 24269
  * 
  */
-public class Creditos extends javax.swing.JDialog {
+public class Regras extends javax.swing.JDialog {
 
-    /**
-     * Creates new form AboutDialog
-     */
-    public Creditos(java.awt.Frame parent, boolean modal) {
+    
+    public Regras(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);// coloca no centro do ecra
@@ -25,53 +23,34 @@ public class Creditos extends javax.swing.JDialog {
         painelscrollpedro = new javax.swing.JScrollPane();
         txtareapedro = new javax.swing.JTextArea();
         txtcreditos = new javax.swing.JLabel();
-        painelscrolljose = new javax.swing.JScrollPane();
-        txtareajose = new javax.swing.JTextArea();
         fotopedro = new javax.swing.JLabel();
-        fotojose = new javax.swing.JLabel();
         btsair = new javax.swing.JButton();
         fundocreditos = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(521, 424));
         setMinimumSize(new java.awt.Dimension(521, 424));
-        setPreferredSize(new java.awt.Dimension(530, 495));
         getContentPane().setLayout(null);
 
         txtareapedro.setEditable(false);
         txtareapedro.setColumns(20);
         txtareapedro.setLineWrap(true);
         txtareapedro.setRows(5);
-        txtareapedro.setText("Nome: Pedro Afonso Redol Cotralha Inácio Coelho\n\nCurso: Engenharia Informática\n\nNúmero: 25026\n\nTurma: B\n\nEmail: aluno25026@ipt.pt");
+        txtareapedro.setText("O jogo é constituido por 3 niveis. A cada nivel que passa, torna-se mais complicado pois ficas com mais blocos para destruir.\n\nTanto podes mover o teu paddle nas setas esquerda (<-) e direita (->) e clicar na tecla ESPAÇO para atirar a bola. Como podes mover o paddle no rato e atirar clicando no rato do lado esquerdo.\n\nGanhas 1 ponto por cada bloco destruido.\n\nTens 2 vidas se as perderes podes reiniciar o nivel.\n\nO tempo está a contar para teres a perseção de quanto tempo demoras a concluir o nivel.\n\nSe precisares de dar pausa basta clicares na tecla ESC , assim tens acesso ao menu de pausa onde consegues voltar para o menu inicial, reiniciar o nivel, continuar o nivel ou seja voltas a onde estavas a jogar e podes guardar o nivel para continuares a jogar mais tarde.\n\nSe quiseres carregar e jogar o nivel que guardas-te, basta clicares no botão de carregar situado no menu inicial e selecionar o teu save.\n\n");
         painelscrollpedro.setViewportView(txtareapedro);
 
         getContentPane().add(painelscrollpedro);
-        painelscrollpedro.setBounds(160, 240, 310, 160);
+        painelscrollpedro.setBounds(180, 100, 320, 230);
 
         txtcreditos.setBackground(new java.awt.Color(255, 255, 255));
         txtcreditos.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         txtcreditos.setForeground(new java.awt.Color(255, 255, 255));
-        txtcreditos.setText(" Créditos");
+        txtcreditos.setText(" Regras");
         getContentPane().add(txtcreditos);
         txtcreditos.setBounds(190, 10, 160, 48);
 
-        txtareajose.setEditable(false);
-        txtareajose.setColumns(20);
-        txtareajose.setLineWrap(true);
-        txtareajose.setRows(5);
-        txtareajose.setText("Nome: José Orlando Lourenço Martins\n\nCurso: Engenharia Informática\n\nNúmero: 24269\n\nTurma: A\n\nEmail: aluno24269@ipt.pt");
-        painelscrolljose.setViewportView(txtareajose);
-
-        getContentPane().add(painelscrolljose);
-        painelscrolljose.setBounds(160, 70, 310, 160);
-
-        fotopedro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/pedro.jpg"))); // NOI18N
+        fotopedro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imgregras.png"))); // NOI18N
         getContentPane().add(fotopedro);
-        fotopedro.setBounds(20, 240, 130, 160);
-
-        fotojose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/josé.jpg"))); // NOI18N
-        getContentPane().add(fotojose);
-        fotojose.setBounds(20, 70, 130, 160);
+        fotopedro.setBounds(10, 70, 160, 190);
 
         btsair.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
         btsair.setText("Sair");
@@ -81,7 +60,7 @@ public class Creditos extends javax.swing.JDialog {
             }
         });
         getContentPane().add(btsair);
-        btsair.setBounds(420, 420, 90, 30);
+        btsair.setBounds(400, 390, 90, 30);
 
         fundocreditos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/fundocreditos.png"))); // NOI18N
         getContentPane().add(fundocreditos);
@@ -91,7 +70,7 @@ public class Creditos extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btsairActionPerformed
-        this.dispose(); // Fecha os creditos
+        this.dispose(); // Fecha o menu das regras
         new arkanoide_exe.Arkanoide().setVisible(true); // Abre o menu inicial
     }//GEN-LAST:event_btsairActionPerformed
 
@@ -112,13 +91,13 @@ public class Creditos extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Creditos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Regras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Creditos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Regras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Creditos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Regras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Creditos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Regras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -136,11 +115,27 @@ public class Creditos extends javax.swing.JDialog {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the dialog */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Creditos dialog = new Creditos(new javax.swing.JFrame(), true);
+                Regras dialog = new Regras(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -155,12 +150,9 @@ public class Creditos extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btsair;
-    private javax.swing.JLabel fotojose;
     private javax.swing.JLabel fotopedro;
     private javax.swing.JLabel fundocreditos;
-    private javax.swing.JScrollPane painelscrolljose;
     private javax.swing.JScrollPane painelscrollpedro;
-    private javax.swing.JTextArea txtareajose;
     private javax.swing.JTextArea txtareapedro;
     private javax.swing.JLabel txtcreditos;
     // End of variables declaration//GEN-END:variables

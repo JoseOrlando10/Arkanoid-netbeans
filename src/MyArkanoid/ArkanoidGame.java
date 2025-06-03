@@ -1,6 +1,9 @@
 package MyArkanoid;
 
 // Importações necessárias para gráficos, eventos, som, etc.
+import arkanoide_exe.MenuPausa;
+import Niveis.playGame2;
+import Niveis.playGame3;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -62,7 +65,6 @@ public class ArkanoidGame extends JComponent
     private int nivelAtual; // (não usado diretamente)
     private String caminhoFundo = "/resources/fundo.png"; // Caminho do fundo
     private transient Image imageFundo; // Imagem de fundo
-
     private int nivelMaxDesbloqueado = 1; // Nível máximo desbloqueado
 
     // Construtor padrão

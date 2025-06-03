@@ -1,5 +1,7 @@
-package MyArkanoid;
+package arkanoide_exe;
 
+import MyArkanoid.ArkanoidGame;
+import arkanoide_exe.Niveis;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -45,7 +47,6 @@ public class MenuPausa extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(400, 330));
         setMinimumSize(new java.awt.Dimension(400, 330));
         getContentPane().setLayout(null);
 

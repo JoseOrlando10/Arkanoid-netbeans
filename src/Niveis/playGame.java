@@ -1,5 +1,6 @@
-package MyArkanoid;
+package Niveis;
 
+import MyArkanoid.ArkanoidGame;
 import javax.swing.JFrame;
 
 /**
@@ -36,9 +37,7 @@ private static final long serialVersionUID = 1L;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
-        setMaximumSize(new java.awt.Dimension(700, 570));
         setMinimumSize(new java.awt.Dimension(680, 570));
-        setPreferredSize(new java.awt.Dimension(695, 570));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {

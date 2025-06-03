@@ -1,24 +1,21 @@
-package MyArkanoid;
+package Niveis;
 
 /**
  *
  * @author pedro
  */
-public class playGame2 extends javax.swing.JFrame {
+public class playGame3 extends javax.swing.JFrame {
     private int nivelAtual;
-    /**
-     * Creates new form playGame2
-     */
-    public playGame2() {  
+    public playGame3() {  
         initComponents();
-        this.nivelAtual = 2;
+        this.nivelAtual = 3;
         setLocationRelativeTo(null);// coloca no centro do ecra
         // Ajusta a altura do paddle (por exemplo, para y=450)
     arkanoidGame1.setPaddleY(480);
-     arkanoidGame1.start2();  // chamo o nivel 2*/
+     arkanoidGame1.start3();  // chamo o nivel 3
     }
 private static final long serialVersionUID = 1L;
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -26,10 +23,8 @@ private static final long serialVersionUID = 1L;
         arkanoidGame1 = new MyArkanoid.ArkanoidGame();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(700, 570));
         setMinimumSize(new java.awt.Dimension(680, 570));
         setName("nivel2"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(695, 570));
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -57,20 +52,21 @@ private static final long serialVersionUID = 1L;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(playGame2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(playGame3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(playGame2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(playGame3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(playGame2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(playGame3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(playGame2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(playGame3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new playGame2().setVisible(true);
+                new playGame3().setVisible(true);
             }
         });
     }

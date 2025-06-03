@@ -1,10 +1,7 @@
 package arkanoide_exe;
 
 import MyArkanoid.ArkanoidGame;
-import MyArkanoid.Creditos;
-import MyArkanoid.Niveis;
-import MyArkanoid.playGame;
-import MyArkanoid.Regras;
+import Niveis.playGame;
 import java.awt.Image;
 import java.io.File;
 import java.util.logging.Level;

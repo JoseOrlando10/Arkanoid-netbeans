@@ -1,5 +1,9 @@
-package MyArkanoid;
+package arkanoide_exe;
 
+import MyArkanoid.ArkanoidGame;
+import Niveis.playGame;
+import Niveis.playGame2;
+import Niveis.playGame3;
 import java.awt.Window;
 import javax.swing.SwingUtilities;
 
@@ -89,10 +93,7 @@ public class Niveis extends javax.swing.JFrame {
 
     // Botão "Voltar": fecha a janela de níveis e volta ao menu principal
     private void voltarActionPerformed(java.awt.event.ActionEvent evt) {
-        java.awt.Window janelaAtual = javax.swing.SwingUtilities.getWindowAncestor(this);
-        if (janelaAtual != null) {
-            janelaAtual.dispose(); // Fecha a janela atual corretamente
-        }
+        this.dispose(); // Fecha a janela de seleção de níveis
         new arkanoide_exe.Arkanoide().setVisible(true); // Abre o menu principal
     }
 
@@ -201,5 +202,5 @@ public class Niveis extends javax.swing.JFrame {
     private javax.swing.JButton voltar;     // Botão para voltar ao menu principal
 
     private static final long serialVersionUID = 1L;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }

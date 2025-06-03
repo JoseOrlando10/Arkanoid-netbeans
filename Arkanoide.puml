@@ -1,0 +1,167 @@
+@startuml
+annotation java.lang.Override
+annotation java.lang.SuppressWarnings
+class MyArkanoid.ArkanoidGame
+class MyArkanoid.Ball
+class MyArkanoid.Brick
+class MyArkanoid.BrickData
+class MyArkanoid.Creditos
+class MyArkanoid.ExceptionJogo
+class MyArkanoid.GameObject
+class MyArkanoid.GameState
+class MyArkanoid.ImageBrick
+class MyArkanoid.MenuPausa
+class MyArkanoid.Niveis
+class MyArkanoid.Paddle
+class MyArkanoid.Saves
+class MyArkanoid.playGame
+class MyArkanoid.playGame2
+class MyArkanoid.playGame3
+class java.awt.AlphaComposite
+class java.awt.BasicStroke
+class java.awt.Color
+class java.awt.Font
+class java.awt.GradientPaint
+class java.awt.Graphics
+class java.awt.Graphics2D
+class java.awt.Image
+class java.awt.RadialGradientPaint
+class java.awt.Rectangle
+class java.awt.RenderingHints
+class java.awt.Window
+class java.awt.event.ActionEvent
+class java.awt.event.KeyEvent
+class java.awt.event.MouseEvent
+class java.awt.geom.RoundRectangle2D
+class java.awt.image.BufferedImage
+class java.io.File
+class java.io.IOException
+class java.io.ObjectInputStream
+class java.io.ObjectOutputStream
+class java.lang.Exception
+class java.util.ArrayList
+class java.util.List
+class java.util.Random
+class java.util.logging.Level
+class java.util.logging.Logger
+class javax.imageio.ImageIO
+class javax.management.Query
+class javax.swing.ImageIcon
+class javax.swing.JButton
+class javax.swing.JComponent
+class javax.swing.JDialog
+class javax.swing.JFileChooser
+class javax.swing.JFrame
+class javax.swing.JOptionPane
+class javax.swing.SwingUtilities
+class javax.swing.Timer
+class javax.swing.UIManager
+interface java.awt.event.ActionListener
+interface java.awt.event.KeyListener
+interface java.awt.event.MouseListener
+interface java.awt.event.MouseMotionListener
+interface java.io.Serializable
+MyArkanoid.ArkanoidGame ..> java.lang.Override
+MyArkanoid.ArkanoidGame ..> java.lang.SuppressWarnings
+MyArkanoid.ArkanoidGame ..> MyArkanoid.ExceptionJogo
+MyArkanoid.ArkanoidGame ..> MyArkanoid.ImageBrick
+MyArkanoid.ArkanoidGame ..> java.awt.AlphaComposite
+MyArkanoid.ArkanoidGame ..> java.awt.BasicStroke
+MyArkanoid.ArkanoidGame ..> java.awt.Color
+MyArkanoid.ArkanoidGame ..> java.awt.Font
+MyArkanoid.ArkanoidGame ..> java.awt.GradientPaint
+MyArkanoid.ArkanoidGame ..> java.awt.Graphics
+MyArkanoid.ArkanoidGame ..> java.awt.Graphics2D
+MyArkanoid.ArkanoidGame ..> java.awt.Image
+MyArkanoid.ArkanoidGame ..> java.awt.Rectangle
+MyArkanoid.ArkanoidGame ..> java.awt.RenderingHints
+MyArkanoid.ArkanoidGame ..> java.awt.event.ActionEvent
+MyArkanoid.ArkanoidGame ..> java.awt.event.KeyEvent
+MyArkanoid.ArkanoidGame ..> java.awt.event.MouseEvent
+MyArkanoid.ArkanoidGame ..> java.awt.geom.RoundRectangle2D
+MyArkanoid.ArkanoidGame ..> java.util.ArrayList
+MyArkanoid.ArkanoidGame ..> java.util.Random
+MyArkanoid.ArkanoidGame ..> javax.management.Query
+MyArkanoid.ArkanoidGame ..> javax.swing.ImageIcon
+MyArkanoid.ArkanoidGame --|> javax.swing.JComponent
+MyArkanoid.ArkanoidGame ..> javax.swing.JOptionPane
+MyArkanoid.ArkanoidGame ..> javax.swing.Timer
+MyArkanoid.ArkanoidGame ..> javax.swing.UIManager
+MyArkanoid.ArkanoidGame --|> java.awt.event.ActionListener
+MyArkanoid.ArkanoidGame --|> java.awt.event.KeyListener
+MyArkanoid.ArkanoidGame --|> java.awt.event.MouseListener
+MyArkanoid.ArkanoidGame --|> java.awt.event.MouseMotionListener
+MyArkanoid.Ball --|> MyArkanoid.GameObject
+MyArkanoid.Ball ..> java.awt.BasicStroke
+MyArkanoid.Ball ..> java.awt.Color
+MyArkanoid.Ball ..> java.awt.Graphics
+MyArkanoid.Ball ..> java.awt.Graphics2D
+MyArkanoid.Ball ..> java.awt.Image
+MyArkanoid.Ball ..> java.awt.RadialGradientPaint
+MyArkanoid.Ball ..> java.awt.Rectangle
+MyArkanoid.Ball ..> java.awt.RenderingHints
+MyArkanoid.Ball ..> java.io.IOException
+MyArkanoid.Ball ..> java.io.ObjectInputStream
+MyArkanoid.Ball ..> java.io.ObjectOutputStream
+MyArkanoid.Ball --|> java.io.Serializable
+MyArkanoid.Brick --|> MyArkanoid.GameObject
+MyArkanoid.Brick ..> java.awt.Color
+MyArkanoid.Brick ..> java.awt.Graphics
+MyArkanoid.Brick ..> java.awt.Image
+MyArkanoid.Brick ..> java.awt.Rectangle
+MyArkanoid.Brick ..> java.io.IOException
+MyArkanoid.Brick ..> java.io.ObjectInputStream
+MyArkanoid.Brick ..> java.io.ObjectOutputStream
+MyArkanoid.Brick --|> java.io.Serializable
+MyArkanoid.BrickData ..> java.awt.Color
+MyArkanoid.BrickData --|> java.io.Serializable
+MyArkanoid.Creditos ..> java.lang.Override
+MyArkanoid.Creditos ..> java.lang.SuppressWarnings
+MyArkanoid.Creditos --|> javax.swing.JDialog
+MyArkanoid.ExceptionJogo --|> java.lang.Exception
+MyArkanoid.ExceptionJogo ..> javax.swing.JOptionPane
+MyArkanoid.GameObject ..> java.awt.Color
+MyArkanoid.GameObject --|> java.awt.Rectangle
+MyArkanoid.GameObject --|> java.io.Serializable
+MyArkanoid.GameState ..> java.util.ArrayList
+MyArkanoid.GameState --|> java.io.Serializable
+MyArkanoid.ImageBrick ..> java.lang.Override
+MyArkanoid.ImageBrick --|> MyArkanoid.Brick
+MyArkanoid.ImageBrick ..> java.awt.Color
+MyArkanoid.ImageBrick ..> java.awt.Graphics
+MyArkanoid.ImageBrick ..> java.awt.Image
+MyArkanoid.ImageBrick ..> java.awt.Rectangle
+MyArkanoid.ImageBrick ..> java.awt.image.BufferedImage
+MyArkanoid.ImageBrick ..> java.io.IOException
+MyArkanoid.ImageBrick ..> javax.imageio.ImageIO
+MyArkanoid.ImageBrick --|> java.io.Serializable
+MyArkanoid.MenuPausa ..> java.lang.SuppressWarnings
+MyArkanoid.MenuPausa ..> java.io.File
+MyArkanoid.MenuPausa ..> java.io.IOException
+MyArkanoid.MenuPausa ..> java.util.logging.Level
+MyArkanoid.MenuPausa ..> java.util.logging.Logger
+MyArkanoid.MenuPausa ..> javax.swing.JButton
+MyArkanoid.MenuPausa ..> javax.swing.JFileChooser
+MyArkanoid.MenuPausa --|> javax.swing.JFrame
+MyArkanoid.MenuPausa ..> javax.swing.JOptionPane
+MyArkanoid.MenuPausa ..> javax.swing.UIManager
+MyArkanoid.Niveis ..> java.lang.SuppressWarnings
+MyArkanoid.Niveis ..> java.awt.Window
+MyArkanoid.Niveis --|> javax.swing.JFrame
+MyArkanoid.Niveis ..> javax.swing.SwingUtilities
+MyArkanoid.Paddle --|> MyArkanoid.GameObject
+MyArkanoid.Paddle ..> java.awt.Color
+MyArkanoid.Paddle ..> java.awt.Graphics
+MyArkanoid.Paddle ..> java.io.IOException
+MyArkanoid.Paddle ..> java.io.ObjectInputStream
+MyArkanoid.Paddle ..> java.io.ObjectOutputStream
+MyArkanoid.Paddle --|> java.io.Serializable
+MyArkanoid.Saves ..> java.util.List
+MyArkanoid.Saves --|> java.io.Serializable
+MyArkanoid.playGame ..> java.lang.SuppressWarnings
+MyArkanoid.playGame --|> javax.swing.JFrame
+MyArkanoid.playGame2 ..> java.lang.SuppressWarnings
+MyArkanoid.playGame2 --|> javax.swing.JFrame
+MyArkanoid.playGame3 ..> java.lang.SuppressWarnings
+MyArkanoid.playGame3 --|> javax.swing.JFrame
+@enduml
