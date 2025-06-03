@@ -1,12 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package MyArkanoid;
 
 import java.io.Serializable;
 import java.util.List;
-
+/**
+ *
+ * @author Pedro Coelho - 25026
+ * @author Jose Martins - 24269
+ *
+ */
 /**
  * Classe que guarda o estado completo do jogo para serialização (save/load).
  */

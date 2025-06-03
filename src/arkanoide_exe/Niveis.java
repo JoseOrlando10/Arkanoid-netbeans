@@ -6,7 +6,12 @@ import Niveis.playGame2;
 import Niveis.playGame3;
 import java.awt.Window;
 import javax.swing.SwingUtilities;
-
+/**
+ *
+ * @author Pedro Coelho - 25026
+ * @author Jose Martins - 24269
+ *
+ */
 /**
  * Janela de seleção de níveis do jogo Arkanoid.
  * Permite ao jogador escolher o nível para jogar, voltar ao menu ou sair do jogo atual.

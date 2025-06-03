@@ -3,7 +3,9 @@ package MyArkanoid;
 
 /**
  *
- * @author pedro e josé
+ * @author Pedro Coelho - 25026
+ * @author Jose Martins - 24269
+ *
  */
 import java.io.Serializable;
 import java.util.ArrayList;

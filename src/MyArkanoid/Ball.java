@@ -12,7 +12,12 @@ import java.awt.BasicStroke;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-
+/**
+ *
+ * @author Pedro Coelho - 25026
+ * @author Jose Martins - 24269
+ *
+ */
 /**
  * Classe da bola do jogo, com suporte a efeitos visuais (gradiente).
  */

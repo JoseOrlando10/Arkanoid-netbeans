@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package MyArkanoid;
 
 import java.awt.Color;
@@ -9,7 +6,9 @@ import java.io.Serializable;
 
 /**
  *
- * @author jooma
+ * @author Pedro Coelho - 25026
+ * @author Jose Martins - 24269
+ *
  */
 public class BrickData implements Serializable {
     public int x, y, width, height;

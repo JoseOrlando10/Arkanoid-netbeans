@@ -6,7 +6,12 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-
+/**
+ *
+ * @author Pedro Coelho - 25026
+ * @author Jose Martins - 24269
+ *
+ */
 /**
  * Classe Paddle: representa o paddle controlado pelo jogador.
  * Inclui lógica de movimento, colisão com a bola e desenho visual.
