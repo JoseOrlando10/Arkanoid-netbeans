@@ -1,5 +1,5 @@
 package MyArkanoid;
-
+//ola
 // Importações necessárias para gráficos, eventos, som, etc.
 import arkanoide_exe.MenuPausa;
 import Niveis.playGame2;
